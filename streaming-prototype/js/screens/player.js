@@ -33,7 +33,6 @@ const PlayerScreen = {
   _controlsVisible: true,
   _modalVisible: false,
   _captionsOn: false,
-  _inMyStuff: false,
   _episodes: [],
 
   async init(container, params) {
@@ -54,7 +53,6 @@ const PlayerScreen = {
     // Load show data
     const showId = params.showId;
     this._show = DataStore.getShow(showId);
-    this._inMyStuff = this._show ? DataStore.isInMyStuff(showId) : false;
 
     // Load episode data
     const seriesData = await DataStore.getSeriesData(showId);
@@ -220,10 +218,7 @@ const PlayerScreen = {
         <span class="meta-dot">·</span>
         <span>${show.type}</span>
       </div>
-      <div class="modal-link-btn" id="modal-goto-series">→ Go to Series Page</div>
-      <div class="modal-add-btn" id="modal-add-btn">
-        ${this._inMyStuff ? '✓ Added to My Stuff' : '+ Add to My Stuff'}
-      </div>
+      <button class="pill-btn modal-series-btn focused" id="modal-goto-series">→ Go to Series Page</button>
     `;
   },
 
@@ -569,13 +564,8 @@ const PlayerScreen = {
     this._focusBtn('right', 0); // Return focus to More Info button
   },
 
-  _modalZone: 'link', // 'link' | 'add-btn'
-
   _updateModalFocus() {
-    const link = this._container.querySelector('#modal-goto-series');
-    const addBtn = this._container.querySelector('#modal-add-btn');
-    if (link) link.classList.toggle('focused', this._modalZone === 'link');
-    if (addBtn) addBtn.classList.toggle('focused', this._modalZone === 'add-btn');
+    // Single focusable item — always focused when modal is open
   },
 
   _handleModalKey(action) {
@@ -583,30 +573,9 @@ const PlayerScreen = {
       this._closeModal();
       return;
     }
-    if (action === 'UP') {
-      if (this._modalZone === 'add-btn') {
-        this._modalZone = 'link';
-        this._updateModalFocus();
-      }
-      return;
-    }
-    if (action === 'DOWN') {
-      if (this._modalZone === 'link') {
-        this._modalZone = 'add-btn';
-        this._updateModalFocus();
-      }
-      return;
-    }
     if (action === 'OK') {
-      if (this._modalZone === 'link') {
-        this._closeModal();
-        App.navigate('series-pdp', { showId: this._show?.id });
-      } else if (this._modalZone === 'add-btn') {
-        this._inMyStuff = DataStore.toggleMyStuff(this._show?.id);
-        const addBtn = this._container.querySelector('#modal-add-btn');
-        if (addBtn) addBtn.textContent = this._inMyStuff ? '✓ Added to My Stuff' : '+ Add to My Stuff';
-        showToast(this._inMyStuff ? 'Added to My Stuff' : 'Removed from My Stuff');
-      }
+      this._closeModal();
+      App.navigate('series-pdp', { showId: this._show?.id });
     }
   },
 };

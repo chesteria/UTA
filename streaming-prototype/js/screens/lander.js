@@ -195,9 +195,6 @@ function buildNav() {
         <div class="nav-tab" data-nav-tab="live">Live</div>
         <div class="nav-tab" data-nav-tab="movies">Movies</div>
         <div class="nav-tab" data-nav-tab="shows">Shows</div>
-        <div class="nav-tab" data-nav-tab="bookmark">
-          <svg viewBox="0 0 24 24"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
         <div class="nav-tab" data-nav-tab="settings">
           <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2" fill="none"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" stroke="currentColor" stroke-width="2" fill="none"/></svg>
         </div>
@@ -452,89 +449,9 @@ function startLivingTile(tileEl, images) {
 }
 
 /* ---- CONTINUE WATCHING RAIL ---- */
+// DEFERRED — Requires Authentication (Phase 1 stub)
 function buildContinueWatchingRail(config, container) {
-  const items = DataStore.getContinueWatching();
-  if (!items.length) return null;
-
-  const section = document.createElement('div');
-  section.className = 'rail-section continue-watching-rail';
-  container.appendChild(section);
-
-  section.innerHTML = `
-    <div class="rail-title">${config.title || 'Continue Watching'}</div>
-    <div class="rail-overflow">
-      <div class="rail-inner">
-        <div class="rail-scroll" id="cw-scroll"></div>
-      </div>
-    </div>
-    <div class="cw-locations" id="cw-locations"></div>
-  `;
-
-  const track = section.querySelector('#cw-scroll');
-  const locationsEl = section.querySelector('#cw-locations');
-
-  // Build tiles
-  items.forEach((item, i) => {
-    const show = item.show;
-    const tile = document.createElement('div');
-    tile.className = 'cw-tile portrait-tile';
-    tile.innerHTML = `
-      <img src="${show.posterImage}" alt="${show.title}" loading="lazy" />
-      <div class="progress-bar-container">
-        <div class="progress-bar-fill" style="width:${Math.round(item.progress * 100)}%"></div>
-      </div>
-    `;
-    track.appendChild(tile);
-  });
-
-  // Location pills
-  const savedLocs = DataStore.getAllCities().slice(0, 2);
-  savedLocs.forEach(city => {
-    const pill = document.createElement('div');
-    pill.className = 'location-pill';
-    pill.textContent = city.name;
-    locationsEl.appendChild(pill);
-  });
-  const addPill = document.createElement('div');
-  addPill.className = 'location-pill location-pill-add';
-  addPill.textContent = '+ Add Location';
-  locationsEl.appendChild(addPill);
-
-  let focusedIdx = 0;
-  const tiles = Array.from(track.children);
-
-  function focusTile(idx) {
-    tiles.forEach(t => t.classList.remove('focused'));
-    if (tiles[idx]) tiles[idx].classList.add('focused');
-    scrollRailToIndex(track, idx, PORTRAIT_TILE_W, TILE_GAP);
-  }
-
-  return {
-    element: section,
-    onEnter() { focusTile(focusedIdx); },
-    onLeave() { tiles.forEach(t => t.classList.remove('focused')); },
-    handleKey(action) {
-      if (action === 'UP') return 'UP';
-      if (action === 'DOWN') return 'DOWN';
-      if (action === 'LEFT') {
-        if (focusedIdx > 0) { focusedIdx--; focusTile(focusedIdx); }
-        return 'HANDLED';
-      }
-      if (action === 'RIGHT') {
-        if (focusedIdx < tiles.length - 1) { focusedIdx++; focusTile(focusedIdx); }
-        return 'HANDLED';
-      }
-      if (action === 'OK') {
-        const item = items[focusedIdx];
-        return { action: 'NAVIGATE', screen: 'player', params: {
-          showId: item.showId,
-          episodeId: item.episodeId,
-          progress: item.progress,
-        }};
-      }
-      return 'HANDLED';
-    }
-  };
+  return null;
 }
 
 /* ---- LOCAL CITIES RAIL ---- */
@@ -547,7 +464,7 @@ function buildLocalCitiesRail(config, container) {
   container.appendChild(section);
 
   section.innerHTML = `
-    <div class="rail-title">${config.title || 'Your Local'}</div>
+    ${config.title ? `<div class="rail-title">${config.title}</div>` : ''}
     <div class="rail-overflow">
       <div class="rail-inner">
         <div class="rail-scroll" id="cities-scroll"></div>
@@ -771,9 +688,9 @@ function buildScreamer(config, container) {
         <div class="screamer-title">${collection.description}</div>
         <button class="screamer-cta" id="screamer-cta">${collection.ctaText} →</button>
       </div>
-    </div>
-    <div class="screamer-tiles">
-      <div class="rail-scroll" id="screamer-tiles-track"></div>
+      <div class="screamer-tiles-area">
+        <div class="screamer-tiles-track" id="screamer-tiles-track"></div>
+      </div>
     </div>
   `;
 
@@ -957,11 +874,12 @@ function buildMarketingBanner(config, container) {
   `;
 
   const ctaEl = section.querySelector('#marketing-cta');
+  const bannerEl = section.querySelector('.marketing-banner');
 
   return {
     element: section,
-    onEnter() { ctaEl.classList.add('focused'); },
-    onLeave() { ctaEl.classList.remove('focused'); },
+    onEnter() { ctaEl.classList.add('focused'); bannerEl.classList.add('has-focus'); },
+    onLeave() { ctaEl.classList.remove('focused'); bannerEl.classList.remove('has-focus'); },
     handleKey(action) {
       if (action === 'UP') return 'UP';
       if (action === 'DOWN') return 'DOWN';

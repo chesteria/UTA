@@ -365,43 +365,6 @@
   margin-bottom: 28px;
 }
 
-.modal-link-btn {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 15px;
-  font-weight: 600;
-  color: var(--color-text-primary);
-  margin-bottom: 12px;
-  padding: 10px 0;
-  border-radius: 8px;
-  transition: box-shadow var(--t-focus) ease-out;
-  cursor: default;
-}
-
-.modal-link-btn.focused {
-  color: var(--color-text-primary);
-  text-decoration: underline;
-}
-
-.modal-add-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 24px;
-  border-radius: 30px;
-  background: var(--color-btn-default-bg);
-  color: var(--color-text-primary);
-  font-size: 15px;
-  font-weight: 600;
-  transition: background var(--t-focus) ease-out,
-              color var(--t-focus) ease-out,
-              box-shadow var(--t-focus) ease-out;
-  cursor: default;
-}
-
-.modal-add-btn.focused {
-  background: var(--color-focus-btn-bg);
-  color: var(--color-focus-btn-text);
-  box-shadow: var(--focus-box-shadow);
+.modal-series-btn {
+  margin-top: 4px;
 }

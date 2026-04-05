@@ -6,24 +6,15 @@
       "config": { "cycleInterval": 5000, "fadeDuration": 600 }
     },
     {
-      "type": "continue-watching",
-      "dataSource": "user-state.continueWatching",
-      "title": "Continue Watching"
-    },
-    {
       "type": "local-cities",
       "dataSource": "cities",
-      "title": "Your Local",
       "config": { "cycleInterval": 5000 }
     },
     {
       "type": "live-channels",
       "dataSource": "channels",
-      "title": "Local Channels"
-    },
-    {
-      "type": "genre-pills",
-      "dataSource": "genres"
+      "title": "Local Channels",
+      "filter": { "city": "geo-detected" }
     },
     {
       "type": "screamer",
@@ -34,6 +25,10 @@
       "dataSource": "top-flix",
       "title": "Top Flix",
       "tileType": "portrait"
+    },
+    {
+      "type": "genre-pills",
+      "dataSource": "genres"
     },
     {
       "type": "marketing-banner",
