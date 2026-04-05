@@ -11,10 +11,14 @@
             "id": "1536780a93cd14ce",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "streaming-prototype-phase1-prd.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "streaming-prototype-phase1-prd"
             }
           }
         ]
