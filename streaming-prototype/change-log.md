@@ -3,6 +3,16 @@
 
 ---
 
+## v1.4 r1 — Feedback Round 1 (2026-04-06)
+Source: `Feedback/v1.4r1/v1.4PRD-Feedback-r1.md`
+
+### css/lander.css
+- **Hero gap**: Added 60px breathing room between nav and hero carousel — `padding-top` changed from `var(--nav-height)` to `calc(var(--nav-height) + 60px)`; `height` increased from 620px → 680px to preserve tile size
+- **Hero left alignment**: Added `padding-left: var(--content-pad-x)` to `.hero-track` so the first hero tile's left edge aligns with all other rails at 60px (JS `scrollHeroToIndex` already accounts for this offset in its translate calculation)
+- **Focus border clipping**: Added `padding: 20px 0; margin: -20px 0` to `.rail-overflow` — the expanded padding gives box-shadow room to render; the equal negative margin cancels the layout impact so rail spacing is unchanged. Fixes clipped focus borders on both 16:9 (channel/landscape) and 2:3 (portrait) tiles
+
+---
+
 ## data/geo-state.json — NEW FILE
 - Added anonymous geo-detection state file replacing `user-state.json`
 - Fields: `detectedCity`, `detectedRegion`
