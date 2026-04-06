@@ -3,6 +3,26 @@
 
 ---
 
+## v1.4 r4 — Player Episodes Rail Layout (2026-04-06)
+Source: direct session feedback
+
+### css/player.css
+- **Controls padding**: `padding-bottom` increased 40px → 100px on `.player-controls` — creates a 60px clearance zone at the bottom so the episode rail peek is never covered by control elements
+- **Episodes area — three-state system** (replaces single `.hidden` class):
+  - Default (no class): `translateY(100%)` — fully off-screen below the fold; pointer-events off
+  - `.peek`: `translateY(calc(100% - 60px))` — top 60px ("More Episodes" label) visible at bottom edge while controls are shown; signals to the user that DOWN will access the rail
+  - `.expanded`: `translateY(-50px)` — slides up so the rail top sits at ~30% from the bottom of the screen; controls are hidden in this state
+- Added dark gradient background to `.player-episodes-area` for legibility against video
+
+### js/screens/player.js
+- **`_showControls()`**: now sets `.peek` on the episodes area (instead of removing `.hidden`), so episodes always peek when controls are visible
+- **`_hideControls()`**: removes both `.peek` and `.expanded` to fully collapse the rail off-screen
+- **`_resetHideTimer()`**: added `_activeZone !== 'episodes'` guard — auto-hide does not fire while the user is focused on the episode rail
+- **Buttons zone DOWN**: hides controls, clears auto-hide timer, transitions episodes area from `.peek` → `.expanded`, then focuses first episode tile
+- **Episodes zone UP**: transitions episodes area from `.expanded` → `.peek`, restores controls, resets auto-hide timer, returns focus to previously active button
+
+---
+
 ## v1.4 r3 — Feedback Round 3 (2026-04-06)
 Source: `Feedback/v1.4r3/v1.4r3 Feedback.md`
 
