@@ -486,6 +486,27 @@ const DebugPanel = (() => {
 
   /* ---- Keyboard Handler ---- */
 
+  // Triple-LEFT rapid combo to open panel from a TV remote
+  // Press LEFT three times within 800ms from anywhere to toggle
+  let _leftCount = 0;
+  let _leftTimer = null;
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') {
+      _leftCount++;
+      clearTimeout(_leftTimer);
+      if (_leftCount >= 3) {
+        _leftCount = 0;
+        toggle();
+        return;
+      }
+      _leftTimer = setTimeout(() => { _leftCount = 0; }, 800);
+    } else {
+      // Any non-left key resets the combo
+      _leftCount = 0;
+      clearTimeout(_leftTimer);
+    }
+  }); // not capture — let it coexist with FocusEngine
+
   document.addEventListener('keydown', (e) => {
     // Backtick always toggles (capture phase — fires before FocusEngine)
     if (e.key === '`') {
