@@ -8,7 +8,7 @@ const SIMULATE_PLAYBACK      = true;
 const PLAYBACK_SPEED         = 1;         // 1 = realtime, 10 = 10x speed
 
 // === VIDEO ===
-const VIDEO_STREAM_URL = 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4';
+const VIDEO_STREAM_URL = 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8';
 
 const PlayerScreen = {
   id: 'player',
