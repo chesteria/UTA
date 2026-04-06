@@ -266,6 +266,25 @@ const SeriesPDPScreen = {
     this._seasonIdx = idx;
   },
 
+  _selectSeason(idx) {
+    const sd = this._seriesData;
+    if (!sd) return;
+    const pills = Array.from(this._container.querySelectorAll('.season-pill'));
+    pills.forEach((pill, i) => {
+      const season = sd.seasons[i];
+      const isActive = i === idx;
+      pill.classList.toggle('active', isActive);
+      if (isActive) {
+        pill.innerHTML = `Season ${season.number}&nbsp;<span style="font-weight:400;font-size:12px;">${season.episodeCount}ep</span>`;
+      } else {
+        pill.innerHTML = `S${season.number}`;
+      }
+    });
+    // Re-focus the selected pill to preserve highlight
+    this._focusSeason(idx);
+    showToast(`Season ${idx + 1}`);
+  },
+
   _focusEpisode(idx) {
     const tiles = Array.from(this._container.querySelectorAll('#episodes-track .episode-tile'));
     tiles.forEach(t => t.classList.remove('focused'));
@@ -357,8 +376,7 @@ const SeriesPDPScreen = {
         return;
       }
       if (action === 'OK') {
-        pills.forEach((p, i) => p.classList.toggle('active', i === this._seasonIdx));
-        showToast(`Season ${this._seasonIdx + 1}`);
+        this._selectSeason(this._seasonIdx);
         return;
       }
     }

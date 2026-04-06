@@ -3,6 +3,29 @@
 
 ---
 
+## v1.4 r3 — Feedback Round 3 (2026-04-06)
+Source: `Feedback/v1.4r3/v1.4r3 Feedback.md`
+
+### data/lander-config.json
+- **Local cities rail title**: Added `"title": "Locations Near Me"` — the JS already conditionally renders the title when present
+- **Marketing banner CTA**: Changed `"cta"` from `"Browse Collection"` to `"Start Now"`
+
+### data/catalog.json
+- Added `"weatherBlurb"` field to all 5 city entries (Atlanta: "Mostly sunny", St. Louis: "Mainly cloudy", Chicago: "Breezy and cold", Austin: "Clear skies", Seattle: "Light rain showers")
+
+### js/screens/lander.js
+- **City tile backplate**: Replaced flat gradient overlay with a frosted-glass inline backplate (`rgba(15,25,35,0.72)` + `backdrop-filter:blur`) so city name and temp have legible contrast against any background image
+- **City tile weather blurb**: Replaced `city.tags.join(' · ')` with `city.weatherBlurb` in the secondary info line
+- **Screamer focus bug fix**: When CTA is focused, `DOWN` now returns `'DOWN'` (exits rail to next) instead of moving focus to the tiles. `RIGHT` from CTA enters the tile zone instead
+
+### js/screens/series-pdp.js
+- **Season picker selected state**: Added `_selectSeason(idx)` method — on OK, all pills are re-rendered: the active pill expands to "Season N · Xep" and all others collapse to "SN". Previously only the CSS `active` class toggled; the pill text was never updated
+
+### index.html + css/global.css
+- **Version/build stamp**: Added `#build-stamp` div fixed to bottom-right corner of every screen — displays `v1.4 · 20260406-03`. Styled at 13px, 25% white opacity so it's visible but unobtrusive. Z-index 9998 (below toast at 9999)
+
+---
+
 ## v1.4 r2 — Feedback Round 2 (2026-04-06)
 Source: direct session feedback
 

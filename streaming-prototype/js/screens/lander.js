@@ -482,10 +482,11 @@ function buildLocalCitiesRail(config, container) {
     tile.innerHTML = `
       <img class="hero-img" src="${city.images[0]}" alt="${city.name}" loading="lazy" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" />
       <img class="hero-img-secondary" src="${city.images[1]}" alt="${city.name}" loading="lazy" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;opacity:0;transition:opacity 600ms ease-in-out;" />
-      <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(15,25,35,0.9) 0%,transparent 60%);"></div>
-      <div style="position:absolute;bottom:0;left:0;right:0;padding:16px;">
-        <div style="font-size:20px;font-weight:800;color:#fff;margin-bottom:4px;">${city.name}</div>
-        <div style="font-size:14px;color:var(--color-text-secondary);">${weatherEmoji} ${city.temperature} · ${city.tags.join(' · ')}</div>
+      <div style="position:absolute;bottom:0;left:0;right:0;padding:12px;">
+        <div style="display:inline-block;background:rgba(15,25,35,0.72);backdrop-filter:blur(8px);border-radius:10px;padding:10px 14px;">
+          <div style="font-size:18px;font-weight:800;color:#fff;margin-bottom:3px;">${city.name}</div>
+          <div style="font-size:13px;color:rgba(255,255,255,0.8);">${weatherEmoji} ${city.temperature} · ${city.weatherBlurb || ''}</div>
+        </div>
       </div>
     `;
     startLivingTile(tile, city.images);
@@ -741,8 +742,9 @@ function buildScreamer(config, container) {
       if (subZone === 0) {
         // CTA focused
         if (action === 'UP') return 'UP';
-        if (action === 'DOWN') { focusTile(tileIdx); return 'HANDLED'; }
-        if (action === 'LEFT' || action === 'RIGHT') return 'HANDLED';
+        if (action === 'DOWN') return 'DOWN';
+        if (action === 'RIGHT') { focusTile(tileIdx); return 'HANDLED'; }
+        if (action === 'LEFT') return 'HANDLED';
         if (action === 'OK') {
           showToast(`Browsing ${collection.title}`);
           return 'HANDLED';

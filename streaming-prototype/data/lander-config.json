@@ -8,6 +8,7 @@
     {
       "type": "local-cities",
       "dataSource": "cities",
+      "title": "Locations Near Me",
       "config": { "cycleInterval": 5000 }
     },
     {
@@ -35,7 +36,7 @@
       "content": {
         "headline": "Never miss a beat.",
         "subtext": "Save your spot, sync your devices, and keep your favorites front and center.",
-        "cta": "Browse Collection"
+        "cta": "Start Now"
       }
     },
     {
