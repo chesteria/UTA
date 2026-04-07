@@ -1,0 +1,160 @@
+{
+  "id": "show-011",
+  "seasons": [
+    {
+      "number": 1,
+      "episodeCount": 6,
+      "episodes": [
+        {
+          "id": "s1e1",
+          "title": "Apex Defined",
+          "description": "What makes a shark the ocean's apex predator \u2014 and why their role is irreplaceable.",
+          "thumbnail": "https://picsum.photos/seed/show-011-s1e1/480/270",
+          "airDate": "Jul 1, 2021",
+          "duration": "41m",
+          "season": 1,
+          "episode": 1
+        },
+        {
+          "id": "s1e2",
+          "title": "The Great White Project",
+          "description": "Years of tagging data on white sharks reveals migration patterns no one expected.",
+          "thumbnail": "https://picsum.photos/seed/show-011-s1e2/480/270",
+          "airDate": "Aug 8, 2021",
+          "duration": "42m",
+          "season": 1,
+          "episode": 2
+        },
+        {
+          "id": "s1e3",
+          "title": "Tiger Country",
+          "description": "The territorial range of tiger sharks and their role in seagrass ecosystem health.",
+          "thumbnail": "https://picsum.photos/seed/show-011-s1e3/480/270",
+          "airDate": "Sep 15, 2021",
+          "duration": "43m",
+          "season": 1,
+          "episode": 3
+        },
+        {
+          "id": "s1e4",
+          "title": "Bulls in the Shallows",
+          "description": "Bull sharks are the most adaptable species \u2014 and the most misunderstood.",
+          "thumbnail": "https://picsum.photos/seed/show-011-s1e4/480/270",
+          "airDate": "Oct 22, 2021",
+          "duration": "44m",
+          "season": 1,
+          "episode": 4
+        },
+        {
+          "id": "s1e5",
+          "title": "Deep Hunters",
+          "description": "Deep-sea shark species rarely seen by cameras are filmed for the first time.",
+          "thumbnail": "https://picsum.photos/seed/show-011-s1e5/480/270",
+          "airDate": "Nov 28, 2021",
+          "duration": "40m",
+          "season": 1,
+          "episode": 5
+        },
+        {
+          "id": "s1e6",
+          "title": "Conservation Calculus",
+          "description": "Shark populations are in freefall \u2014 the economics, politics, and biology of saving them.",
+          "thumbnail": "https://picsum.photos/seed/show-011-s1e6/480/270",
+          "airDate": "Dec 28, 2021",
+          "duration": "41m",
+          "season": 1,
+          "episode": 6
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "episodeCount": 6,
+      "episodes": [
+        {
+          "id": "s2e1",
+          "title": "New Data",
+          "description": "A five-year tracking project yields landmark data on shark social behavior.",
+          "thumbnail": "https://picsum.photos/seed/show-011-s2e1/480/270",
+          "airDate": "Aug 1, 2022",
+          "duration": "41m",
+          "season": 2,
+          "episode": 1
+        },
+        {
+          "id": "s2e2",
+          "title": "Nursery Watch",
+          "description": "Protecting the shallow coastal nurseries where young sharks develop.",
+          "thumbnail": "https://picsum.photos/seed/show-011-s2e2/480/270",
+          "airDate": "Sep 8, 2022",
+          "duration": "42m",
+          "season": 2,
+          "episode": 2
+        },
+        {
+          "id": "s2e3",
+          "title": "Finning: The Full Picture",
+          "description": "A documentary look at the global shark fin trade and the campaigns against it.",
+          "thumbnail": "https://picsum.photos/seed/show-011-s2e3/480/270",
+          "airDate": "Oct 15, 2022",
+          "duration": "43m",
+          "season": 2,
+          "episode": 3
+        },
+        {
+          "id": "s2e4",
+          "title": "Symbiosis",
+          "description": "The unexpected relationships between sharks and the species that depend on them.",
+          "thumbnail": "https://picsum.photos/seed/show-011-s2e4/480/270",
+          "airDate": "Nov 22, 2022",
+          "duration": "44m",
+          "season": 2,
+          "episode": 4
+        },
+        {
+          "id": "s2e5",
+          "title": "Thermal Shift",
+          "description": "How warming ocean temperatures are changing where sharks live and feed.",
+          "thumbnail": "https://picsum.photos/seed/show-011-s2e5/480/270",
+          "airDate": "Dec 28, 2022",
+          "duration": "40m",
+          "season": 2,
+          "episode": 5
+        },
+        {
+          "id": "s2e6",
+          "title": "Recovery",
+          "description": "Three success stories \u2014 species pulled back from the brink through targeted protection.",
+          "thumbnail": "https://picsum.photos/seed/show-011-s2e6/480/270",
+          "airDate": "Jan 28, 2023",
+          "duration": "41m",
+          "season": 2,
+          "episode": 6
+        }
+      ]
+    }
+  ],
+  "extras": [
+    {
+      "id": "extra-001",
+      "title": "Tagging a Great White",
+      "description": "The full process of attaching a satellite tag to a living white shark.",
+      "thumbnail": "https://picsum.photos/seed/show-011-extra1/480/270",
+      "duration": "3m 05s"
+    },
+    {
+      "id": "extra-002",
+      "title": "Shark Myths Debunked",
+      "description": "Scientists address the most persistent misconceptions about shark behavior.",
+      "thumbnail": "https://picsum.photos/seed/show-011-extra2/480/270",
+      "duration": "2m 50s"
+    }
+  ],
+  "similar": [
+    "show-010",
+    "show-012",
+    "show-006",
+    "show-002",
+    "show-016"
+  ]
+}

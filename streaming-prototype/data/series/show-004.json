@@ -1,0 +1,207 @@
+{
+  "id": "show-004",
+  "seasons": [
+    {
+      "number": 1,
+      "episodeCount": 8,
+      "episodes": [
+        {
+          "id": "s1e1",
+          "title": "Derelict",
+          "description": "The Anabasis crew picks up a distress signal from a ship that disappeared 40 years ago.",
+          "thumbnail": "https://picsum.photos/seed/show-004-s1e1/480/270",
+          "airDate": "Oct 1, 2021",
+          "duration": "41m",
+          "season": 1,
+          "episode": 1
+        },
+        {
+          "id": "s1e2",
+          "title": "The Sleepers",
+          "description": "Six life pods are still active aboard the derelict \u2014 but the occupants aren't quite human anymore.",
+          "thumbnail": "https://picsum.photos/seed/show-004-s1e2/480/270",
+          "airDate": "Nov 8, 2021",
+          "duration": "42m",
+          "season": 1,
+          "episode": 2
+        },
+        {
+          "id": "s1e3",
+          "title": "Drift Current",
+          "description": "A gravitational anomaly pulls the Anabasis off course, toward an unmapped system.",
+          "thumbnail": "https://picsum.photos/seed/show-004-s1e3/480/270",
+          "airDate": "Dec 15, 2021",
+          "duration": "43m",
+          "season": 1,
+          "episode": 3
+        },
+        {
+          "id": "s1e4",
+          "title": "First Contact",
+          "description": "A signal from the anomaly resolves into language \u2014 someone is trying to communicate.",
+          "thumbnail": "https://picsum.photos/seed/show-004-s1e4/480/270",
+          "airDate": "Jan 22, 2022",
+          "duration": "44m",
+          "season": 1,
+          "episode": 4
+        },
+        {
+          "id": "s1e5",
+          "title": "The Cartographer",
+          "description": "One of the sleepers awakens with knowledge of space routes that shouldn't exist yet.",
+          "thumbnail": "https://picsum.photos/seed/show-004-s1e5/480/270",
+          "airDate": "Feb 28, 2022",
+          "duration": "40m",
+          "season": 1,
+          "episode": 5
+        },
+        {
+          "id": "s1e6",
+          "title": "Fault Lines",
+          "description": "The crew fractures over whether to trust the Cartographer \u2014 as resources begin to run out.",
+          "thumbnail": "https://picsum.photos/seed/show-004-s1e6/480/270",
+          "airDate": "Mar 28, 2022",
+          "duration": "41m",
+          "season": 1,
+          "episode": 6
+        },
+        {
+          "id": "s1e7",
+          "title": "Event Horizon",
+          "description": "The Anabasis reaches the threshold of something vast, dark, and patient.",
+          "thumbnail": "https://picsum.photos/seed/show-004-s1e7/480/270",
+          "airDate": "Apr 28, 2022",
+          "duration": "42m",
+          "season": 1,
+          "episode": 7
+        },
+        {
+          "id": "s1e8",
+          "title": "Into the Black",
+          "description": "A cliffhanger season finale \u2014 the crew votes on whether to cross the threshold.",
+          "thumbnail": "https://picsum.photos/seed/show-004-s1e8/480/270",
+          "airDate": "May 28, 2022",
+          "duration": "43m",
+          "season": 1,
+          "episode": 8
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "episodeCount": 8,
+      "episodes": [
+        {
+          "id": "s2e1",
+          "title": "Through",
+          "description": "The Anabasis emerges on the other side \u2014 and nothing is as expected.",
+          "thumbnail": "https://picsum.photos/seed/show-004-s2e1/480/270",
+          "airDate": "Sep 1, 2022",
+          "duration": "41m",
+          "season": 2,
+          "episode": 1
+        },
+        {
+          "id": "s2e2",
+          "title": "Tessellation",
+          "description": "Strange geometry governs this region of space, bending physics in unpredictable ways.",
+          "thumbnail": "https://picsum.photos/seed/show-004-s2e2/480/270",
+          "airDate": "Oct 8, 2022",
+          "duration": "42m",
+          "season": 2,
+          "episode": 2
+        },
+        {
+          "id": "s2e3",
+          "title": "Echoes",
+          "description": "Crew members begin experiencing memories that don't belong to them.",
+          "thumbnail": "https://picsum.photos/seed/show-004-s2e3/480/270",
+          "airDate": "Nov 15, 2022",
+          "duration": "43m",
+          "season": 2,
+          "episode": 3
+        },
+        {
+          "id": "s2e4",
+          "title": "The Archive",
+          "description": "A vast alien data structure allows the Cartographer to translate history spanning millennia.",
+          "thumbnail": "https://picsum.photos/seed/show-004-s2e4/480/270",
+          "airDate": "Dec 22, 2022",
+          "duration": "44m",
+          "season": 2,
+          "episode": 4
+        },
+        {
+          "id": "s2e5",
+          "title": "Threshold Keepers",
+          "description": "The entities that built the threshold make first contact \u2014 on their own terms.",
+          "thumbnail": "https://picsum.photos/seed/show-004-s2e5/480/270",
+          "airDate": "Jan 28, 2023",
+          "duration": "40m",
+          "season": 2,
+          "episode": 5
+        },
+        {
+          "id": "s2e6",
+          "title": "Negotiation",
+          "description": "The crew must offer something of genuine value to pass freely through Keeper space.",
+          "thumbnail": "https://picsum.photos/seed/show-004-s2e6/480/270",
+          "airDate": "Feb 28, 2023",
+          "duration": "41m",
+          "season": 2,
+          "episode": 6
+        },
+        {
+          "id": "s2e7",
+          "title": "Sacrifice Play",
+          "description": "One crew member volunteers to stay behind to satisfy the Keepers' terms.",
+          "thumbnail": "https://picsum.photos/seed/show-004-s2e7/480/270",
+          "airDate": "Mar 28, 2023",
+          "duration": "42m",
+          "season": 2,
+          "episode": 7
+        },
+        {
+          "id": "s2e8",
+          "title": "Heading Home",
+          "description": "The long journey back begins \u2014 but the crew is not the same as when they left.",
+          "thumbnail": "https://picsum.photos/seed/show-004-s2e8/480/270",
+          "airDate": "Apr 28, 2023",
+          "duration": "43m",
+          "season": 2,
+          "episode": 8
+        }
+      ]
+    }
+  ],
+  "extras": [
+    {
+      "id": "extra-001",
+      "title": "Building the Anabasis",
+      "description": "Production design team walks through the ship set construction.",
+      "thumbnail": "https://picsum.photos/seed/show-004-extra1/480/270",
+      "duration": "4m 55s"
+    },
+    {
+      "id": "extra-002",
+      "title": "The Cartographer's Map",
+      "description": "An interactive breakdown of the Stellar Drift universe's star chart.",
+      "thumbnail": "https://picsum.photos/seed/show-004-extra2/480/270",
+      "duration": "2m 30s"
+    },
+    {
+      "id": "extra-003",
+      "title": "Season 3 Teaser",
+      "description": "A brief glimpse of what awaits the crew on the return journey.",
+      "thumbnail": "https://picsum.photos/seed/show-004-extra3/480/270",
+      "duration": "1m 15s"
+    }
+  ],
+  "similar": [
+    "show-007",
+    "show-013",
+    "show-020",
+    "show-016",
+    "show-006"
+  ]
+}

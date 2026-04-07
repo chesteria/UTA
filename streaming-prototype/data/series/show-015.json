@@ -1,0 +1,81 @@
+{
+  "id": "show-015",
+  "seasons": [
+    {
+      "number": 1,
+      "episodeCount": 4,
+      "episodes": [
+        {
+          "id": "s1e1",
+          "title": "The Brief",
+          "description": "The mandate was simple: build a car ordinary people could afford to dream about. Nothing about it was simple.",
+          "thumbnail": "https://picsum.photos/seed/show-015-s1e1/480/270",
+          "airDate": "Jun 1, 2015",
+          "duration": "41m",
+          "season": 1,
+          "episode": 1
+        },
+        {
+          "id": "s1e2",
+          "title": "The Prototype",
+          "description": "Early clay models and running prototypes reveal just how far the original brief got bent along the way.",
+          "thumbnail": "https://picsum.photos/seed/show-015-s1e2/480/270",
+          "airDate": "Jul 8, 2015",
+          "duration": "42m",
+          "season": 1,
+          "episode": 2
+        },
+        {
+          "id": "s1e3",
+          "title": "The Fight",
+          "description": "Internal politics, budget wars, and a last-minute executive intervention almost killed the car twice.",
+          "thumbnail": "https://picsum.photos/seed/show-015-s1e3/480/270",
+          "airDate": "Aug 15, 2015",
+          "duration": "43m",
+          "season": 1,
+          "episode": 3
+        },
+        {
+          "id": "s1e4",
+          "title": "The Legend",
+          "description": "Fifty years of the car that reshaped what Americans thought they could own \u2014 and where it goes from here.",
+          "thumbnail": "https://picsum.photos/seed/show-015-s1e4/480/270",
+          "airDate": "Sep 22, 2015",
+          "duration": "44m",
+          "season": 1,
+          "episode": 4
+        }
+      ]
+    }
+  ],
+  "extras": [
+    {
+      "id": "extra-001",
+      "title": "The Archive Footage",
+      "description": "Never-before-seen footage from Ford's own archives, covering the first prototype runs.",
+      "thumbnail": "https://picsum.photos/seed/show-015-extra1/480/270",
+      "duration": "8m 10s"
+    },
+    {
+      "id": "extra-002",
+      "title": "Original Owners",
+      "description": "Five people who bought the car new in 1964 \u2014 and still have it.",
+      "thumbnail": "https://picsum.photos/seed/show-015-extra2/480/270",
+      "duration": "5m 30s"
+    },
+    {
+      "id": "extra-003",
+      "title": "Extended Interview: The Engineers",
+      "description": "Full interviews with surviving engineers from the original program.",
+      "thumbnail": "https://picsum.photos/seed/show-015-extra3/480/270",
+      "duration": "12m 00s"
+    }
+  ],
+  "similar": [
+    "show-001",
+    "show-019",
+    "show-006",
+    "show-002",
+    "show-008"
+  ]
+}

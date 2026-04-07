@@ -1,0 +1,220 @@
+{
+  "id": "show-008",
+  "seasons": [
+    {
+      "number": 1,
+      "episodeCount": 10,
+      "episodes": [
+        {
+          "id": "s1e1",
+          "title": "Hard Ground",
+          "description": "The Brannock family faces its first drought in twenty years as bank pressure mounts.",
+          "thumbnail": "https://picsum.photos/seed/show-008-s1e1/480/270",
+          "airDate": "Sep 1, 2016",
+          "duration": "41m",
+          "season": 1,
+          "episode": 1
+        },
+        {
+          "id": "s1e2",
+          "title": "Old Debts",
+          "description": "Patriarch Earl Brannock makes a deal with a land developer he's trusted to regret.",
+          "thumbnail": "https://picsum.photos/seed/show-008-s1e2/480/270",
+          "airDate": "Oct 8, 2016",
+          "duration": "42m",
+          "season": 1,
+          "episode": 2
+        },
+        {
+          "id": "s1e3",
+          "title": "The Fence Line",
+          "description": "A disputed property boundary leads to the first act of violence between neighbors.",
+          "thumbnail": "https://picsum.photos/seed/show-008-s1e3/480/270",
+          "airDate": "Nov 15, 2016",
+          "duration": "43m",
+          "season": 1,
+          "episode": 3
+        },
+        {
+          "id": "s1e4",
+          "title": "Three Sisters",
+          "description": "Each of the three Brannock daughters takes a different path as the ranch fractures.",
+          "thumbnail": "https://picsum.photos/seed/show-008-s1e4/480/270",
+          "airDate": "Dec 22, 2016",
+          "duration": "44m",
+          "season": 1,
+          "episode": 4
+        },
+        {
+          "id": "s1e5",
+          "title": "Water Rights",
+          "description": "Control of the creek that runs through the property becomes the season's central conflict.",
+          "thumbnail": "https://picsum.photos/seed/show-008-s1e5/480/270",
+          "airDate": "Jan 28, 2017",
+          "duration": "40m",
+          "season": 1,
+          "episode": 5
+        },
+        {
+          "id": "s1e6",
+          "title": "Hired Hand",
+          "description": "A stranger arrives looking for work \u2014 and seems to know more about the family than he lets on.",
+          "thumbnail": "https://picsum.photos/seed/show-008-s1e6/480/270",
+          "airDate": "Feb 28, 2017",
+          "duration": "41m",
+          "season": 1,
+          "episode": 6
+        },
+        {
+          "id": "s1e7",
+          "title": "Brand New Scar",
+          "description": "A fire destroys the main barn. Arson is suspected; evidence points in uncomfortable directions.",
+          "thumbnail": "https://picsum.photos/seed/show-008-s1e7/480/270",
+          "airDate": "Mar 28, 2017",
+          "duration": "42m",
+          "season": 1,
+          "episode": 7
+        },
+        {
+          "id": "s1e8",
+          "title": "Settlement",
+          "description": "Legal proceedings begin over the land deal, forcing the family into public testimony.",
+          "thumbnail": "https://picsum.photos/seed/show-008-s1e8/480/270",
+          "airDate": "Apr 28, 2017",
+          "duration": "43m",
+          "season": 1,
+          "episode": 8
+        },
+        {
+          "id": "s1e9",
+          "title": "The Breaking",
+          "description": "A confrontation between Earl and the developer results in an irreversible act.",
+          "thumbnail": "https://picsum.photos/seed/show-008-s1e9/480/270",
+          "airDate": "May 28, 2017",
+          "duration": "44m",
+          "season": 1,
+          "episode": 9
+        },
+        {
+          "id": "s1e10",
+          "title": "After the Storm",
+          "description": "The family picks up pieces in the aftermath, changed in ways that can't be undone.",
+          "thumbnail": "https://picsum.photos/seed/show-008-s1e10/480/270",
+          "airDate": "Jun 28, 2017",
+          "duration": "40m",
+          "season": 1,
+          "episode": 10
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "episodeCount": 8,
+      "episodes": [
+        {
+          "id": "s2e1",
+          "title": "New Season",
+          "description": "Two years have passed. The Brannocks are rebuilding \u2014 but old wounds haven't closed.",
+          "thumbnail": "https://picsum.photos/seed/show-008-s2e1/480/270",
+          "airDate": "Sep 1, 2017",
+          "duration": "41m",
+          "season": 2,
+          "episode": 1
+        },
+        {
+          "id": "s2e2",
+          "title": "The Return",
+          "description": "Eldest daughter Callie comes home after years away, disrupting a fragile equilibrium.",
+          "thumbnail": "https://picsum.photos/seed/show-008-s2e2/480/270",
+          "airDate": "Oct 8, 2017",
+          "duration": "42m",
+          "season": 2,
+          "episode": 2
+        },
+        {
+          "id": "s2e3",
+          "title": "Calving Season",
+          "description": "A brutal winter calving season tests every hand on the ranch to their limit.",
+          "thumbnail": "https://picsum.photos/seed/show-008-s2e3/480/270",
+          "airDate": "Nov 15, 2017",
+          "duration": "43m",
+          "season": 2,
+          "episode": 3
+        },
+        {
+          "id": "s2e4",
+          "title": "Distant Thunder",
+          "description": "Rumors of a larger land grab by a regional corporation reach the county.",
+          "thumbnail": "https://picsum.photos/seed/show-008-s2e4/480/270",
+          "airDate": "Dec 22, 2017",
+          "duration": "44m",
+          "season": 2,
+          "episode": 4
+        },
+        {
+          "id": "s2e5",
+          "title": "The Coalition",
+          "description": "The Brannocks try to organize neighboring ranches against the corporate threat.",
+          "thumbnail": "https://picsum.photos/seed/show-008-s2e5/480/270",
+          "airDate": "Jan 28, 2018",
+          "duration": "40m",
+          "season": 2,
+          "episode": 5
+        },
+        {
+          "id": "s2e6",
+          "title": "Splinter",
+          "description": "Internal disagreements fracture the coalition before it can act.",
+          "thumbnail": "https://picsum.photos/seed/show-008-s2e6/480/270",
+          "airDate": "Feb 28, 2018",
+          "duration": "41m",
+          "season": 2,
+          "episode": 6
+        },
+        {
+          "id": "s2e7",
+          "title": "Last Acre",
+          "description": "The Brannocks make their final stand at a county commission meeting.",
+          "thumbnail": "https://picsum.photos/seed/show-008-s2e7/480/270",
+          "airDate": "Mar 28, 2018",
+          "duration": "42m",
+          "season": 2,
+          "episode": 7
+        },
+        {
+          "id": "s2e8",
+          "title": "What Remains",
+          "description": "A quiet, earned finale \u2014 the land survives, but the family looks different now.",
+          "thumbnail": "https://picsum.photos/seed/show-008-s2e8/480/270",
+          "airDate": "Apr 28, 2018",
+          "duration": "43m",
+          "season": 2,
+          "episode": 8
+        }
+      ]
+    }
+  ],
+  "extras": [
+    {
+      "id": "extra-001",
+      "title": "Location: The High Plains",
+      "description": "A look at the Montana locations that anchor Prairie Storm's visual identity.",
+      "thumbnail": "https://picsum.photos/seed/show-008-extra1/480/270",
+      "duration": "3m 48s"
+    },
+    {
+      "id": "extra-002",
+      "title": "The Brannock Family Tree",
+      "description": "A character guide tracing three generations of the Brannock family.",
+      "thumbnail": "https://picsum.photos/seed/show-008-extra2/480/270",
+      "duration": "2m 20s"
+    }
+  ],
+  "similar": [
+    "show-018",
+    "show-003",
+    "show-014",
+    "show-002",
+    "show-019"
+  ]
+}

@@ -1,0 +1,260 @@
+{
+  "id": "show-009",
+  "seasons": [
+    {
+      "number": 1,
+      "episodeCount": 12,
+      "episodes": [
+        {
+          "id": "s1e1",
+          "title": "The Hideout",
+          "description": "Six neighborhood kids discover a hidden treehouse with a door that goes somewhere impossible.",
+          "thumbnail": "https://picsum.photos/seed/show-009-s1e1/480/270",
+          "airDate": "Sep 1, 2020",
+          "duration": "41m",
+          "season": 1,
+          "episode": 1
+        },
+        {
+          "id": "s1e2",
+          "title": "Portal Pals",
+          "description": "On the other side of the door: a miniature world where they're the giants.",
+          "thumbnail": "https://picsum.photos/seed/show-009-s1e2/480/270",
+          "airDate": "Oct 8, 2020",
+          "duration": "42m",
+          "season": 1,
+          "episode": 2
+        },
+        {
+          "id": "s1e3",
+          "title": "The Map",
+          "description": "A hand-drawn map left in the treehouse hints at dozens of unexplored regions.",
+          "thumbnail": "https://picsum.photos/seed/show-009-s1e3/480/270",
+          "airDate": "Nov 15, 2020",
+          "duration": "43m",
+          "season": 1,
+          "episode": 3
+        },
+        {
+          "id": "s1e4",
+          "title": "Lost & Found",
+          "description": "A missing neighborhood cat turns up on the other side \u2014 and it can talk now.",
+          "thumbnail": "https://picsum.photos/seed/show-009-s1e4/480/270",
+          "airDate": "Dec 22, 2020",
+          "duration": "44m",
+          "season": 1,
+          "episode": 4
+        },
+        {
+          "id": "s1e5",
+          "title": "The Clockwork Forest",
+          "description": "A forest where every tree is a different kind of mechanical clock.",
+          "thumbnail": "https://picsum.photos/seed/show-009-s1e5/480/270",
+          "airDate": "Jan 28, 2021",
+          "duration": "40m",
+          "season": 1,
+          "episode": 5
+        },
+        {
+          "id": "s1e6",
+          "title": "Giants in the Sky",
+          "description": "The sky-region is inhabited by creatures that look like clouds and act like whales.",
+          "thumbnail": "https://picsum.photos/seed/show-009-s1e6/480/270",
+          "airDate": "Feb 28, 2021",
+          "duration": "41m",
+          "season": 1,
+          "episode": 6
+        },
+        {
+          "id": "s1e7",
+          "title": "Mud Season",
+          "description": "A seasonal event in the small world causes all paths to become impassable.",
+          "thumbnail": "https://picsum.photos/seed/show-009-s1e7/480/270",
+          "airDate": "Mar 28, 2021",
+          "duration": "42m",
+          "season": 1,
+          "episode": 7
+        },
+        {
+          "id": "s1e8",
+          "title": "The Inventor's Guild",
+          "description": "A community of tiny inventors needs help completing a machine no one understands.",
+          "thumbnail": "https://picsum.photos/seed/show-009-s1e8/480/270",
+          "airDate": "Apr 28, 2021",
+          "duration": "43m",
+          "season": 1,
+          "episode": 8
+        },
+        {
+          "id": "s1e9",
+          "title": "Storm Season",
+          "description": "A dangerous weather pattern on both sides of the door simultaneously.",
+          "thumbnail": "https://picsum.photos/seed/show-009-s1e9/480/270",
+          "airDate": "May 28, 2021",
+          "duration": "44m",
+          "season": 1,
+          "episode": 9
+        },
+        {
+          "id": "s1e10",
+          "title": "The Collector",
+          "description": "Someone is taking items from both worlds \u2014 and leaving nothing behind.",
+          "thumbnail": "https://picsum.photos/seed/show-009-s1e10/480/270",
+          "airDate": "Jun 28, 2021",
+          "duration": "40m",
+          "season": 1,
+          "episode": 10
+        },
+        {
+          "id": "s1e11",
+          "title": "Convergence",
+          "description": "The two worlds begin to overlap, and not just through the door.",
+          "thumbnail": "https://picsum.photos/seed/show-009-s1e11/480/270",
+          "airDate": "Jul 28, 2021",
+          "duration": "41m",
+          "season": 1,
+          "episode": 11
+        },
+        {
+          "id": "s1e12",
+          "title": "Separate Ways",
+          "description": "The kids must decide whether to close the door forever to protect both worlds.",
+          "thumbnail": "https://picsum.photos/seed/show-009-s1e12/480/270",
+          "airDate": "Aug 28, 2021",
+          "duration": "42m",
+          "season": 1,
+          "episode": 12
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "episodeCount": 10,
+      "episodes": [
+        {
+          "id": "s2e1",
+          "title": "The Return",
+          "description": "The door reopens \u2014 and this time, the small world comes looking for help.",
+          "thumbnail": "https://picsum.photos/seed/show-009-s2e1/480/270",
+          "airDate": "Oct 1, 2021",
+          "duration": "41m",
+          "season": 2,
+          "episode": 1
+        },
+        {
+          "id": "s2e2",
+          "title": "New Faces",
+          "description": "Two new kids in the neighborhood discover the treehouse on their own.",
+          "thumbnail": "https://picsum.photos/seed/show-009-s2e2/480/270",
+          "airDate": "Nov 8, 2021",
+          "duration": "42m",
+          "season": 2,
+          "episode": 2
+        },
+        {
+          "id": "s2e3",
+          "title": "The Archive",
+          "description": "A small-world library holds records of the door going back centuries.",
+          "thumbnail": "https://picsum.photos/seed/show-009-s2e3/480/270",
+          "airDate": "Dec 15, 2021",
+          "duration": "43m",
+          "season": 2,
+          "episode": 3
+        },
+        {
+          "id": "s2e4",
+          "title": "Tidewater",
+          "description": "An underwater region of the small world is flooding into the terrestrial zones.",
+          "thumbnail": "https://picsum.photos/seed/show-009-s2e4/480/270",
+          "airDate": "Jan 22, 2022",
+          "duration": "44m",
+          "season": 2,
+          "episode": 4
+        },
+        {
+          "id": "s2e5",
+          "title": "The Mechanic",
+          "description": "A legendary small-world engineer might be the only one who can fix the problem.",
+          "thumbnail": "https://picsum.photos/seed/show-009-s2e5/480/270",
+          "airDate": "Feb 28, 2022",
+          "duration": "40m",
+          "season": 2,
+          "episode": 5
+        },
+        {
+          "id": "s2e6",
+          "title": "Parallel Lines",
+          "description": "Events in the neighborhood start mirroring things happening in the small world.",
+          "thumbnail": "https://picsum.photos/seed/show-009-s2e6/480/270",
+          "airDate": "Mar 28, 2022",
+          "duration": "41m",
+          "season": 2,
+          "episode": 6
+        },
+        {
+          "id": "s2e7",
+          "title": "Trade Winds",
+          "description": "A diplomatic mission between two small-world factions requires human help.",
+          "thumbnail": "https://picsum.photos/seed/show-009-s2e7/480/270",
+          "airDate": "Apr 28, 2022",
+          "duration": "42m",
+          "season": 2,
+          "episode": 7
+        },
+        {
+          "id": "s2e8",
+          "title": "The Long Way Home",
+          "description": "A shortcut through an uncharted region leads the kids far from the door.",
+          "thumbnail": "https://picsum.photos/seed/show-009-s2e8/480/270",
+          "airDate": "May 28, 2022",
+          "duration": "43m",
+          "season": 2,
+          "episode": 8
+        },
+        {
+          "id": "s2e9",
+          "title": "Assembly",
+          "description": "Both worlds work together to address the flooding \u2014 and learn what's causing it.",
+          "thumbnail": "https://picsum.photos/seed/show-009-s2e9/480/270",
+          "airDate": "Jun 28, 2022",
+          "duration": "44m",
+          "season": 2,
+          "episode": 9
+        },
+        {
+          "id": "s2e10",
+          "title": "Open Door",
+          "description": "A hopeful season finale \u2014 the door stays open, and an exchange program begins.",
+          "thumbnail": "https://picsum.photos/seed/show-009-s2e10/480/270",
+          "airDate": "Jul 28, 2022",
+          "duration": "40m",
+          "season": 2,
+          "episode": 10
+        }
+      ]
+    }
+  ],
+  "extras": [
+    {
+      "id": "extra-001",
+      "title": "Behind the Animation",
+      "description": "Animator walkthrough of the small world's design language.",
+      "thumbnail": "https://picsum.photos/seed/show-009-extra1/480/270",
+      "duration": "4m 15s"
+    },
+    {
+      "id": "extra-002",
+      "title": "Voice Cast Q&A",
+      "description": "The voice actors discuss their characters and recording process.",
+      "thumbnail": "https://picsum.photos/seed/show-009-extra2/480/270",
+      "duration": "5m 00s"
+    }
+  ],
+  "similar": [
+    "show-014",
+    "show-005",
+    "show-002",
+    "show-010",
+    "show-019"
+  ]
+}

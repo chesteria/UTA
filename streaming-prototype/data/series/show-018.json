@@ -1,0 +1,180 @@
+{
+  "id": "show-018",
+  "seasons": [
+    {
+      "number": 1,
+      "episodeCount": 8,
+      "episodes": [
+        {
+          "id": "s1e1",
+          "title": "The Call",
+          "description": "Former SAR coordinator Nora Vasquez gets a call about a missing hiker \u2014 the same ridge where she last worked.",
+          "thumbnail": "https://picsum.photos/seed/show-018-s1e1/480/270",
+          "airDate": "Mar 1, 2021",
+          "duration": "41m",
+          "season": 1,
+          "episode": 1
+        },
+        {
+          "id": "s1e2",
+          "title": "Footprint",
+          "description": "The missing man's trail leads to a camp that was abandoned days before he disappeared.",
+          "thumbnail": "https://picsum.photos/seed/show-018-s1e2/480/270",
+          "airDate": "Apr 8, 2021",
+          "duration": "42m",
+          "season": 1,
+          "episode": 2
+        },
+        {
+          "id": "s1e3",
+          "title": "Local Knowledge",
+          "description": "Nora's history in this valley makes her useful to the search \u2014 and uncomfortably close to the case.",
+          "thumbnail": "https://picsum.photos/seed/show-018-s1e3/480/270",
+          "airDate": "May 15, 2021",
+          "duration": "43m",
+          "season": 1,
+          "episode": 3
+        },
+        {
+          "id": "s1e4",
+          "title": "The Ridge",
+          "description": "A witness saw someone near the summit the night of the disappearance. No one lives up there.",
+          "thumbnail": "https://picsum.photos/seed/show-018-s1e4/480/270",
+          "airDate": "Jun 22, 2021",
+          "duration": "44m",
+          "season": 1,
+          "episode": 4
+        },
+        {
+          "id": "s1e5",
+          "title": "Weather Window",
+          "description": "A narrow search window before a storm closes the ridge for weeks drives desperate decisions.",
+          "thumbnail": "https://picsum.photos/seed/show-018-s1e5/480/270",
+          "airDate": "Jul 28, 2021",
+          "duration": "40m",
+          "season": 1,
+          "episode": 5
+        },
+        {
+          "id": "s1e6",
+          "title": "Bone Room",
+          "description": "A second discovery beneath the snow suggests this isn't the first time someone has disappeared here.",
+          "thumbnail": "https://picsum.photos/seed/show-018-s1e6/480/270",
+          "airDate": "Aug 28, 2021",
+          "duration": "41m",
+          "season": 1,
+          "episode": 6
+        },
+        {
+          "id": "s1e7",
+          "title": "The Long Descent",
+          "description": "Nora pieces together a picture of what the ridge has been used for \u2014 and by whom.",
+          "thumbnail": "https://picsum.photos/seed/show-018-s1e7/480/270",
+          "airDate": "Sep 28, 2021",
+          "duration": "42m",
+          "season": 1,
+          "episode": 7
+        },
+        {
+          "id": "s1e8",
+          "title": "Resolution",
+          "description": "The full story surfaces in the thaw \u2014 bittersweet and more complicated than anyone expected.",
+          "thumbnail": "https://picsum.photos/seed/show-018-s1e8/480/270",
+          "airDate": "Oct 28, 2021",
+          "duration": "43m",
+          "season": 1,
+          "episode": 8
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "episodeCount": 6,
+      "episodes": [
+        {
+          "id": "s2e1",
+          "title": "New Season",
+          "description": "Nora is hired as a consultant for a cold case with connections to missing persons in three counties.",
+          "thumbnail": "https://picsum.photos/seed/show-018-s2e1/480/270",
+          "airDate": "Apr 1, 2022",
+          "duration": "41m",
+          "season": 2,
+          "episode": 1
+        },
+        {
+          "id": "s2e2",
+          "title": "The Pattern",
+          "description": "The geography of the missing cases describes a route \u2014 someone has been using the mountains systematically.",
+          "thumbnail": "https://picsum.photos/seed/show-018-s2e2/480/270",
+          "airDate": "May 8, 2022",
+          "duration": "42m",
+          "season": 2,
+          "episode": 2
+        },
+        {
+          "id": "s2e3",
+          "title": "Old Maps",
+          "description": "Survey maps from the 1940s show a different path through the high country \u2014 one that's never been closed.",
+          "thumbnail": "https://picsum.photos/seed/show-018-s2e3/480/270",
+          "airDate": "Jun 15, 2022",
+          "duration": "43m",
+          "season": 2,
+          "episode": 3
+        },
+        {
+          "id": "s2e4",
+          "title": "The Witness Tree",
+          "description": "A carved tree in the backcountry has been recording names and dates for decades.",
+          "thumbnail": "https://picsum.photos/seed/show-018-s2e4/480/270",
+          "airDate": "Jul 22, 2022",
+          "duration": "44m",
+          "season": 2,
+          "episode": 4
+        },
+        {
+          "id": "s2e5",
+          "title": "Summit and Down",
+          "description": "The route leads to a structure no one filed permits for \u2014 built into the mountain, not on it.",
+          "thumbnail": "https://picsum.photos/seed/show-018-s2e5/480/270",
+          "airDate": "Aug 28, 2022",
+          "duration": "40m",
+          "season": 2,
+          "episode": 5
+        },
+        {
+          "id": "s2e6",
+          "title": "What the Mountain Keeps",
+          "description": "Nora closes the case, but knows some parts of what she found will stay on the ridge.",
+          "thumbnail": "https://picsum.photos/seed/show-018-s2e6/480/270",
+          "airDate": "Sep 28, 2022",
+          "duration": "41m",
+          "season": 2,
+          "episode": 6
+        }
+      ]
+    }
+  ],
+  "extras": [
+    {
+      "id": "extra-001",
+      "title": "Filming at Altitude",
+      "description": "How the crew managed production in genuine wilderness conditions.",
+      "thumbnail": "https://picsum.photos/seed/show-018-extra1/480/270",
+      "duration": "3m 50s"
+    },
+    {
+      "id": "extra-002",
+      "title": "The Real Search & Rescue",
+      "description": "Interviews with SAR volunteers who consulted on the series.",
+      "thumbnail": "https://picsum.photos/seed/show-018-extra2/480/270",
+      "duration": "4m 20s"
+    }
+  ],
+  "similar": [
+    "show-008",
+    "show-003",
+    "show-002",
+    "show-013",
+    "show-010"
+  ]
+}

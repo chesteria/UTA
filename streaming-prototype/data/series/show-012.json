@@ -1,0 +1,160 @@
+{
+  "id": "show-012",
+  "seasons": [
+    {
+      "number": 1,
+      "episodeCount": 6,
+      "episodes": [
+        {
+          "id": "s1e1",
+          "title": "The Hadal Zone",
+          "description": "Descending into the deepest trenches \u2014 the Mariana, the Tonga, and the Philippine.",
+          "thumbnail": "https://picsum.photos/seed/show-012-s1e1/480/270",
+          "airDate": "Apr 1, 2020",
+          "duration": "41m",
+          "season": 1,
+          "episode": 1
+        },
+        {
+          "id": "s1e2",
+          "title": "Pressure",
+          "description": "How life survives at depths where the pressure crushes steel \u2014 the biology of the extreme.",
+          "thumbnail": "https://picsum.photos/seed/show-012-s1e2/480/270",
+          "airDate": "May 8, 2020",
+          "duration": "42m",
+          "season": 1,
+          "episode": 2
+        },
+        {
+          "id": "s1e3",
+          "title": "Bioluminescence Fields",
+          "description": "In permanent darkness, light becomes the primary language of the deep.",
+          "thumbnail": "https://picsum.photos/seed/show-012-s1e3/480/270",
+          "airDate": "Jun 15, 2020",
+          "duration": "43m",
+          "season": 1,
+          "episode": 3
+        },
+        {
+          "id": "s1e4",
+          "title": "Chemosynthesis",
+          "description": "Hydrothermal vent communities that derive energy not from sunlight, but from the Earth itself.",
+          "thumbnail": "https://picsum.photos/seed/show-012-s1e4/480/270",
+          "airDate": "Jul 22, 2020",
+          "duration": "44m",
+          "season": 1,
+          "episode": 4
+        },
+        {
+          "id": "s1e5",
+          "title": "The Snailfish",
+          "description": "The deepest-living vertebrate \u2014 filmed in its native habitat for the first time at 8,000 meters.",
+          "thumbnail": "https://picsum.photos/seed/show-012-s1e5/480/270",
+          "airDate": "Aug 28, 2020",
+          "duration": "40m",
+          "season": 1,
+          "episode": 5
+        },
+        {
+          "id": "s1e6",
+          "title": "The Unknown Floor",
+          "description": "Only 20% of the ocean floor has been mapped. What the remaining 80% might contain.",
+          "thumbnail": "https://picsum.photos/seed/show-012-s1e6/480/270",
+          "airDate": "Sep 28, 2020",
+          "duration": "41m",
+          "season": 1,
+          "episode": 6
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "episodeCount": 6,
+      "episodes": [
+        {
+          "id": "s2e1",
+          "title": "New Vehicles",
+          "description": "Next-generation full-ocean-depth submersibles open regions previously unreachable.",
+          "thumbnail": "https://picsum.photos/seed/show-012-s2e1/480/270",
+          "airDate": "Jun 1, 2021",
+          "duration": "41m",
+          "season": 2,
+          "episode": 1
+        },
+        {
+          "id": "s2e2",
+          "title": "The Cold Seeps",
+          "description": "Methane cold seep communities are as rich as vents \u2014 and far more widespread.",
+          "thumbnail": "https://picsum.photos/seed/show-012-s2e2/480/270",
+          "airDate": "Jul 8, 2021",
+          "duration": "42m",
+          "season": 2,
+          "episode": 2
+        },
+        {
+          "id": "s2e3",
+          "title": "Whale Falls",
+          "description": "When a whale dies and sinks, it sustains a unique ecosystem for decades.",
+          "thumbnail": "https://picsum.photos/seed/show-012-s2e3/480/270",
+          "airDate": "Aug 15, 2021",
+          "duration": "43m",
+          "season": 2,
+          "episode": 3
+        },
+        {
+          "id": "s2e4",
+          "title": "Abyssal Plains",
+          "description": "The vast, featureless plains of the deep sea and the creatures that live in apparent emptiness.",
+          "thumbnail": "https://picsum.photos/seed/show-012-s2e4/480/270",
+          "airDate": "Sep 22, 2021",
+          "duration": "44m",
+          "season": 2,
+          "episode": 4
+        },
+        {
+          "id": "s2e5",
+          "title": "Mining the Deep",
+          "description": "The growing push to mine polymetallic nodules from the abyssal floor \u2014 and the cost.",
+          "thumbnail": "https://picsum.photos/seed/show-012-s2e5/480/270",
+          "airDate": "Oct 28, 2021",
+          "duration": "40m",
+          "season": 2,
+          "episode": 5
+        },
+        {
+          "id": "s2e6",
+          "title": "Depth of Knowledge",
+          "description": "What deep-sea research has taught us about the origins of life on Earth and beyond.",
+          "thumbnail": "https://picsum.photos/seed/show-012-s2e6/480/270",
+          "airDate": "Nov 28, 2021",
+          "duration": "41m",
+          "season": 2,
+          "episode": 6
+        }
+      ]
+    }
+  ],
+  "extras": [
+    {
+      "id": "extra-001",
+      "title": "The Submersible Pilots",
+      "description": "Interviews with the engineers and pilots behind the deep-sea vehicles.",
+      "thumbnail": "https://picsum.photos/seed/show-012-extra1/480/270",
+      "duration": "4m 22s"
+    },
+    {
+      "id": "extra-002",
+      "title": "Unknown Species Gallery",
+      "description": "A visual catalog of creatures discovered during the filming of this series.",
+      "thumbnail": "https://picsum.photos/seed/show-012-extra2/480/270",
+      "duration": "3m 15s"
+    }
+  ],
+  "similar": [
+    "show-010",
+    "show-011",
+    "show-006",
+    "show-004",
+    "show-002"
+  ]
+}

@@ -1,0 +1,180 @@
+{
+  "id": "show-020",
+  "seasons": [
+    {
+      "number": 1,
+      "episodeCount": 8,
+      "episodes": [
+        {
+          "id": "s1e1",
+          "title": "Day Zero",
+          "description": "The storm hits without warning. By dawn, the eastern seaboard's power grid is gone \u2014 all of it.",
+          "thumbnail": "https://picsum.photos/seed/show-020-s1e1/480/270",
+          "airDate": "Sep 1, 2022",
+          "duration": "41m",
+          "season": 1,
+          "episode": 1
+        },
+        {
+          "id": "s1e2",
+          "title": "Dark Hours",
+          "description": "Twenty-four hours in: hospitals run on backup, water treatment starts to fail, and the silence is wrong.",
+          "thumbnail": "https://picsum.photos/seed/show-020-s1e2/480/270",
+          "airDate": "Oct 8, 2022",
+          "duration": "42m",
+          "season": 1,
+          "episode": 2
+        },
+        {
+          "id": "s1e3",
+          "title": "The Signal",
+          "description": "A shortwave broadcast in the static gives coordinates \u2014 someone, somewhere, is still organized.",
+          "thumbnail": "https://picsum.photos/seed/show-020-s1e3/480/270",
+          "airDate": "Nov 15, 2022",
+          "duration": "43m",
+          "season": 1,
+          "episode": 3
+        },
+        {
+          "id": "s1e4",
+          "title": "Cascade",
+          "description": "Power engineers realize the grid wasn't just damaged \u2014 it was specifically targeted.",
+          "thumbnail": "https://picsum.photos/seed/show-020-s1e4/480/270",
+          "airDate": "Dec 22, 2022",
+          "duration": "44m",
+          "season": 1,
+          "episode": 4
+        },
+        {
+          "id": "s1e5",
+          "title": "Safe Zones",
+          "description": "Three survivors from different backgrounds converge on the same coordinates.",
+          "thumbnail": "https://picsum.photos/seed/show-020-s1e5/480/270",
+          "airDate": "Jan 28, 2023",
+          "duration": "40m",
+          "season": 1,
+          "episode": 5
+        },
+        {
+          "id": "s1e6",
+          "title": "Protocol Sigma",
+          "description": "A classified government continuity plan activates \u2014 but the people meant to execute it are missing.",
+          "thumbnail": "https://picsum.photos/seed/show-020-s1e6/480/270",
+          "airDate": "Feb 28, 2023",
+          "duration": "41m",
+          "season": 1,
+          "episode": 6
+        },
+        {
+          "id": "s1e7",
+          "title": "The Long Dark",
+          "description": "Week three. Society's surface fractures along exactly the lines everyone feared.",
+          "thumbnail": "https://picsum.photos/seed/show-020-s1e7/480/270",
+          "airDate": "Mar 28, 2023",
+          "duration": "42m",
+          "season": 1,
+          "episode": 7
+        },
+        {
+          "id": "s1e8",
+          "title": "First Light",
+          "description": "A partial restoration in one city reveals who really controls what comes back on \u2014 and what stays dark.",
+          "thumbnail": "https://picsum.photos/seed/show-020-s1e8/480/270",
+          "airDate": "Apr 28, 2023",
+          "duration": "43m",
+          "season": 1,
+          "episode": 8
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "episodeCount": 6,
+      "episodes": [
+        {
+          "id": "s2e1",
+          "title": "New Order",
+          "description": "Six months after the storm, a patchwork of local grids operates under unclear authority.",
+          "thumbnail": "https://picsum.photos/seed/show-020-s2e1/480/270",
+          "airDate": "Oct 1, 2023",
+          "duration": "41m",
+          "season": 2,
+          "episode": 1
+        },
+        {
+          "id": "s2e2",
+          "title": "The Reconstruction Economy",
+          "description": "Control of the grid means control of everything \u2014 and the bidding is not public.",
+          "thumbnail": "https://picsum.photos/seed/show-020-s2e2/480/270",
+          "airDate": "Nov 8, 2023",
+          "duration": "42m",
+          "season": 2,
+          "episode": 2
+        },
+        {
+          "id": "s2e3",
+          "title": "Resistance Infrastructure",
+          "description": "An underground network of engineers is building a grid that no single entity can own.",
+          "thumbnail": "https://picsum.photos/seed/show-020-s2e3/480/270",
+          "airDate": "Dec 15, 2023",
+          "duration": "43m",
+          "season": 2,
+          "episode": 3
+        },
+        {
+          "id": "s2e4",
+          "title": "The Architects of Dark",
+          "description": "Evidence surfaces that the original storm was not a natural event.",
+          "thumbnail": "https://picsum.photos/seed/show-020-s2e4/480/270",
+          "airDate": "Jan 22, 2024",
+          "duration": "44m",
+          "season": 2,
+          "episode": 4
+        },
+        {
+          "id": "s2e5",
+          "title": "Double Protocol",
+          "description": "The government's continuity plan and the resistance plan are on a collision course.",
+          "thumbnail": "https://picsum.photos/seed/show-020-s2e5/480/270",
+          "airDate": "Feb 28, 2024",
+          "duration": "40m",
+          "season": 2,
+          "episode": 5
+        },
+        {
+          "id": "s2e6",
+          "title": "Power On",
+          "description": "The season finale: both plans execute simultaneously \u2014 and only one can hold.",
+          "thumbnail": "https://picsum.photos/seed/show-020-s2e6/480/270",
+          "airDate": "Mar 28, 2024",
+          "duration": "41m",
+          "season": 2,
+          "episode": 6
+        }
+      ]
+    }
+  ],
+  "extras": [
+    {
+      "id": "extra-001",
+      "title": "Grid Failure: The Reality",
+      "description": "Engineers and former FEMA officials discuss real grid vulnerability.",
+      "thumbnail": "https://picsum.photos/seed/show-020-extra1/480/270",
+      "duration": "5m 10s"
+    },
+    {
+      "id": "extra-002",
+      "title": "Production Design: Building a Dark City",
+      "description": "How the series depicted a major city without power at scale.",
+      "thumbnail": "https://picsum.photos/seed/show-020-extra2/480/270",
+      "duration": "4m 00s"
+    }
+  ],
+  "similar": [
+    "show-007",
+    "show-013",
+    "show-004",
+    "show-016",
+    "show-003"
+  ]
+}

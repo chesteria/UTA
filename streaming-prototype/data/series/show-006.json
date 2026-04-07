@@ -1,0 +1,180 @@
+{
+  "id": "show-006",
+  "seasons": [
+    {
+      "number": 1,
+      "episodeCount": 8,
+      "episodes": [
+        {
+          "id": "s1e1",
+          "title": "Into the Deep",
+          "description": "The rescue dive team responds to a collapsed underwater cave system with six people trapped.",
+          "thumbnail": "https://picsum.photos/seed/show-006-s1e1/480/270",
+          "airDate": "Jul 1, 2017",
+          "duration": "41m",
+          "season": 1,
+          "episode": 1
+        },
+        {
+          "id": "s1e2",
+          "title": "Black Water",
+          "description": "A night dive recovery in zero-visibility conditions puts the entire team at risk.",
+          "thumbnail": "https://picsum.photos/seed/show-006-s1e2/480/270",
+          "airDate": "Aug 8, 2017",
+          "duration": "42m",
+          "season": 1,
+          "episode": 2
+        },
+        {
+          "id": "s1e3",
+          "title": "Over the Edge",
+          "description": "A technical rescue from a sea cliff tests rope and dive coordination simultaneously.",
+          "thumbnail": "https://picsum.photos/seed/show-006-s1e3/480/270",
+          "airDate": "Sep 15, 2017",
+          "duration": "43m",
+          "season": 1,
+          "episode": 3
+        },
+        {
+          "id": "s1e4",
+          "title": "The Narrows",
+          "description": "A submerged tunnel system requires custom equipment and a diver small enough to pass through.",
+          "thumbnail": "https://picsum.photos/seed/show-006-s1e4/480/270",
+          "airDate": "Oct 22, 2017",
+          "duration": "44m",
+          "season": 1,
+          "episode": 4
+        },
+        {
+          "id": "s1e5",
+          "title": "Thermal Vent",
+          "description": "An unexpected hydrothermal vent near a dive site makes safe extraction nearly impossible.",
+          "thumbnail": "https://picsum.photos/seed/show-006-s1e5/480/270",
+          "airDate": "Nov 28, 2017",
+          "duration": "40m",
+          "season": 1,
+          "episode": 5
+        },
+        {
+          "id": "s1e6",
+          "title": "Surface Tension",
+          "description": "A victim with decompression sickness complicates an already complex extraction.",
+          "thumbnail": "https://picsum.photos/seed/show-006-s1e6/480/270",
+          "airDate": "Dec 28, 2017",
+          "duration": "41m",
+          "season": 1,
+          "episode": 6
+        },
+        {
+          "id": "s1e7",
+          "title": "Last Light",
+          "description": "With air running critically low, the team makes a split-second decision that saves two lives.",
+          "thumbnail": "https://picsum.photos/seed/show-006-s1e7/480/270",
+          "airDate": "Jan 28, 2018",
+          "duration": "42m",
+          "season": 1,
+          "episode": 7
+        },
+        {
+          "id": "s1e8",
+          "title": "The Cost",
+          "description": "After a brutal season, the team reflects on the psychological toll of elite rescue work.",
+          "thumbnail": "https://picsum.photos/seed/show-006-s1e8/480/270",
+          "airDate": "Feb 28, 2018",
+          "duration": "43m",
+          "season": 1,
+          "episode": 8
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "episodeCount": 6,
+      "episodes": [
+        {
+          "id": "s2e1",
+          "title": "New Depths",
+          "description": "The team is called to assist with the first-ever rescue in a newly discovered cave network.",
+          "thumbnail": "https://picsum.photos/seed/show-006-s2e1/480/270",
+          "airDate": "Aug 1, 2018",
+          "duration": "41m",
+          "season": 2,
+          "episode": 1
+        },
+        {
+          "id": "s2e2",
+          "title": "Hostile Waters",
+          "description": "An international crisis requires the team to operate in politically unstable waters.",
+          "thumbnail": "https://picsum.photos/seed/show-006-s2e2/480/270",
+          "airDate": "Sep 8, 2018",
+          "duration": "42m",
+          "season": 2,
+          "episode": 2
+        },
+        {
+          "id": "s2e3",
+          "title": "Sidemount",
+          "description": "New equipment allows access to a passage that's been sealed for 12 years.",
+          "thumbnail": "https://picsum.photos/seed/show-006-s2e3/480/270",
+          "airDate": "Oct 15, 2018",
+          "duration": "43m",
+          "season": 2,
+          "episode": 3
+        },
+        {
+          "id": "s2e4",
+          "title": "The List",
+          "description": "A missing diver's log reveals plans for a solo dive that no one approved \u2014 or knew about.",
+          "thumbnail": "https://picsum.photos/seed/show-006-s2e4/480/270",
+          "airDate": "Nov 22, 2018",
+          "duration": "44m",
+          "season": 2,
+          "episode": 4
+        },
+        {
+          "id": "s2e5",
+          "title": "Breach",
+          "description": "The team executes the most complex extraction in their history, five days into a multi-stage op.",
+          "thumbnail": "https://picsum.photos/seed/show-006-s2e5/480/270",
+          "airDate": "Dec 28, 2018",
+          "duration": "40m",
+          "season": 2,
+          "episode": 5
+        },
+        {
+          "id": "s2e6",
+          "title": "Debrief",
+          "description": "A long debrief session surfaces conflicts within the team about methods and risk tolerance.",
+          "thumbnail": "https://picsum.photos/seed/show-006-s2e6/480/270",
+          "airDate": "Jan 28, 2019",
+          "duration": "41m",
+          "season": 2,
+          "episode": 6
+        }
+      ]
+    }
+  ],
+  "extras": [
+    {
+      "id": "extra-001",
+      "title": "Dive Equipment Explained",
+      "description": "The specialized gear that makes rescue diving possible in extreme conditions.",
+      "thumbnail": "https://picsum.photos/seed/show-006-extra1/480/270",
+      "duration": "4m 10s"
+    },
+    {
+      "id": "extra-002",
+      "title": "Training Day",
+      "description": "An inside look at how the team prepares for worst-case scenarios.",
+      "thumbnail": "https://picsum.photos/seed/show-006-extra2/480/270",
+      "duration": "3m 22s"
+    }
+  ],
+  "similar": [
+    "show-002",
+    "show-010",
+    "show-011",
+    "show-016",
+    "show-001"
+  ]
+}

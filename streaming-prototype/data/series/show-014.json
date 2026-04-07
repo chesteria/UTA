@@ -1,0 +1,220 @@
+{
+  "id": "show-014",
+  "seasons": [
+    {
+      "number": 1,
+      "episodeCount": 10,
+      "episodes": [
+        {
+          "id": "s1e1",
+          "title": "Home on the Range",
+          "description": "Stand-up comedian Deb Okafor inherits her uncle's failing dairy farm and has to figure out cows.",
+          "thumbnail": "https://picsum.photos/seed/show-014-s1e1/480/270",
+          "airDate": "Feb 1, 2022",
+          "duration": "41m",
+          "season": 1,
+          "episode": 1
+        },
+        {
+          "id": "s1e2",
+          "title": "The Learning Curve",
+          "description": "Deb's first milking session goes about as well as expected \u2014 which is very badly.",
+          "thumbnail": "https://picsum.photos/seed/show-014-s1e2/480/270",
+          "airDate": "Mar 8, 2022",
+          "duration": "42m",
+          "season": 1,
+          "episode": 2
+        },
+        {
+          "id": "s1e3",
+          "title": "Neighbors",
+          "description": "The neighboring farms have opinions about Deb and her urban approach to rural life.",
+          "thumbnail": "https://picsum.photos/seed/show-014-s1e3/480/270",
+          "airDate": "Apr 15, 2022",
+          "duration": "43m",
+          "season": 1,
+          "episode": 3
+        },
+        {
+          "id": "s1e4",
+          "title": "The Fair",
+          "description": "The county fair is a proving ground. Deb enters a cow. The cow has other plans.",
+          "thumbnail": "https://picsum.photos/seed/show-014-s1e4/480/270",
+          "airDate": "May 22, 2022",
+          "duration": "44m",
+          "season": 1,
+          "episode": 4
+        },
+        {
+          "id": "s1e5",
+          "title": "Hired Help",
+          "description": "Deb's childhood best friend drives out to help \u2014 and immediately makes everything harder.",
+          "thumbnail": "https://picsum.photos/seed/show-014-s1e5/480/270",
+          "airDate": "Jun 28, 2022",
+          "duration": "40m",
+          "season": 1,
+          "episode": 5
+        },
+        {
+          "id": "s1e6",
+          "title": "Cash Flow",
+          "description": "An unexpected vet bill forces Deb to think about what the farm actually produces.",
+          "thumbnail": "https://picsum.photos/seed/show-014-s1e6/480/270",
+          "airDate": "Jul 28, 2022",
+          "duration": "41m",
+          "season": 1,
+          "episode": 6
+        },
+        {
+          "id": "s1e7",
+          "title": "Open Mic Night",
+          "description": "Deb attempts to bring comedy to the local bar \u2014 the crowd is skeptical.",
+          "thumbnail": "https://picsum.photos/seed/show-014-s1e7/480/270",
+          "airDate": "Aug 28, 2022",
+          "duration": "42m",
+          "season": 1,
+          "episode": 7
+        },
+        {
+          "id": "s1e8",
+          "title": "Mud Season Again",
+          "description": "Spring on a working farm involves more mud than Deb anticipated from literally anyone.",
+          "thumbnail": "https://picsum.photos/seed/show-014-s1e8/480/270",
+          "airDate": "Sep 28, 2022",
+          "duration": "43m",
+          "season": 1,
+          "episode": 8
+        },
+        {
+          "id": "s1e9",
+          "title": "The Audition",
+          "description": "A TV producer comes to the area looking for 'authentic rural content.' Chaos ensues.",
+          "thumbnail": "https://picsum.photos/seed/show-014-s1e9/480/270",
+          "airDate": "Oct 28, 2022",
+          "duration": "44m",
+          "season": 1,
+          "episode": 9
+        },
+        {
+          "id": "s1e10",
+          "title": "One Year",
+          "description": "Deb reaches the one-year mark on the farm \u2014 and has to decide what comes next.",
+          "thumbnail": "https://picsum.photos/seed/show-014-s1e10/480/270",
+          "airDate": "Nov 28, 2022",
+          "duration": "40m",
+          "season": 1,
+          "episode": 10
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "episodeCount": 8,
+      "episodes": [
+        {
+          "id": "s2e1",
+          "title": "The Expansion",
+          "description": "Deb decides to diversify \u2014 artisanal cheese, obviously. What could go wrong?",
+          "thumbnail": "https://picsum.photos/seed/show-014-s2e1/480/270",
+          "airDate": "Jan 1, 2023",
+          "duration": "41m",
+          "season": 2,
+          "episode": 1
+        },
+        {
+          "id": "s2e2",
+          "title": "The Cheese Cave",
+          "description": "Converting the old root cellar into a proper aging room leads to structural discoveries.",
+          "thumbnail": "https://picsum.photos/seed/show-014-s2e2/480/270",
+          "airDate": "Feb 8, 2023",
+          "duration": "42m",
+          "season": 2,
+          "episode": 2
+        },
+        {
+          "id": "s2e3",
+          "title": "Competition",
+          "description": "A rival farmstead cheese operation moves into the county with better equipment and a marketing budget.",
+          "thumbnail": "https://picsum.photos/seed/show-014-s2e3/480/270",
+          "airDate": "Mar 15, 2023",
+          "duration": "43m",
+          "season": 2,
+          "episode": 3
+        },
+        {
+          "id": "s2e4",
+          "title": "The Farmers' Market",
+          "description": "Deb's first table at the market \u2014 hand-lettered signs, questionable branding, surprising results.",
+          "thumbnail": "https://picsum.photos/seed/show-014-s2e4/480/270",
+          "airDate": "Apr 22, 2023",
+          "duration": "44m",
+          "season": 2,
+          "episode": 4
+        },
+        {
+          "id": "s2e5",
+          "title": "Celebrity Endorsement",
+          "description": "A local celebrity promotes Deb's cheese online. The internet has a lot of opinions.",
+          "thumbnail": "https://picsum.photos/seed/show-014-s2e5/480/270",
+          "airDate": "May 28, 2023",
+          "duration": "40m",
+          "season": 2,
+          "episode": 5
+        },
+        {
+          "id": "s2e6",
+          "title": "Supply Chain",
+          "description": "The cow that started it all is sick. Everything stops until she isn't.",
+          "thumbnail": "https://picsum.photos/seed/show-014-s2e6/480/270",
+          "airDate": "Jun 28, 2023",
+          "duration": "41m",
+          "season": 2,
+          "episode": 6
+        },
+        {
+          "id": "s2e7",
+          "title": "The Deal",
+          "description": "A restaurant in the city wants to put the cheese on their menu \u2014 Deb has to decide if she can scale.",
+          "thumbnail": "https://picsum.photos/seed/show-014-s2e7/480/270",
+          "airDate": "Jul 28, 2023",
+          "duration": "42m",
+          "season": 2,
+          "episode": 7
+        },
+        {
+          "id": "s2e8",
+          "title": "The Herd",
+          "description": "A new calf is born on the farm. Deb handles it about as emotionally as you'd expect.",
+          "thumbnail": "https://picsum.photos/seed/show-014-s2e8/480/270",
+          "airDate": "Aug 28, 2023",
+          "duration": "43m",
+          "season": 2,
+          "episode": 8
+        }
+      ]
+    }
+  ],
+  "extras": [
+    {
+      "id": "extra-001",
+      "title": "Deb's Real Farm Training",
+      "description": "Behind the scenes: the actual farm training the lead actress underwent.",
+      "thumbnail": "https://picsum.photos/seed/show-014-extra1/480/270",
+      "duration": "3m 45s"
+    },
+    {
+      "id": "extra-002",
+      "title": "The Cows of Laughing Stock",
+      "description": "Meet the bovine cast and their trainers.",
+      "thumbnail": "https://picsum.photos/seed/show-014-extra2/480/270",
+      "duration": "2m 55s"
+    }
+  ],
+  "similar": [
+    "show-009",
+    "show-005",
+    "show-019",
+    "show-008",
+    "show-017"
+  ]
+}

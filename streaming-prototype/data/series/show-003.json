@@ -1,0 +1,220 @@
+{
+  "id": "show-003",
+  "seasons": [
+    {
+      "number": 1,
+      "episodeCount": 10,
+      "episodes": [
+        {
+          "id": "s1e1",
+          "title": "First Blood",
+          "description": "Detective Raines arrives at a crime scene that doesn't add up \u2014 and realizes the victim knew the killer.",
+          "thumbnail": "https://picsum.photos/seed/show-003-s1e1/480/270",
+          "airDate": "Mar 1, 2020",
+          "duration": "41m",
+          "season": 1,
+          "episode": 1
+        },
+        {
+          "id": "s1e2",
+          "title": "The Witness",
+          "description": "A key witness recants. Raines suspects intimidation from inside the precinct.",
+          "thumbnail": "https://picsum.photos/seed/show-003-s1e2/480/270",
+          "airDate": "Apr 8, 2020",
+          "duration": "42m",
+          "season": 1,
+          "episode": 2
+        },
+        {
+          "id": "s1e3",
+          "title": "Cold Case, Hot Lead",
+          "description": "A 10-year-old unsolved murder resurfaces with a fresh fingerprint match.",
+          "thumbnail": "https://picsum.photos/seed/show-003-s1e3/480/270",
+          "airDate": "May 15, 2020",
+          "duration": "43m",
+          "season": 1,
+          "episode": 3
+        },
+        {
+          "id": "s1e4",
+          "title": "Blind Trust",
+          "description": "A trusted partner is placed on administrative leave, leaving Raines to work solo.",
+          "thumbnail": "https://picsum.photos/seed/show-003-s1e4/480/270",
+          "airDate": "Jun 22, 2020",
+          "duration": "44m",
+          "season": 1,
+          "episode": 4
+        },
+        {
+          "id": "s1e5",
+          "title": "The Fixer",
+          "description": "Raines uncovers a city official with ties to three separate homicides.",
+          "thumbnail": "https://picsum.photos/seed/show-003-s1e5/480/270",
+          "airDate": "Jul 28, 2020",
+          "duration": "40m",
+          "season": 1,
+          "episode": 5
+        },
+        {
+          "id": "s1e6",
+          "title": "Night Court",
+          "description": "An emergency hearing forces Raines to testify under oath about methods that bent the rules.",
+          "thumbnail": "https://picsum.photos/seed/show-003-s1e6/480/270",
+          "airDate": "Aug 28, 2020",
+          "duration": "41m",
+          "season": 1,
+          "episode": 6
+        },
+        {
+          "id": "s1e7",
+          "title": "Red Folder",
+          "description": "A classified dossier surfaces \u2014 someone inside the department is feeding intel to the DA's enemies.",
+          "thumbnail": "https://picsum.photos/seed/show-003-s1e7/480/270",
+          "airDate": "Sep 28, 2020",
+          "duration": "42m",
+          "season": 1,
+          "episode": 7
+        },
+        {
+          "id": "s1e8",
+          "title": "Pressure Drop",
+          "description": "The case against the fixer begins to collapse as witnesses disappear one by one.",
+          "thumbnail": "https://picsum.photos/seed/show-003-s1e8/480/270",
+          "airDate": "Oct 28, 2020",
+          "duration": "43m",
+          "season": 1,
+          "episode": 8
+        },
+        {
+          "id": "s1e9",
+          "title": "Final Verdict",
+          "description": "Raines sets a trap, using herself as bait to draw out the last remaining conspirator.",
+          "thumbnail": "https://picsum.photos/seed/show-003-s1e9/480/270",
+          "airDate": "Nov 28, 2020",
+          "duration": "44m",
+          "season": 1,
+          "episode": 9
+        },
+        {
+          "id": "s1e10",
+          "title": "Aftermath",
+          "description": "The courtroom delivers a verdict that splits the city. Raines receives an unexpected assignment.",
+          "thumbnail": "https://picsum.photos/seed/show-003-s1e10/480/270",
+          "airDate": "Dec 28, 2020",
+          "duration": "40m",
+          "season": 1,
+          "episode": 10
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "episodeCount": 8,
+      "episodes": [
+        {
+          "id": "s2e1",
+          "title": "New Beat",
+          "description": "Raines is transferred to organized crime, inheriting a case her predecessor never closed.",
+          "thumbnail": "https://picsum.photos/seed/show-003-s2e1/480/270",
+          "airDate": "Feb 1, 2021",
+          "duration": "41m",
+          "season": 2,
+          "episode": 1
+        },
+        {
+          "id": "s2e2",
+          "title": "Family Business",
+          "description": "The Marchetti family appears legitimate \u2014 until a body turns up in their warehouse.",
+          "thumbnail": "https://picsum.photos/seed/show-003-s2e2/480/270",
+          "airDate": "Mar 8, 2021",
+          "duration": "42m",
+          "season": 2,
+          "episode": 2
+        },
+        {
+          "id": "s2e3",
+          "title": "The Cleaner",
+          "description": "A professional cleaner with no digital footprint becomes the investigation's central mystery.",
+          "thumbnail": "https://picsum.photos/seed/show-003-s2e3/480/270",
+          "airDate": "Apr 15, 2021",
+          "duration": "43m",
+          "season": 2,
+          "episode": 3
+        },
+        {
+          "id": "s2e4",
+          "title": "Smoke & Mirrors",
+          "description": "A federal agent arrives and starts pulling strings \u2014 who does he actually work for?",
+          "thumbnail": "https://picsum.photos/seed/show-003-s2e4/480/270",
+          "airDate": "May 22, 2021",
+          "duration": "44m",
+          "season": 2,
+          "episode": 4
+        },
+        {
+          "id": "s2e5",
+          "title": "Double Cross",
+          "description": "Raines plays both sides of a negotiation to keep an informant alive.",
+          "thumbnail": "https://picsum.photos/seed/show-003-s2e5/480/270",
+          "airDate": "Jun 28, 2021",
+          "duration": "40m",
+          "season": 2,
+          "episode": 5
+        },
+        {
+          "id": "s2e6",
+          "title": "The Long Game",
+          "description": "It becomes clear that the Marchetti investigation has been compromised from day one.",
+          "thumbnail": "https://picsum.photos/seed/show-003-s2e6/480/270",
+          "airDate": "Jul 28, 2021",
+          "duration": "41m",
+          "season": 2,
+          "episode": 6
+        },
+        {
+          "id": "s2e7",
+          "title": "Burn It Down",
+          "description": "Raines goes off-book to gather evidence that no warrant would ever cover.",
+          "thumbnail": "https://picsum.photos/seed/show-003-s2e7/480/270",
+          "airDate": "Aug 28, 2021",
+          "duration": "42m",
+          "season": 2,
+          "episode": 7
+        },
+        {
+          "id": "s2e8",
+          "title": "Judgment",
+          "description": "A dramatic confrontation in the city's financial district brings the season to a head.",
+          "thumbnail": "https://picsum.photos/seed/show-003-s2e8/480/270",
+          "airDate": "Sep 28, 2021",
+          "duration": "43m",
+          "season": 2,
+          "episode": 8
+        }
+      ]
+    }
+  ],
+  "extras": [
+    {
+      "id": "extra-001",
+      "title": "The Making of Iron Verdict",
+      "description": "Writers and cast discuss the series' grounded approach to police drama.",
+      "thumbnail": "https://picsum.photos/seed/show-003-extra1/480/270",
+      "duration": "5m 20s"
+    },
+    {
+      "id": "extra-002",
+      "title": "Deleted Scene: The Interrogation",
+      "description": "An extended interrogation sequence that didn't make the final cut.",
+      "thumbnail": "https://picsum.photos/seed/show-003-extra2/480/270",
+      "duration": "3m 44s"
+    }
+  ],
+  "similar": [
+    "show-007",
+    "show-013",
+    "show-016",
+    "show-018",
+    "show-020"
+  ]
+}

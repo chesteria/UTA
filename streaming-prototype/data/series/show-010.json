@@ -1,0 +1,160 @@
+{
+  "id": "show-010",
+  "seasons": [
+    {
+      "number": 1,
+      "episodeCount": 6,
+      "episodes": [
+        {
+          "id": "s1e1",
+          "title": "The Current Below",
+          "description": "An introduction to the deep ocean thermohaline circulation and why it regulates global climate.",
+          "thumbnail": "https://picsum.photos/seed/show-010-s1e1/480/270",
+          "airDate": "Jan 1, 2019",
+          "duration": "41m",
+          "season": 1,
+          "episode": 1
+        },
+        {
+          "id": "s1e2",
+          "title": "Coral Cities",
+          "description": "The richest reef ecosystems on Earth are also the most threatened \u2014 a look at what remains.",
+          "thumbnail": "https://picsum.photos/seed/show-010-s1e2/480/270",
+          "airDate": "Feb 8, 2019",
+          "duration": "42m",
+          "season": 1,
+          "episode": 2
+        },
+        {
+          "id": "s1e3",
+          "title": "Migration Routes",
+          "description": "Tracking the epic migrations of whale sharks, manta rays, and bluefin tuna via tagging data.",
+          "thumbnail": "https://picsum.photos/seed/show-010-s1e3/480/270",
+          "airDate": "Mar 15, 2019",
+          "duration": "43m",
+          "season": 1,
+          "episode": 3
+        },
+        {
+          "id": "s1e4",
+          "title": "Darkness Dwellers",
+          "description": "Life at depths below 2,000 meters \u2014 creatures adapted to crushing pressure and total darkness.",
+          "thumbnail": "https://picsum.photos/seed/show-010-s1e4/480/270",
+          "airDate": "Apr 22, 2019",
+          "duration": "44m",
+          "season": 1,
+          "episode": 4
+        },
+        {
+          "id": "s1e5",
+          "title": "The Invisible Harvest",
+          "description": "How industrial fishing intersects with deep ocean ecosystems most consumers never see.",
+          "thumbnail": "https://picsum.photos/seed/show-010-s1e5/480/270",
+          "airDate": "May 28, 2019",
+          "duration": "40m",
+          "season": 1,
+          "episode": 5
+        },
+        {
+          "id": "s1e6",
+          "title": "Return Currents",
+          "description": "The scientists working to measure, model, and predict the ocean's long-term changes.",
+          "thumbnail": "https://picsum.photos/seed/show-010-s1e6/480/270",
+          "airDate": "Jun 28, 2019",
+          "duration": "41m",
+          "season": 1,
+          "episode": 6
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "episodeCount": 6,
+      "episodes": [
+        {
+          "id": "s2e1",
+          "title": "New Surveys",
+          "description": "A new generation of autonomous deep-sea vehicles maps previously unexplored trenches.",
+          "thumbnail": "https://picsum.photos/seed/show-010-s2e1/480/270",
+          "airDate": "Mar 1, 2020",
+          "duration": "41m",
+          "season": 2,
+          "episode": 1
+        },
+        {
+          "id": "s2e2",
+          "title": "Plastic Depth",
+          "description": "Microplastics have reached the hadal zone \u2014 the deepest point on Earth.",
+          "thumbnail": "https://picsum.photos/seed/show-010-s2e2/480/270",
+          "airDate": "Apr 8, 2020",
+          "duration": "42m",
+          "season": 2,
+          "episode": 2
+        },
+        {
+          "id": "s2e3",
+          "title": "Temperature Record",
+          "description": "Ocean heat content records are being broken \u2014 and the effects cascade upward.",
+          "thumbnail": "https://picsum.photos/seed/show-010-s2e3/480/270",
+          "airDate": "May 15, 2020",
+          "duration": "43m",
+          "season": 2,
+          "episode": 3
+        },
+        {
+          "id": "s2e4",
+          "title": "The Nurseries",
+          "description": "Deep water nursery areas for large pelagic species are being disrupted by trawling.",
+          "thumbnail": "https://picsum.photos/seed/show-010-s2e4/480/270",
+          "airDate": "Jun 22, 2020",
+          "duration": "44m",
+          "season": 2,
+          "episode": 4
+        },
+        {
+          "id": "s2e5",
+          "title": "Restoration",
+          "description": "Marine protected areas and the evidence on whether they're actually working.",
+          "thumbnail": "https://picsum.photos/seed/show-010-s2e5/480/270",
+          "airDate": "Jul 28, 2020",
+          "duration": "40m",
+          "season": 2,
+          "episode": 5
+        },
+        {
+          "id": "s2e6",
+          "title": "Signal",
+          "description": "Early warning systems \u2014 what the ocean is telling us about the decades ahead.",
+          "thumbnail": "https://picsum.photos/seed/show-010-s2e6/480/270",
+          "airDate": "Aug 28, 2020",
+          "duration": "41m",
+          "season": 2,
+          "episode": 6
+        }
+      ]
+    }
+  ],
+  "extras": [
+    {
+      "id": "extra-001",
+      "title": "Deep Dive Tech",
+      "description": "The submersibles and sensor platforms used to film in extreme conditions.",
+      "thumbnail": "https://picsum.photos/seed/show-010-extra1/480/270",
+      "duration": "3m 30s"
+    },
+    {
+      "id": "extra-002",
+      "title": "Field Notes",
+      "description": "Narrated excerpts from the research team's expedition journals.",
+      "thumbnail": "https://picsum.photos/seed/show-010-extra2/480/270",
+      "duration": "4m 00s"
+    }
+  ],
+  "similar": [
+    "show-011",
+    "show-012",
+    "show-006",
+    "show-002",
+    "show-018"
+  ]
+}

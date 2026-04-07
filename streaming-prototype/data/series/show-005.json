@@ -1,0 +1,220 @@
+{
+  "id": "show-005",
+  "seasons": [
+    {
+      "number": 1,
+      "episodeCount": 10,
+      "episodes": [
+        {
+          "id": "s1e1",
+          "title": "Open Flame",
+          "description": "Twelve chefs arrive at the volcanic landscape of Hawaii for the first extreme challenge: fire-only cooking.",
+          "thumbnail": "https://picsum.photos/seed/show-005-s1e1/480/270",
+          "airDate": "Apr 1, 2019",
+          "duration": "41m",
+          "season": 1,
+          "episode": 1
+        },
+        {
+          "id": "s1e2",
+          "title": "Altitude Cuisine",
+          "description": "The competition moves to a Colorado mountain camp at 12,000 feet \u2014 altitude changes everything.",
+          "thumbnail": "https://picsum.photos/seed/show-005-s1e2/480/270",
+          "airDate": "May 8, 2019",
+          "duration": "42m",
+          "season": 1,
+          "episode": 2
+        },
+        {
+          "id": "s1e3",
+          "title": "Tidal Table",
+          "description": "Contestants must forage tidal pools at dawn and cook before the tide returns.",
+          "thumbnail": "https://picsum.photos/seed/show-005-s1e3/480/270",
+          "airDate": "Jun 15, 2019",
+          "duration": "43m",
+          "season": 1,
+          "episode": 3
+        },
+        {
+          "id": "s1e4",
+          "title": "Smoke & Salt",
+          "description": "A 24-hour smoke challenge with no refrigeration and only locally sourced protein.",
+          "thumbnail": "https://picsum.photos/seed/show-005-s1e4/480/270",
+          "airDate": "Jul 22, 2019",
+          "duration": "44m",
+          "season": 1,
+          "episode": 4
+        },
+        {
+          "id": "s1e5",
+          "title": "Speed Round",
+          "description": "Twenty-minute lightning challenges test knife skills, flavor instinct, and composure.",
+          "thumbnail": "https://picsum.photos/seed/show-005-s1e5/480/270",
+          "airDate": "Aug 28, 2019",
+          "duration": "40m",
+          "season": 1,
+          "episode": 5
+        },
+        {
+          "id": "s1e6",
+          "title": "Desert Heat",
+          "description": "The Atacama Desert provides the most hostile kitchen environment yet \u2014 and the fewest ingredients.",
+          "thumbnail": "https://picsum.photos/seed/show-005-s1e6/480/270",
+          "airDate": "Sep 28, 2019",
+          "duration": "41m",
+          "season": 1,
+          "episode": 6
+        },
+        {
+          "id": "s1e7",
+          "title": "Knife's Edge",
+          "description": "A head-to-head elimination where two chefs cook the same protein, head-to-head.",
+          "thumbnail": "https://picsum.photos/seed/show-005-s1e7/480/270",
+          "airDate": "Oct 28, 2019",
+          "duration": "42m",
+          "season": 1,
+          "episode": 7
+        },
+        {
+          "id": "s1e8",
+          "title": "The Blind Pantry",
+          "description": "Contestants must build a full three-course meal from a pantry they've never seen.",
+          "thumbnail": "https://picsum.photos/seed/show-005-s1e8/480/270",
+          "airDate": "Nov 28, 2019",
+          "duration": "43m",
+          "season": 1,
+          "episode": 8
+        },
+        {
+          "id": "s1e9",
+          "title": "Fire & Ice",
+          "description": "One challenge uses live fire; the other uses only ice and acid. Both at the same time.",
+          "thumbnail": "https://picsum.photos/seed/show-005-s1e9/480/270",
+          "airDate": "Dec 28, 2019",
+          "duration": "44m",
+          "season": 1,
+          "episode": 9
+        },
+        {
+          "id": "s1e10",
+          "title": "Final Course",
+          "description": "The last two chefs face a seven-course tasting menu challenge before a panel of judges.",
+          "thumbnail": "https://picsum.photos/seed/show-005-s1e10/480/270",
+          "airDate": "Jan 28, 2020",
+          "duration": "40m",
+          "season": 1,
+          "episode": 10
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "episodeCount": 8,
+      "episodes": [
+        {
+          "id": "s2e1",
+          "title": "New Season, New Rules",
+          "description": "Season two brings an entirely new format \u2014 team-based competition across continents.",
+          "thumbnail": "https://picsum.photos/seed/show-005-s2e1/480/270",
+          "airDate": "Mar 1, 2020",
+          "duration": "41m",
+          "season": 2,
+          "episode": 1
+        },
+        {
+          "id": "s2e2",
+          "title": "Tokyo Night Market",
+          "description": "Teams must cook using only ingredients available at a midnight Tokyo street market.",
+          "thumbnail": "https://picsum.photos/seed/show-005-s2e2/480/270",
+          "airDate": "Apr 8, 2020",
+          "duration": "42m",
+          "season": 2,
+          "episode": 2
+        },
+        {
+          "id": "s2e3",
+          "title": "Farm to Fire",
+          "description": "A 48-hour farm immersion in Tuscany \u2014 harvest, prep, and cook on a wood-fired hearth.",
+          "thumbnail": "https://picsum.photos/seed/show-005-s2e3/480/270",
+          "airDate": "May 15, 2020",
+          "duration": "43m",
+          "season": 2,
+          "episode": 3
+        },
+        {
+          "id": "s2e4",
+          "title": "Spice Route",
+          "description": "The teams split across Istanbul and Mumbai for a cross-cultural spice challenge.",
+          "thumbnail": "https://picsum.photos/seed/show-005-s2e4/480/270",
+          "airDate": "Jun 22, 2020",
+          "duration": "44m",
+          "season": 2,
+          "episode": 4
+        },
+        {
+          "id": "s2e5",
+          "title": "Back to Basics",
+          "description": "No appliances, no modern tools \u2014 only fire, stone, and water.",
+          "thumbnail": "https://picsum.photos/seed/show-005-s2e5/480/270",
+          "airDate": "Jul 28, 2020",
+          "duration": "40m",
+          "season": 2,
+          "episode": 5
+        },
+        {
+          "id": "s2e6",
+          "title": "Pressure Test",
+          "description": "An unexpected ingredient swap with 30 minutes to go throws every team's plan into chaos.",
+          "thumbnail": "https://picsum.photos/seed/show-005-s2e6/480/270",
+          "airDate": "Aug 28, 2020",
+          "duration": "41m",
+          "season": 2,
+          "episode": 6
+        },
+        {
+          "id": "s2e7",
+          "title": "Continental Final",
+          "description": "The top two teams face off in a three-round battle judged blind by an international panel.",
+          "thumbnail": "https://picsum.photos/seed/show-005-s2e7/480/270",
+          "airDate": "Sep 28, 2020",
+          "duration": "42m",
+          "season": 2,
+          "episode": 7
+        },
+        {
+          "id": "s2e8",
+          "title": "The Crown",
+          "description": "One team takes the title in a dramatic final elimination decided by a single dish.",
+          "thumbnail": "https://picsum.photos/seed/show-005-s2e8/480/270",
+          "airDate": "Oct 28, 2020",
+          "duration": "43m",
+          "season": 2,
+          "episode": 8
+        }
+      ]
+    }
+  ],
+  "extras": [
+    {
+      "id": "extra-001",
+      "title": "Chef Profiles",
+      "description": "Brief portraits of each season one contestant and their culinary background.",
+      "thumbnail": "https://picsum.photos/seed/show-005-extra1/480/270",
+      "duration": "6m 00s"
+    },
+    {
+      "id": "extra-002",
+      "title": "Technique Breakdown",
+      "description": "Slow-motion footage of the most impressive cooking techniques from the season.",
+      "thumbnail": "https://picsum.photos/seed/show-005-extra2/480/270",
+      "duration": "3m 30s"
+    }
+  ],
+  "similar": [
+    "show-017",
+    "show-014",
+    "show-001",
+    "show-009",
+    "show-019"
+  ]
+}

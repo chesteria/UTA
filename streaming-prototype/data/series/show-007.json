@@ -1,0 +1,180 @@
+{
+  "id": "show-007",
+  "seasons": [
+    {
+      "number": 1,
+      "episodeCount": 8,
+      "episodes": [
+        {
+          "id": "s1e1",
+          "title": "Overlay",
+          "description": "In a city where AR overlays govern access to everything, one glitch exposes a hidden layer.",
+          "thumbnail": "https://picsum.photos/seed/show-007-s1e1/480/270",
+          "airDate": "Nov 1, 2022",
+          "duration": "41m",
+          "season": 1,
+          "episode": 1
+        },
+        {
+          "id": "s1e2",
+          "title": "Ghost Signal",
+          "description": "A rogue frequency is broadcasting underneath the licensed AR bands \u2014 someone is using dark space.",
+          "thumbnail": "https://picsum.photos/seed/show-007-s1e2/480/270",
+          "airDate": "Dec 8, 2022",
+          "duration": "42m",
+          "season": 1,
+          "episode": 2
+        },
+        {
+          "id": "s1e3",
+          "title": "The Unverified",
+          "description": "A growing underclass of people without verified AR identities live in the physical city unseen.",
+          "thumbnail": "https://picsum.photos/seed/show-007-s1e3/480/270",
+          "airDate": "Jan 15, 2023",
+          "duration": "43m",
+          "season": 1,
+          "episode": 3
+        },
+        {
+          "id": "s1e4",
+          "title": "Skin Deep",
+          "description": "A designer virus can rewrite AR-linked biometric profiles \u2014 and someone is selling it.",
+          "thumbnail": "https://picsum.photos/seed/show-007-s1e4/480/270",
+          "airDate": "Feb 22, 2023",
+          "duration": "44m",
+          "season": 1,
+          "episode": 4
+        },
+        {
+          "id": "s1e5",
+          "title": "Phantom Address",
+          "description": "A building that doesn't officially exist keeps appearing in the city's own infrastructure logs.",
+          "thumbnail": "https://picsum.photos/seed/show-007-s1e5/480/270",
+          "airDate": "Mar 28, 2023",
+          "duration": "40m",
+          "season": 1,
+          "episode": 5
+        },
+        {
+          "id": "s1e6",
+          "title": "Mirrored",
+          "description": "Two users swap AR identities \u2014 one for survival, one for something more sinister.",
+          "thumbnail": "https://picsum.photos/seed/show-007-s1e6/480/270",
+          "airDate": "Apr 28, 2023",
+          "duration": "41m",
+          "season": 1,
+          "episode": 6
+        },
+        {
+          "id": "s1e7",
+          "title": "Kill Switch",
+          "description": "A city-wide AR outage plunges millions into a physical reality they've forgotten how to navigate.",
+          "thumbnail": "https://picsum.photos/seed/show-007-s1e7/480/270",
+          "airDate": "May 28, 2023",
+          "duration": "42m",
+          "season": 1,
+          "episode": 7
+        },
+        {
+          "id": "s1e8",
+          "title": "System Override",
+          "description": "The season finale reveals who controls the hidden layer \u2014 and what they've been watching.",
+          "thumbnail": "https://picsum.photos/seed/show-007-s1e8/480/270",
+          "airDate": "Jun 28, 2023",
+          "duration": "43m",
+          "season": 1,
+          "episode": 8
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "episodeCount": 6,
+      "episodes": [
+        {
+          "id": "s2e1",
+          "title": "New Protocols",
+          "description": "The city rebuilds post-outage with tighter controls \u2014 and a new enforcement arm.",
+          "thumbnail": "https://picsum.photos/seed/show-007-s2e1/480/270",
+          "airDate": "Oct 1, 2023",
+          "duration": "41m",
+          "season": 2,
+          "episode": 1
+        },
+        {
+          "id": "s2e2",
+          "title": "The Cartels of Light",
+          "description": "Criminal networks have migrated entirely into AR space, invisible to physical law enforcement.",
+          "thumbnail": "https://picsum.photos/seed/show-007-s2e2/480/270",
+          "airDate": "Nov 8, 2023",
+          "duration": "42m",
+          "season": 2,
+          "episode": 2
+        },
+        {
+          "id": "s2e3",
+          "title": "Deep Fake City",
+          "description": "Entire neighborhoods are being masked by false AR overlays hiding construction \u2014 or demolition.",
+          "thumbnail": "https://picsum.photos/seed/show-007-s2e3/480/270",
+          "airDate": "Dec 15, 2023",
+          "duration": "43m",
+          "season": 2,
+          "episode": 3
+        },
+        {
+          "id": "s2e4",
+          "title": "Resistance Protocol",
+          "description": "An underground network forms to route around the new enforcement layer.",
+          "thumbnail": "https://picsum.photos/seed/show-007-s2e4/480/270",
+          "airDate": "Jan 22, 2024",
+          "duration": "44m",
+          "season": 2,
+          "episode": 4
+        },
+        {
+          "id": "s2e5",
+          "title": "Signal Breach",
+          "description": "The two worlds \u2014 physical and augmented \u2014 begin to collide in violent ways.",
+          "thumbnail": "https://picsum.photos/seed/show-007-s2e5/480/270",
+          "airDate": "Feb 28, 2024",
+          "duration": "40m",
+          "season": 2,
+          "episode": 5
+        },
+        {
+          "id": "s2e6",
+          "title": "Endgame",
+          "description": "The season finale forces a choice: live in the overlay, or tear it all down.",
+          "thumbnail": "https://picsum.photos/seed/show-007-s2e6/480/270",
+          "airDate": "Mar 28, 2024",
+          "duration": "41m",
+          "season": 2,
+          "episode": 6
+        }
+      ]
+    }
+  ],
+  "extras": [
+    {
+      "id": "extra-001",
+      "title": "Production Design: Building the Overlay",
+      "description": "How VFX and practical design blended to create the AR world.",
+      "thumbnail": "https://picsum.photos/seed/show-007-extra1/480/270",
+      "duration": "5m 40s"
+    },
+    {
+      "id": "extra-002",
+      "title": "Writing the Near Future",
+      "description": "Showrunner interview on the research behind the series' tech concepts.",
+      "thumbnail": "https://picsum.photos/seed/show-007-extra2/480/270",
+      "duration": "3m 55s"
+    }
+  ],
+  "similar": [
+    "show-004",
+    "show-013",
+    "show-020",
+    "show-003",
+    "show-016"
+  ]
+}
