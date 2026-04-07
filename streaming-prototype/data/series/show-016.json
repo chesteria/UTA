@@ -1,0 +1,180 @@
+{
+  "id": "show-016",
+  "seasons": [
+    {
+      "number": 1,
+      "episodeCount": 8,
+      "episodes": [
+        {
+          "id": "s1e1",
+          "title": "Cold Contact",
+          "description": "British operative Carr and French operative Beaumont are given the same target file \u2014 by different agencies.",
+          "thumbnail": "https://picsum.photos/seed/show-016-s1e1/480/270",
+          "airDate": "Oct 1, 2018",
+          "duration": "41m",
+          "season": 1,
+          "episode": 1
+        },
+        {
+          "id": "s1e2",
+          "title": "Parallel Tracks",
+          "description": "Each believes the other is a threat. They're both right, but not about what they think.",
+          "thumbnail": "https://picsum.photos/seed/show-016-s1e2/480/270",
+          "airDate": "Nov 8, 2018",
+          "duration": "42m",
+          "season": 1,
+          "episode": 2
+        },
+        {
+          "id": "s1e3",
+          "title": "Brussels",
+          "description": "A handoff goes wrong in Brussels. Someone in both agencies has been briefed about this meeting.",
+          "thumbnail": "https://picsum.photos/seed/show-016-s1e3/480/270",
+          "airDate": "Dec 15, 2018",
+          "duration": "43m",
+          "season": 1,
+          "episode": 3
+        },
+        {
+          "id": "s1e4",
+          "title": "The Asset",
+          "description": "The target turns out to be not a person but a piece of information \u2014 and it's moving.",
+          "thumbnail": "https://picsum.photos/seed/show-016-s1e4/480/270",
+          "airDate": "Jan 22, 2019",
+          "duration": "44m",
+          "season": 1,
+          "episode": 4
+        },
+        {
+          "id": "s1e5",
+          "title": "Forced Alliance",
+          "description": "Carr and Beaumont have 48 hours to cooperate before a third party takes them both out.",
+          "thumbnail": "https://picsum.photos/seed/show-016-s1e5/480/270",
+          "airDate": "Feb 28, 2019",
+          "duration": "40m",
+          "season": 1,
+          "episode": 5
+        },
+        {
+          "id": "s1e6",
+          "title": "The Gibraltar Problem",
+          "description": "A passage point that both of their agencies use is now compromised.",
+          "thumbnail": "https://picsum.photos/seed/show-016-s1e6/480/270",
+          "airDate": "Mar 28, 2019",
+          "duration": "41m",
+          "season": 1,
+          "episode": 6
+        },
+        {
+          "id": "s1e7",
+          "title": "Running Dark",
+          "description": "Both go off-comm for the final phase \u2014 which means no extraction if things go wrong.",
+          "thumbnail": "https://picsum.photos/seed/show-016-s1e7/480/270",
+          "airDate": "Apr 28, 2019",
+          "duration": "42m",
+          "season": 1,
+          "episode": 7
+        },
+        {
+          "id": "s1e8",
+          "title": "The Run",
+          "description": "A transatlantic boat crossing in deteriorating weather, with three parties in pursuit.",
+          "thumbnail": "https://picsum.photos/seed/show-016-s1e8/480/270",
+          "airDate": "May 28, 2019",
+          "duration": "43m",
+          "season": 1,
+          "episode": 8
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "episodeCount": 6,
+      "episodes": [
+        {
+          "id": "s2e1",
+          "title": "Secondment",
+          "description": "Carr is formally assigned to work with French intelligence \u2014 Beaumont is not pleased.",
+          "thumbnail": "https://picsum.photos/seed/show-016-s2e1/480/270",
+          "airDate": "Sep 1, 2019",
+          "duration": "41m",
+          "season": 2,
+          "episode": 1
+        },
+        {
+          "id": "s2e2",
+          "title": "The New Asset",
+          "description": "A new target with connections to the first case resurfaces in Lisbon.",
+          "thumbnail": "https://picsum.photos/seed/show-016-s2e2/480/270",
+          "airDate": "Oct 8, 2019",
+          "duration": "42m",
+          "season": 2,
+          "episode": 2
+        },
+        {
+          "id": "s2e3",
+          "title": "Mole Season",
+          "description": "Evidence accumulates that one of their own services is actively leaking.",
+          "thumbnail": "https://picsum.photos/seed/show-016-s2e3/480/270",
+          "airDate": "Nov 15, 2019",
+          "duration": "43m",
+          "season": 2,
+          "episode": 3
+        },
+        {
+          "id": "s2e4",
+          "title": "The Long Burn",
+          "description": "A slow-build surveillance operation tests both operatives' patience and the partnership.",
+          "thumbnail": "https://picsum.photos/seed/show-016-s2e4/480/270",
+          "airDate": "Dec 22, 2019",
+          "duration": "44m",
+          "season": 2,
+          "episode": 4
+        },
+        {
+          "id": "s2e5",
+          "title": "Beirut",
+          "description": "An emergency extraction in Beirut forces them to improvise \u2014 and trust each other completely.",
+          "thumbnail": "https://picsum.photos/seed/show-016-s2e5/480/270",
+          "airDate": "Jan 28, 2020",
+          "duration": "40m",
+          "season": 2,
+          "episode": 5
+        },
+        {
+          "id": "s2e6",
+          "title": "Accounts Settled",
+          "description": "The mole is identified. The resolution requires one of them to walk away from their career.",
+          "thumbnail": "https://picsum.photos/seed/show-016-s2e6/480/270",
+          "airDate": "Feb 28, 2020",
+          "duration": "41m",
+          "season": 2,
+          "episode": 6
+        }
+      ]
+    }
+  ],
+  "extras": [
+    {
+      "id": "extra-001",
+      "title": "Location Breakdown",
+      "description": "How the production shot across eight countries in four months.",
+      "thumbnail": "https://picsum.photos/seed/show-016-extra1/480/270",
+      "duration": "4m 30s"
+    },
+    {
+      "id": "extra-002",
+      "title": "The Stunt Design",
+      "description": "Stunt coordinator walkthrough of the finale boat sequence.",
+      "thumbnail": "https://picsum.photos/seed/show-016-extra2/480/270",
+      "duration": "3m 00s"
+    }
+  ],
+  "similar": [
+    "show-003",
+    "show-013",
+    "show-007",
+    "show-020",
+    "show-004"
+  ]
+}

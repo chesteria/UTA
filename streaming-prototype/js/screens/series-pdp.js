@@ -24,12 +24,27 @@ const SeriesPDPScreen = {
   async init(container, params) {
     this._container = container;
     this._container.className = 'screen screen-series-pdp';
+
+    // Read saved state from container (set by onBlur on BACK navigation)
+    const savedZone      = container._savedZone;
+    const savedSeasonIdx = container._savedSeasonIdx;
+    const savedEpisodeIdx = container._savedEpisodeIdx;
+    const savedExtrasIdx = container._savedExtrasIdx;
+    const savedSimilarIdx = container._savedSimilarIdx;
+    const savedScrollY   = container._savedScrollY;
+    delete container._savedZone;
+    delete container._savedSeasonIdx;
+    delete container._savedEpisodeIdx;
+    delete container._savedExtrasIdx;
+    delete container._savedSimilarIdx;
+    delete container._savedScrollY;
+
     this._scrollY = 0;
-    this._activeZone = 'buttons';
-    this._seasonIdx = 0;
-    this._episodeIdx = 0;
-    this._extrasIdx = 0;
-    this._similarIdx = 0;
+    this._activeZone = savedZone || 'buttons';
+    this._seasonIdx = savedSeasonIdx || 0;
+    this._episodeIdx = savedEpisodeIdx || 0;
+    this._extrasIdx = savedExtrasIdx || 0;
+    this._similarIdx = savedSimilarIdx || 0;
 
     const showId = params.showId;
     this._show = DataStore.getShow(showId);
@@ -40,6 +55,19 @@ const SeriesPDPScreen = {
 
     this._seriesData = await DataStore.getSeriesData(showId);
     this._render();
+
+    // Restore scroll position (no transition to avoid flash)
+    if (savedScrollY) {
+      this._scrollY = savedScrollY;
+      this._scrollEl.style.transition = 'none';
+      this._scrollEl.style.transform = `translateY(${savedScrollY}px)`;
+      requestAnimationFrame(() => { this._scrollEl.style.transition = ''; });
+    }
+
+    // Re-apply season state if not on season 0
+    if (this._seasonIdx > 0) {
+      this._applySeasonState(this._seasonIdx);
+    }
   },
 
   _render() {
@@ -225,6 +253,14 @@ const SeriesPDPScreen = {
 
   onBlur() {
     this._deactivateAllZones();
+    if (this._container) {
+      this._container._savedZone = this._activeZone;
+      this._container._savedSeasonIdx = this._seasonIdx;
+      this._container._savedEpisodeIdx = this._episodeIdx;
+      this._container._savedExtrasIdx = this._extrasIdx;
+      this._container._savedSimilarIdx = this._similarIdx;
+      this._container._savedScrollY = this._scrollY;
+    }
   },
 
   destroy() {},
@@ -266,9 +302,10 @@ const SeriesPDPScreen = {
     this._seasonIdx = idx;
   },
 
-  _selectSeason(idx) {
+  _applySeasonState(idx) {
     const sd = this._seriesData;
     if (!sd) return;
+    // Update pill labels and active state
     const pills = Array.from(this._container.querySelectorAll('.season-pill'));
     pills.forEach((pill, i) => {
       const season = sd.seasons[i];
@@ -280,6 +317,17 @@ const SeriesPDPScreen = {
         pill.innerHTML = `S${season.number}`;
       }
     });
+    // Rebuild episode track for the selected season
+    const track = this._container.querySelector('#episodes-track');
+    if (track) {
+      track.innerHTML = this._buildEpisodeTiles(sd.seasons[idx]);
+      track.style.transform = 'translateX(0)';
+    }
+    this._episodeIdx = 0;
+  },
+
+  _selectSeason(idx) {
+    this._applySeasonState(idx);
     // Re-focus the selected pill to preserve highlight
     this._focusSeason(idx);
     showToast(`Season ${idx + 1}`);

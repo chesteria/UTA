@@ -827,7 +827,7 @@ streaming-prototype/
 
 ```
 Add a debug system to the streaming prototype. Read the Phase 1.5
-section of the PRD at docs/streaming-prototype-phase1-prd.md for
+section of the PRD linked at the end of this prompt for
 full specifications.
 
 Build in this order:

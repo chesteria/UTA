@@ -1,0 +1,187 @@
+{
+  "id": "show-002",
+  "seasons": [
+    {
+      "number": 1,
+      "episodeCount": 8,
+      "episodes": [
+        {
+          "id": "s1e1",
+          "title": "Into the Wild",
+          "description": "The crew launches their first expedition into the Canadian Rockies, facing unpredictable weather and terrain.",
+          "thumbnail": "https://picsum.photos/seed/show-002-s1e1/480/270",
+          "airDate": "Jun 1, 2018",
+          "duration": "41m",
+          "season": 1,
+          "episode": 1
+        },
+        {
+          "id": "s1e2",
+          "title": "White Water",
+          "description": "A roaring class-V river demands every ounce of skill and nerve as the team attempts a full traverse.",
+          "thumbnail": "https://picsum.photos/seed/show-002-s1e2/480/270",
+          "airDate": "Jul 8, 2018",
+          "duration": "42m",
+          "season": 1,
+          "episode": 2
+        },
+        {
+          "id": "s1e3",
+          "title": "Summit Push",
+          "description": "With supplies dwindling, the group makes a final push toward the peak through blinding snowfall.",
+          "thumbnail": "https://picsum.photos/seed/show-002-s1e3/480/270",
+          "airDate": "Aug 15, 2018",
+          "duration": "43m",
+          "season": 1,
+          "episode": 3
+        },
+        {
+          "id": "s1e4",
+          "title": "Silent Forest",
+          "description": "An overnight solo survival challenge sends each member into the deep woods alone.",
+          "thumbnail": "https://picsum.photos/seed/show-002-s1e4/480/270",
+          "airDate": "Sep 22, 2018",
+          "duration": "44m",
+          "season": 1,
+          "episode": 4
+        },
+        {
+          "id": "s1e5",
+          "title": "Desert Crossing",
+          "description": "The Sonoran Desert presents a brutal heat challenge during a 60-mile traverse in July.",
+          "thumbnail": "https://picsum.photos/seed/show-002-s1e5/480/270",
+          "airDate": "Oct 28, 2018",
+          "duration": "40m",
+          "season": 1,
+          "episode": 5
+        },
+        {
+          "id": "s1e6",
+          "title": "Coastal Storm",
+          "description": "A surprise Pacific squall pins the team to a sea cliff during a kayaking segment.",
+          "thumbnail": "https://picsum.photos/seed/show-002-s1e6/480/270",
+          "airDate": "Nov 28, 2018",
+          "duration": "41m",
+          "season": 1,
+          "episode": 6
+        },
+        {
+          "id": "s1e7",
+          "title": "Canyon Run",
+          "description": "Rappelling into the Grand Canyon tests the crew's rope skills and nerve at 800 feet.",
+          "thumbnail": "https://picsum.photos/seed/show-002-s1e7/480/270",
+          "airDate": "Dec 28, 2018",
+          "duration": "42m",
+          "season": 1,
+          "episode": 7
+        },
+        {
+          "id": "s1e8",
+          "title": "Homeward",
+          "description": "The final leg of the season \u2014 a 100-mile trek back to civilization with no GPS.",
+          "thumbnail": "https://picsum.photos/seed/show-002-s1e8/480/270",
+          "airDate": "Jan 28, 2019",
+          "duration": "43m",
+          "season": 1,
+          "episode": 8
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "episodeCount": 6,
+      "episodes": [
+        {
+          "id": "s2e1",
+          "title": "Patagonia",
+          "description": "The team arrives at the tip of South America, facing one of the world's most unpredictable climates.",
+          "thumbnail": "https://picsum.photos/seed/show-002-s2e1/480/270",
+          "airDate": "May 1, 2019",
+          "duration": "41m",
+          "season": 2,
+          "episode": 1
+        },
+        {
+          "id": "s2e2",
+          "title": "Ice Field",
+          "description": "Crampons on, the crew navigates a massive glacial ice field as crevasses lurk beneath the snow.",
+          "thumbnail": "https://picsum.photos/seed/show-002-s2e2/480/270",
+          "airDate": "Jun 8, 2019",
+          "duration": "42m",
+          "season": 2,
+          "episode": 2
+        },
+        {
+          "id": "s2e3",
+          "title": "Torres del Paine",
+          "description": "The iconic granite towers of Chile demand a grueling multi-day scramble.",
+          "thumbnail": "https://picsum.photos/seed/show-002-s2e3/480/270",
+          "airDate": "Jul 15, 2019",
+          "duration": "43m",
+          "season": 2,
+          "episode": 3
+        },
+        {
+          "id": "s2e4",
+          "title": "Raging Southern Ocean",
+          "description": "A sailing segment through some of the roughest waters on Earth.",
+          "thumbnail": "https://picsum.photos/seed/show-002-s2e4/480/270",
+          "airDate": "Aug 22, 2019",
+          "duration": "44m",
+          "season": 2,
+          "episode": 4
+        },
+        {
+          "id": "s2e5",
+          "title": "Condor Ridge",
+          "description": "Following the flight path of the Andean condor leads to a hidden valley and a new route.",
+          "thumbnail": "https://picsum.photos/seed/show-002-s2e5/480/270",
+          "airDate": "Sep 28, 2019",
+          "duration": "40m",
+          "season": 2,
+          "episode": 5
+        },
+        {
+          "id": "s2e6",
+          "title": "Journey's End",
+          "description": "The team reflects on the season as they complete their final descent to the sea.",
+          "thumbnail": "https://picsum.photos/seed/show-002-s2e6/480/270",
+          "airDate": "Oct 28, 2019",
+          "duration": "41m",
+          "season": 2,
+          "episode": 6
+        }
+      ]
+    }
+  ],
+  "extras": [
+    {
+      "id": "extra-001",
+      "title": "Gear Deep Dive",
+      "description": "The full kit breakdown \u2014 what worked, what failed, and what they'd bring next time.",
+      "thumbnail": "https://picsum.photos/seed/show-002-extra1/480/270",
+      "duration": "3m 12s"
+    },
+    {
+      "id": "extra-002",
+      "title": "Behind the Lens",
+      "description": "Cinematographer's cut \u2014 how they captured the most extreme footage.",
+      "thumbnail": "https://picsum.photos/seed/show-002-extra2/480/270",
+      "duration": "4m 05s"
+    },
+    {
+      "id": "extra-003",
+      "title": "Season 3 Preview",
+      "description": "A quick look at the next destination: the jungles of Borneo.",
+      "thumbnail": "https://picsum.photos/seed/show-002-extra3/480/270",
+      "duration": "1m 30s"
+    }
+  ],
+  "similar": [
+    "show-006",
+    "show-010",
+    "show-012",
+    "show-018",
+    "show-011"
+  ]
+}

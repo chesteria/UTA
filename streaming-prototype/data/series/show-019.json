@@ -1,0 +1,220 @@
+{
+  "id": "show-019",
+  "seasons": [
+    {
+      "number": 1,
+      "episodeCount": 10,
+      "episodes": [
+        {
+          "id": "s1e1",
+          "title": "The Blank Slate",
+          "description": "A crumbling concrete pad becomes a full outdoor kitchen in just five days.",
+          "thumbnail": "https://picsum.photos/seed/show-019-s1e1/480/270",
+          "airDate": "May 1, 2019",
+          "duration": "41m",
+          "season": 1,
+          "episode": 1
+        },
+        {
+          "id": "s1e2",
+          "title": "The Pergola Problem",
+          "description": "A family needs shade \u2014 and ends up with a pergola that doubles as a bar.",
+          "thumbnail": "https://picsum.photos/seed/show-019-s1e2/480/270",
+          "airDate": "Jun 8, 2019",
+          "duration": "42m",
+          "season": 1,
+          "episode": 2
+        },
+        {
+          "id": "s1e3",
+          "title": "Treehouse Rules",
+          "description": "Two kids, one massive oak, and a build that has to pass an engineer's inspection.",
+          "thumbnail": "https://picsum.photos/seed/show-019-s1e3/480/270",
+          "airDate": "Jul 15, 2019",
+          "duration": "43m",
+          "season": 1,
+          "episode": 3
+        },
+        {
+          "id": "s1e4",
+          "title": "Water Feature",
+          "description": "A residential pond build encounters unexpected clay soil and a very opinionated koi.",
+          "thumbnail": "https://picsum.photos/seed/show-019-s1e4/480/270",
+          "airDate": "Aug 22, 2019",
+          "duration": "44m",
+          "season": 1,
+          "episode": 4
+        },
+        {
+          "id": "s1e5",
+          "title": "Small Space, Big Ideas",
+          "description": "A postage-stamp city yard becomes a complete outdoor room with vertical gardening.",
+          "thumbnail": "https://picsum.photos/seed/show-019-s1e5/480/270",
+          "airDate": "Sep 28, 2019",
+          "duration": "40m",
+          "season": 1,
+          "episode": 5
+        },
+        {
+          "id": "s1e6",
+          "title": "Fire & Seating",
+          "description": "A custom fire pit surrounded by built-in seating transforms a bare backyard overnight.",
+          "thumbnail": "https://picsum.photos/seed/show-019-s1e6/480/270",
+          "airDate": "Oct 28, 2019",
+          "duration": "41m",
+          "season": 1,
+          "episode": 6
+        },
+        {
+          "id": "s1e7",
+          "title": "The Greenhouse",
+          "description": "A retired couple wants a proper growing greenhouse \u2014 the foundation turns out to be the hard part.",
+          "thumbnail": "https://picsum.photos/seed/show-019-s1e7/480/270",
+          "airDate": "Nov 28, 2019",
+          "duration": "42m",
+          "season": 1,
+          "episode": 7
+        },
+        {
+          "id": "s1e8",
+          "title": "Sports Court",
+          "description": "Pouring a regulation half-court in a residential backyard: the engineering challenge no one expected.",
+          "thumbnail": "https://picsum.photos/seed/show-019-s1e8/480/270",
+          "airDate": "Dec 28, 2019",
+          "duration": "43m",
+          "season": 1,
+          "episode": 8
+        },
+        {
+          "id": "s1e9",
+          "title": "Fence It In",
+          "description": "A privacy fence project grows into a full perimeter redesign with landscape lighting.",
+          "thumbnail": "https://picsum.photos/seed/show-019-s1e9/480/270",
+          "airDate": "Jan 28, 2020",
+          "duration": "44m",
+          "season": 1,
+          "episode": 9
+        },
+        {
+          "id": "s1e10",
+          "title": "Year One Finale",
+          "description": "Revisiting the first four builds one year later \u2014 what held up, what needed fixing.",
+          "thumbnail": "https://picsum.photos/seed/show-019-s1e10/480/270",
+          "airDate": "Feb 28, 2020",
+          "duration": "40m",
+          "season": 1,
+          "episode": 10
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "episodeCount": 8,
+      "episodes": [
+        {
+          "id": "s2e1",
+          "title": "Pandemic Projects",
+          "description": "Families suddenly home all day need their yards to do more \u2014 and fast.",
+          "thumbnail": "https://picsum.photos/seed/show-019-s2e1/480/270",
+          "airDate": "Apr 1, 2020",
+          "duration": "41m",
+          "season": 2,
+          "episode": 1
+        },
+        {
+          "id": "s2e2",
+          "title": "The Outdoor Office",
+          "description": "A fully weather-sealed, wired outdoor workspace in a suburban backyard.",
+          "thumbnail": "https://picsum.photos/seed/show-019-s2e2/480/270",
+          "airDate": "May 8, 2020",
+          "duration": "42m",
+          "season": 2,
+          "episode": 2
+        },
+        {
+          "id": "s2e3",
+          "title": "Swimming Hole",
+          "description": "A natural-style swimming pond with planted filtration instead of chemicals.",
+          "thumbnail": "https://picsum.photos/seed/show-019-s2e3/480/270",
+          "airDate": "Jun 15, 2020",
+          "duration": "43m",
+          "season": 2,
+          "episode": 3
+        },
+        {
+          "id": "s2e4",
+          "title": "Rooftop Garden",
+          "description": "A city apartment building converts its rooftop into a shared garden for twelve families.",
+          "thumbnail": "https://picsum.photos/seed/show-019-s2e4/480/270",
+          "airDate": "Jul 22, 2020",
+          "duration": "44m",
+          "season": 2,
+          "episode": 4
+        },
+        {
+          "id": "s2e5",
+          "title": "Slide Rule",
+          "description": "A custom residential water slide build that definitely requires a structural engineer.",
+          "thumbnail": "https://picsum.photos/seed/show-019-s2e5/480/270",
+          "airDate": "Aug 28, 2020",
+          "duration": "40m",
+          "season": 2,
+          "episode": 5
+        },
+        {
+          "id": "s2e6",
+          "title": "The Food Forest",
+          "description": "Planting a seven-layer food forest on a suburban half-acre lot.",
+          "thumbnail": "https://picsum.photos/seed/show-019-s2e6/480/270",
+          "airDate": "Sep 28, 2020",
+          "duration": "41m",
+          "season": 2,
+          "episode": 6
+        },
+        {
+          "id": "s2e7",
+          "title": "Raised Right",
+          "description": "Eight raised beds, irrigation, and a tool shed in a weekend for a family going fully food-independent.",
+          "thumbnail": "https://picsum.photos/seed/show-019-s2e7/480/270",
+          "airDate": "Oct 28, 2020",
+          "duration": "42m",
+          "season": 2,
+          "episode": 7
+        },
+        {
+          "id": "s2e8",
+          "title": "Season Two Finale",
+          "description": "The biggest, most complex build of the season \u2014 a full outdoor kitchen with covered dining room.",
+          "thumbnail": "https://picsum.photos/seed/show-019-s2e8/480/270",
+          "airDate": "Nov 28, 2020",
+          "duration": "43m",
+          "season": 2,
+          "episode": 8
+        }
+      ]
+    }
+  ],
+  "extras": [
+    {
+      "id": "extra-001",
+      "title": "Tool Guide",
+      "description": "Every major tool used across the season, explained by the lead carpenter.",
+      "thumbnail": "https://picsum.photos/seed/show-019-extra1/480/270",
+      "duration": "3m 00s"
+    },
+    {
+      "id": "extra-002",
+      "title": "One Year Later",
+      "description": "Revisit the builds from season one to see what's thriving and what needed work.",
+      "thumbnail": "https://picsum.photos/seed/show-019-extra2/480/270",
+      "duration": "4m 30s"
+    }
+  ],
+  "similar": [
+    "show-001",
+    "show-014",
+    "show-005",
+    "show-008",
+    "show-015"
+  ]
+}

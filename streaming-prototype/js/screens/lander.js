@@ -39,7 +39,14 @@ const LanderScreen = {
     this._container.className = 'screen screen-lander';
     this._railModules = [];
     this._cityTimers = [];
-    this._activeRailIdx = params.restoreRailIdx !== undefined ? params.restoreRailIdx : 0;
+
+    // Read saved state from container (set by onBlur on BACK navigation)
+    const savedRailIdx = container._savedRailIdx;
+    const savedScrollY = container._savedScroll;
+    delete container._savedRailIdx;
+    delete container._savedScroll;
+
+    this._activeRailIdx = savedRailIdx !== undefined ? savedRailIdx : 0;
 
     // Build DOM
     container.innerHTML = `
@@ -62,12 +69,30 @@ const LanderScreen = {
       if (module) this._railModules.push(module);
     }
 
-    // Set initial scroll position
-    if (params.scrollY) {
-      this._scrollY = params.scrollY;
-      this._scrollEl.style.transform = `translateY(${this._scrollY}px)`;
+    // Restore scroll position (no transition to avoid flash)
+    if (savedScrollY) {
+      this._scrollY = savedScrollY;
       this._scrollEl.style.transition = 'none';
+      this._scrollEl.style.transform = `translateY(${this._scrollY}px)`;
+      // Re-enable transition on next frame
+      requestAnimationFrame(() => {
+        this._scrollEl.style.transition = '';
+      });
     }
+
+    // Listen for debug config changes
+    this._debugConfigHandler = (e) => {
+      const { key } = e.detail;
+      if (key === 'heroCycleInterval' || key === 'heroAutoAdvance') {
+        const heroRail = this._railModules[0];
+        if (heroRail && heroRail.updateTimers) heroRail.updateTimers();
+      }
+      if (key === 'livingTiles' || key === 'cityCycleInterval') {
+        _stopAllLivingTiles();
+        if (DebugConfig.get('livingTiles', true)) _restartAllLivingTiles();
+      }
+    };
+    document.addEventListener('debugconfig:change', this._debugConfigHandler);
   },
 
   onFocus() {
@@ -81,8 +106,8 @@ const LanderScreen = {
       if (rail) rail.onEnter && rail.onEnter();
     }
 
-    // Start living tile timers
-    this._startCityTimers();
+    // Restart living tile timers
+    _restartAllLivingTiles();
   },
 
   onBlur() {
@@ -100,6 +125,10 @@ const LanderScreen = {
   destroy() {
     this._stopCityTimers();
     clearInterval(this._heroTimer);
+    _stopAllLivingTiles();
+    if (this._debugConfigHandler) {
+      document.removeEventListener('debugconfig:change', this._debugConfigHandler);
+    }
   },
 
   _handleKey(action) {
@@ -140,10 +169,7 @@ const LanderScreen = {
         }
         // At the bottom — no wrap
       } else if (result && result.action === 'NAVIGATE') {
-        App.navigate(result.screen, { ...result.params, _fromLander: {
-          railIdx: this._activeRailIdx,
-          scrollY: this._scrollY,
-        }});
+        App.navigate(result.screen, result.params);
       }
     }
   },
@@ -168,10 +194,6 @@ const LanderScreen = {
     this._scrollY = y;
     this._scrollEl.style.transition = `transform ${SCROLL_TRANSITION_MS}ms cubic-bezier(0.25,0.46,0.45,0.94)`;
     this._scrollEl.style.transform = `translateY(${y}px)`;
-  },
-
-  _startCityTimers() {
-    // Handled per-rail inside the city rail builder
   },
 
   _stopCityTimers() {
@@ -202,7 +224,7 @@ function buildNav() {
       <div class="nav-right">
         <div class="nav-location">
           <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 1 1 18 0z" stroke="currentColor" stroke-width="2" fill="none"/><circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="2" fill="none"/></svg>
-          Location, ST
+          ${(DataStore.getDetectedCity() || {}).name || 'Location'}
         </div>
         <div class="nav-avatar">
           <img src="https://picsum.photos/seed/avatar1/72/72" alt="Profile" />
@@ -313,12 +335,13 @@ function buildHeroCarousel(config, container) {
 
   function startAutoAdvance() {
     clearInterval(autoTimer);
+    if (!DebugConfig.get('heroAutoAdvance', true)) return;
     autoTimer = setInterval(() => {
       if (!isActive) return;
       const prev = focusedIdx;
       focusedIdx = (focusedIdx + 1) % items.length;
       focusTile(focusedIdx, prev);
-    }, HERO_CYCLE_INTERVAL_MS);
+    }, DebugConfig.get('heroCycleInterval', HERO_CYCLE_INTERVAL_MS));
   }
 
   return {
@@ -333,6 +356,7 @@ function buildHeroCarousel(config, container) {
       clearInterval(autoTimer);
       getTile(focusedIdx).classList.remove('focused');
     },
+    updateTimers() { if (isActive) startAutoAdvance(); },
     handleKey(action) {
       if (action === 'UP') return 'UP';
       if (action === 'DOWN') return 'DOWN';
@@ -428,12 +452,20 @@ function buildHeroTile(item, isFocused) {
 }
 
 function startLivingTile(tileEl, images) {
+  if (!DebugConfig.get('livingTiles', true)) return;
   if (images.length < 2) return;
-  let imgIdx = 0;
   const primaryImg = tileEl.querySelector('.hero-img');
   const secondaryImg = tileEl.querySelector('.hero-img-secondary');
   if (!primaryImg || !secondaryImg) return;
 
+  // Clear any existing timer before starting a new one
+  if (tileEl._livingTimer) { clearInterval(tileEl._livingTimer); tileEl._livingTimer = null; }
+
+  // Store for runtime restart (cityCycleInterval / livingTiles changes)
+  tileEl._livingImages = images;
+  tileEl.dataset.livingTile = 'true';
+
+  let imgIdx = 0;
   const timer = setInterval(() => {
     imgIdx = (imgIdx + 1) % images.length;
     secondaryImg.src = images[imgIdx];
@@ -441,11 +473,22 @@ function startLivingTile(tileEl, images) {
     setTimeout(() => {
       primaryImg.src = images[imgIdx];
       secondaryImg.classList.remove('visible');
-    }, FADE_DURATION_MS);
-  }, CITY_CYCLE_INTERVAL_MS);
+    }, DebugConfig.get('crossfadeDuration', FADE_DURATION_MS));
+  }, DebugConfig.get('cityCycleInterval', CITY_CYCLE_INTERVAL_MS));
 
-  // Store timer on element so it can be cleared
   tileEl._livingTimer = timer;
+}
+
+function _stopAllLivingTiles() {
+  document.querySelectorAll('[data-living-tile]').forEach(el => {
+    if (el._livingTimer) { clearInterval(el._livingTimer); el._livingTimer = null; }
+  });
+}
+
+function _restartAllLivingTiles() {
+  document.querySelectorAll('[data-living-tile]').forEach(el => {
+    if (el._livingImages) startLivingTile(el, el._livingImages);
+  });
 }
 
 /* ---- CONTINUE WATCHING RAIL ---- */
@@ -642,7 +685,11 @@ function buildGenrePillsRail(config, container) {
   function focusPill(idx) {
     pills.forEach(p => p.classList.remove('focused'));
     if (pills[idx]) pills[idx].classList.add('focused');
-    scrollRailToIndex(track, idx, 120, 12, 0);
+    const targetPill = pills[idx];
+    if (targetPill) {
+      const offset = -(targetPill.offsetLeft - 60);
+      track.style.transform = `translateX(${Math.min(0, offset)}px)`;
+    }
   }
 
   return {
@@ -795,7 +842,7 @@ function buildStandardRail(config, container) {
     <div class="rail-title">${config.title || ''}</div>
     <div class="rail-overflow">
       <div class="rail-inner">
-        <div class="rail-scroll" id="std-rail-${config.title}"></div>
+        <div class="rail-scroll" id="std-rail-${config.title.replace(/\s+/g, '-').toLowerCase()}"></div>
       </div>
     </div>
   `;

@@ -1,0 +1,160 @@
+{
+  "id": "show-017",
+  "seasons": [
+    {
+      "number": 1,
+      "episodeCount": 6,
+      "episodes": [
+        {
+          "id": "s1e1",
+          "title": "Massimo's Tagliatelle",
+          "description": "Osteria Francescana's Massimo Bottura traces the single dish that defined his philosophy.",
+          "thumbnail": "https://picsum.photos/seed/show-017-s1e1/480/270",
+          "airDate": "Feb 1, 2020",
+          "duration": "41m",
+          "season": 1,
+          "episode": 1
+        },
+        {
+          "id": "s1e2",
+          "title": "Elena's Mole",
+          "description": "A four-day mole negro from Oaxaca \u2014 the dish Elena Reyes has been perfecting for thirty years.",
+          "thumbnail": "https://picsum.photos/seed/show-017-s1e2/480/270",
+          "airDate": "Mar 8, 2020",
+          "duration": "42m",
+          "season": 1,
+          "episode": 2
+        },
+        {
+          "id": "s1e3",
+          "title": "The Stock",
+          "description": "Robuchon's original kitchen team reconstructs the foundational stock from memory and notes.",
+          "thumbnail": "https://picsum.photos/seed/show-017-s1e3/480/270",
+          "airDate": "Apr 15, 2020",
+          "duration": "43m",
+          "season": 1,
+          "episode": 3
+        },
+        {
+          "id": "s1e4",
+          "title": "Fermentation",
+          "description": "Chef Rene Redzepi's foraging and fermentation approach to Nordic ingredients.",
+          "thumbnail": "https://picsum.photos/seed/show-017-s1e4/480/270",
+          "airDate": "May 22, 2020",
+          "duration": "44m",
+          "season": 1,
+          "episode": 4
+        },
+        {
+          "id": "s1e5",
+          "title": "The Whole Animal",
+          "description": "Fergus Henderson on nose-to-tail cooking and why nothing should be wasted.",
+          "thumbnail": "https://picsum.photos/seed/show-017-s1e5/480/270",
+          "airDate": "Jun 28, 2020",
+          "duration": "40m",
+          "season": 1,
+          "episode": 5
+        },
+        {
+          "id": "s1e6",
+          "title": "Simplicity",
+          "description": "Italian-American chef Marcella Hazan's daughter recreates her mother's legendary tomato sauce.",
+          "thumbnail": "https://picsum.photos/seed/show-017-s1e6/480/270",
+          "airDate": "Jul 28, 2020",
+          "duration": "41m",
+          "season": 1,
+          "episode": 6
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "episodeCount": 6,
+      "episodes": [
+        {
+          "id": "s2e1",
+          "title": "The Sushi Counter",
+          "description": "Master sushi chef Jiro Ono's apprenticeship system \u2014 twenty years to earn a station.",
+          "thumbnail": "https://picsum.photos/seed/show-017-s2e1/480/270",
+          "airDate": "Mar 1, 2021",
+          "duration": "41m",
+          "season": 2,
+          "episode": 1
+        },
+        {
+          "id": "s2e2",
+          "title": "BBQ Nation",
+          "description": "Pitmaster Aaron Franklin traces American barbecue from the 18th century to competition circuits.",
+          "thumbnail": "https://picsum.photos/seed/show-017-s2e2/480/270",
+          "airDate": "Apr 8, 2021",
+          "duration": "42m",
+          "season": 2,
+          "episode": 2
+        },
+        {
+          "id": "s2e3",
+          "title": "Spice Architecture",
+          "description": "Indian chef Manish Mehrotra on building layered spice profiles in modern Indian cuisine.",
+          "thumbnail": "https://picsum.photos/seed/show-017-s2e3/480/270",
+          "airDate": "May 15, 2021",
+          "duration": "43m",
+          "season": 2,
+          "episode": 3
+        },
+        {
+          "id": "s2e4",
+          "title": "The Sauce",
+          "description": "Three French sauciers debate whether classical sauce technique has a future.",
+          "thumbnail": "https://picsum.photos/seed/show-017-s2e4/480/270",
+          "airDate": "Jun 22, 2021",
+          "duration": "44m",
+          "season": 2,
+          "episode": 4
+        },
+        {
+          "id": "s2e5",
+          "title": "Fish & Time",
+          "description": "Nobu Matsuhisa on aging fish \u2014 the controversial technique that divides traditionalists.",
+          "thumbnail": "https://picsum.photos/seed/show-017-s2e5/480/270",
+          "airDate": "Jul 28, 2021",
+          "duration": "40m",
+          "season": 2,
+          "episode": 5
+        },
+        {
+          "id": "s2e6",
+          "title": "Bread",
+          "description": "Poil\u00e2ne bakery's legacy loaf \u2014 the same sourdough recipe, baked in the same oven, for 70 years.",
+          "thumbnail": "https://picsum.photos/seed/show-017-s2e6/480/270",
+          "airDate": "Aug 28, 2021",
+          "duration": "41m",
+          "season": 2,
+          "episode": 6
+        }
+      ]
+    }
+  ],
+  "extras": [
+    {
+      "id": "extra-001",
+      "title": "Full Recipe Cards",
+      "description": "Printed adaptations of each featured dish for home cooks.",
+      "thumbnail": "https://picsum.photos/seed/show-017-extra1/480/270",
+      "duration": "1m 00s"
+    },
+    {
+      "id": "extra-002",
+      "title": "The Kitchens",
+      "description": "Architectural profiles of each restaurant featured in the series.",
+      "thumbnail": "https://picsum.photos/seed/show-017-extra2/480/270",
+      "duration": "3m 10s"
+    }
+  ],
+  "similar": [
+    "show-005",
+    "show-014",
+    "show-001",
+    "show-009",
+    "show-019"
+  ]
+}

@@ -7,6 +7,9 @@ const CONTROLS_AUTO_HIDE_MS  = 5000;
 const SIMULATE_PLAYBACK      = true;
 const PLAYBACK_SPEED         = 1;         // 1 = realtime, 10 = 10x speed
 
+// === VIDEO ===
+const VIDEO_STREAM_URL = 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8';
+
 const PlayerScreen = {
   id: 'player',
 
@@ -34,6 +37,9 @@ const PlayerScreen = {
   _modalVisible: false,
   _captionsOn: false,
   _episodes: [],
+  _video: null,
+  _hls: null,
+  _debugConfigHandler: null,
 
   async init(container, params) {
     this._container = container;
@@ -75,6 +81,22 @@ const PlayerScreen = {
     if (this._episodeData) {
       this._duration = this._parseDuration(this._episodeData.duration || '42m');
     }
+
+    this._debugConfigHandler = (e) => {
+      const { key, value } = e.detail;
+      if (key === 'playbackSpeed' && this._video) {
+        this._video.playbackRate = value;
+      }
+      if (key === 'simulatedPlayback' && !this._video) {
+        if (value) {
+          this._attachProgressUpdates();
+        } else {
+          clearInterval(this._playTimer);
+          this._playTimer = null;
+        }
+      }
+    };
+    document.addEventListener('debugconfig:change', this._debugConfigHandler);
 
     this._render();
   },
@@ -118,7 +140,7 @@ const PlayerScreen = {
     `).join('');
 
     this._container.innerHTML = `
-      <img class="player-bg" src="${bgImg}" alt="${showTitle}" />
+      <video class="player-bg" id="player-video" preload="auto" playsinline></video>
       <div class="player-bg-dim overlay-visible" id="player-dim"></div>
 
       <!-- Scrub thumbnails -->
@@ -223,10 +245,52 @@ const PlayerScreen = {
   },
 
   _attachProgressUpdates() {
-    if (!SIMULATE_PLAYBACK) return;
+    const video = this._container?.querySelector('#player-video');
+    if (video) {
+      this._video = video;
+
+      video.addEventListener('loadedmetadata', () => {
+        this._duration = video.duration;
+        video.playbackRate = DebugConfig.get('playbackSpeed', PLAYBACK_SPEED);
+        this._updateProgressUI();
+      });
+
+      video.addEventListener('timeupdate', () => {
+        if (!video.duration) return;
+        this._elapsed = video.currentTime;
+        this._scrubPos = video.currentTime / video.duration;
+        this._updateProgressUI();
+      });
+
+      video.addEventListener('ended', () => {
+        this._showControls();
+      });
+
+      // Attach stream via HLS.js on Chromium (Vizio, Chrome, Firefox);
+      // fall back to native src assignment on Safari / WebKit.
+      if (typeof Hls !== 'undefined' && Hls.isSupported()) {
+        this._hls = new Hls();
+        this._hls.loadSource(VIDEO_STREAM_URL);
+        this._hls.attachMedia(video);
+        this._hls.on(Hls.Events.MANIFEST_PARSED, () => {
+          video.play().catch(() => {});
+        });
+      } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+        // Native HLS — Safari / WebKit smart TVs
+        video.src = VIDEO_STREAM_URL;
+        video.play().catch(() => {});
+      }
+      return;
+    }
+
+    // Fallback: simulated playback when no video element
+    if (!DebugConfig.get('simulatedPlayback', SIMULATE_PLAYBACK)) return;
     clearInterval(this._playTimer);
     this._playTimer = setInterval(() => {
-      this._elapsed = Math.min(this._elapsed + PLAYBACK_SPEED, this._duration);
+      this._elapsed = Math.min(
+        this._elapsed + DebugConfig.get('playbackSpeed', PLAYBACK_SPEED),
+        this._duration
+      );
       this._scrubPos = this._elapsed / this._duration;
       this._updateProgressUI();
       if (this._elapsed >= this._duration) clearInterval(this._playTimer);
@@ -247,16 +311,32 @@ const PlayerScreen = {
   onFocus() {
     FocusEngine.setHandler((action) => this._handleKey(action));
     this._showControls();
+    if (this._video?.paused) this._video.play().catch(() => {});
   },
 
   onBlur() {
     clearInterval(this._playTimer);
     clearTimeout(this._hideTimer);
+    if (this._video) this._video.pause();
   },
 
   destroy() {
     clearInterval(this._playTimer);
     clearTimeout(this._hideTimer);
+    if (this._debugConfigHandler) {
+      document.removeEventListener('debugconfig:change', this._debugConfigHandler);
+      this._debugConfigHandler = null;
+    }
+    if (this._hls) {
+      this._hls.destroy();
+      this._hls = null;
+    }
+    if (this._video) {
+      this._video.pause();
+      this._video.removeAttribute('src');
+      this._video.load();
+      this._video = null;
+    }
   },
 
   _showControls() {
@@ -289,7 +369,7 @@ const PlayerScreen = {
       if (!this._modalVisible && this._activeZone !== 'progress' && this._activeZone !== 'episodes') {
         this._hideControls();
       }
-    }, CONTROLS_AUTO_HIDE_MS);
+    }, DebugConfig.get('controlsAutoHide', CONTROLS_AUTO_HIDE_MS));
   },
 
   _focusBtn(group, idx) {
@@ -353,10 +433,19 @@ const PlayerScreen = {
       }
       this._showControls();
       this._activateZoneDefault();
+      if (this._video?.paused) this._video.play().catch(() => {});
       return;
     }
 
     this._resetHideTimer();
+
+    if (action === 'PLAYPAUSE') {
+      if (this._video) {
+        if (this._video.paused) { this._video.play().catch(() => {}); showToast('▶ Playing'); }
+        else { this._video.pause(); showToast('⏸ Paused'); }
+      }
+      return;
+    }
 
     if (action === 'BACK') {
       this._hideControls();
@@ -374,6 +463,7 @@ const PlayerScreen = {
       if (action === 'LEFT') {
         this._scrubPos = Math.max(0, this._scrubPos - 0.02);
         this._elapsed = this._scrubPos * this._duration;
+        if (this._video) this._video.currentTime = this._elapsed;
         this._updateProgressUI();
         this._updateScrubThumbs();
         return;
@@ -381,11 +471,17 @@ const PlayerScreen = {
       if (action === 'RIGHT') {
         this._scrubPos = Math.min(1, this._scrubPos + 0.02);
         this._elapsed = this._scrubPos * this._duration;
+        if (this._video) this._video.currentTime = this._elapsed;
         this._updateProgressUI();
         this._updateScrubThumbs();
         return;
       }
       if (action === 'OK') {
+        if (this._video) {
+          if (this._video.paused) { this._video.play().catch(() => {}); showToast('▶ Playing'); }
+          else { this._video.pause(); showToast('⏸ Paused'); }
+          return;
+        }
         this._blurProgressBar();
         this._activeZone = 'buttons';
         this._focusBtn('left', this._btnIdx);
@@ -503,8 +599,13 @@ const PlayerScreen = {
       this._elapsed = 0;
       this._scrubPos = 0;
       this._updateProgressUI();
-      clearInterval(this._playTimer);
-      this._attachProgressUpdates();
+      if (this._video) {
+        this._video.currentTime = 0;
+        this._video.play().catch(() => {});
+      } else {
+        clearInterval(this._playTimer);
+        this._attachProgressUpdates();
+      }
       showToast('Restarting from beginning…');
     } else if (btnKey === 'next-episode') {
       const curIdx = this._episodes.findIndex(e => e.id === this._episodeData?.id);
@@ -526,8 +627,13 @@ const PlayerScreen = {
     this._elapsed = 0;
     this._scrubPos = 0;
     this._duration = this._parseDuration(ep.duration || '42m');
-    clearInterval(this._playTimer);
-    this._attachProgressUpdates();
+    if (this._video) {
+      this._video.currentTime = 0;
+      this._video.play().catch(() => {});
+    } else {
+      clearInterval(this._playTimer);
+      this._attachProgressUpdates();
+    }
 
     // Update content info
     const show = this._show;
@@ -541,10 +647,6 @@ const PlayerScreen = {
       <span class="meta-dot">·</span>
       <span>${ep.title}</span>
     `;
-
-    // Update bg
-    const bg = this._container.querySelector('.player-bg');
-    if (bg && ep.thumbnail) bg.src = ep.thumbnail;
 
     this._updateProgressUI();
     this._showControls();

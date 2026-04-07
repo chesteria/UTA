@@ -1,0 +1,180 @@
+{
+  "id": "show-013",
+  "seasons": [
+    {
+      "number": 1,
+      "episodeCount": 8,
+      "episodes": [
+        {
+          "id": "s1e1",
+          "title": "Zero Day",
+          "description": "Analyst Mira Holt discovers an anomaly in a financial institution's security logs \u2014 the breach is years old.",
+          "thumbnail": "https://picsum.photos/seed/show-013-s1e1/480/270",
+          "airDate": "Jan 1, 2023",
+          "duration": "41m",
+          "season": 1,
+          "episode": 1
+        },
+        {
+          "id": "s1e2",
+          "title": "The Footprint",
+          "description": "Tracing the intrusion backward reveals it originated from three different countries simultaneously.",
+          "thumbnail": "https://picsum.photos/seed/show-013-s1e2/480/270",
+          "airDate": "Feb 8, 2023",
+          "duration": "42m",
+          "season": 1,
+          "episode": 2
+        },
+        {
+          "id": "s1e3",
+          "title": "Honeypot",
+          "description": "Mira deploys a trap \u2014 and the attacker walks straight into it, which is exactly what worries her.",
+          "thumbnail": "https://picsum.photos/seed/show-013-s1e3/480/270",
+          "airDate": "Mar 15, 2023",
+          "duration": "43m",
+          "season": 1,
+          "episode": 3
+        },
+        {
+          "id": "s1e4",
+          "title": "Attribution",
+          "description": "Who did this? Nation-state, criminal enterprise, or something with no name yet.",
+          "thumbnail": "https://picsum.photos/seed/show-013-s1e4/480/270",
+          "airDate": "Apr 22, 2023",
+          "duration": "44m",
+          "season": 1,
+          "episode": 4
+        },
+        {
+          "id": "s1e5",
+          "title": "The Inside Wall",
+          "description": "Evidence points toward an insider \u2014 someone with legitimate access and no motive on paper.",
+          "thumbnail": "https://picsum.photos/seed/show-013-s1e5/480/270",
+          "airDate": "May 28, 2023",
+          "duration": "40m",
+          "season": 1,
+          "episode": 5
+        },
+        {
+          "id": "s1e6",
+          "title": "White Noise",
+          "description": "Mira is placed under surveillance as her own team begins to question her loyalty.",
+          "thumbnail": "https://picsum.photos/seed/show-013-s1e6/480/270",
+          "airDate": "Jun 28, 2023",
+          "duration": "41m",
+          "season": 1,
+          "episode": 6
+        },
+        {
+          "id": "s1e7",
+          "title": "Counteroffensive",
+          "description": "Mira goes off the grid to pursue the one lead no one in the organization will touch.",
+          "thumbnail": "https://picsum.photos/seed/show-013-s1e7/480/270",
+          "airDate": "Jul 28, 2023",
+          "duration": "42m",
+          "season": 1,
+          "episode": 7
+        },
+        {
+          "id": "s1e8",
+          "title": "System Down",
+          "description": "The circuit closes \u2014 and the full scope of the conspiracy becomes terrifyingly clear.",
+          "thumbnail": "https://picsum.photos/seed/show-013-s1e8/480/270",
+          "airDate": "Aug 28, 2023",
+          "duration": "43m",
+          "season": 1,
+          "episode": 8
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "episodeCount": 6,
+      "episodes": [
+        {
+          "id": "s2e1",
+          "title": "Reconstruction",
+          "description": "In the wake of season one's revelations, Mira rebuilds her network from scratch.",
+          "thumbnail": "https://picsum.photos/seed/show-013-s2e1/480/270",
+          "airDate": "Feb 1, 2024",
+          "duration": "41m",
+          "season": 2,
+          "episode": 1
+        },
+        {
+          "id": "s2e2",
+          "title": "New Architecture",
+          "description": "The adversary has moved \u2014 to infrastructure, not institutions.",
+          "thumbnail": "https://picsum.photos/seed/show-013-s2e2/480/270",
+          "airDate": "Mar 8, 2024",
+          "duration": "42m",
+          "season": 2,
+          "episode": 2
+        },
+        {
+          "id": "s2e3",
+          "title": "Physical Layer",
+          "description": "The attacks aren't purely digital \u2014 there's a physical component to the targeting.",
+          "thumbnail": "https://picsum.photos/seed/show-013-s2e3/480/270",
+          "airDate": "Apr 15, 2024",
+          "duration": "43m",
+          "season": 2,
+          "episode": 3
+        },
+        {
+          "id": "s2e4",
+          "title": "The Architect",
+          "description": "A shadowy figure behind the campaign finally makes contact \u2014 on their own terms.",
+          "thumbnail": "https://picsum.photos/seed/show-013-s2e4/480/270",
+          "airDate": "May 22, 2024",
+          "duration": "44m",
+          "season": 2,
+          "episode": 4
+        },
+        {
+          "id": "s2e5",
+          "title": "Cascading Failure",
+          "description": "Multiple systems begin failing simultaneously \u2014 the campaign enters its final phase.",
+          "thumbnail": "https://picsum.photos/seed/show-013-s2e5/480/270",
+          "airDate": "Jun 28, 2024",
+          "duration": "40m",
+          "season": 2,
+          "episode": 5
+        },
+        {
+          "id": "s2e6",
+          "title": "Cold Boot",
+          "description": "Mira executes a plan that requires burning everything she's built to stop the Architect.",
+          "thumbnail": "https://picsum.photos/seed/show-013-s2e6/480/270",
+          "airDate": "Jul 28, 2024",
+          "duration": "41m",
+          "season": 2,
+          "episode": 6
+        }
+      ]
+    }
+  ],
+  "extras": [
+    {
+      "id": "extra-001",
+      "title": "Technical Advisor Interview",
+      "description": "Cybersecurity professionals discuss the show's realism.",
+      "thumbnail": "https://picsum.photos/seed/show-013-extra1/480/270",
+      "duration": "4m 40s"
+    },
+    {
+      "id": "extra-002",
+      "title": "Writing Cold Circuit",
+      "description": "Creator's commentary on the research and story architecture.",
+      "thumbnail": "https://picsum.photos/seed/show-013-extra2/480/270",
+      "duration": "3m 20s"
+    }
+  ],
+  "similar": [
+    "show-007",
+    "show-003",
+    "show-016",
+    "show-020",
+    "show-018"
+  ]
+}
