@@ -106,8 +106,8 @@ const LanderScreen = {
       if (rail) rail.onEnter && rail.onEnter();
     }
 
-    // Start living tile timers
-    this._startCityTimers();
+    // Restart living tile timers
+    _restartAllLivingTiles();
   },
 
   onBlur() {
@@ -169,10 +169,7 @@ const LanderScreen = {
         }
         // At the bottom — no wrap
       } else if (result && result.action === 'NAVIGATE') {
-        App.navigate(result.screen, { ...result.params, _fromLander: {
-          railIdx: this._activeRailIdx,
-          scrollY: this._scrollY,
-        }});
+        App.navigate(result.screen, result.params);
       }
     }
   },
@@ -197,10 +194,6 @@ const LanderScreen = {
     this._scrollY = y;
     this._scrollEl.style.transition = `transform ${SCROLL_TRANSITION_MS}ms cubic-bezier(0.25,0.46,0.45,0.94)`;
     this._scrollEl.style.transform = `translateY(${y}px)`;
-  },
-
-  _startCityTimers() {
-    // Handled per-rail inside the city rail builder
   },
 
   _stopCityTimers() {
@@ -231,7 +224,7 @@ function buildNav() {
       <div class="nav-right">
         <div class="nav-location">
           <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 1 1 18 0z" stroke="currentColor" stroke-width="2" fill="none"/><circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="2" fill="none"/></svg>
-          Location, ST
+          ${(DataStore.getDetectedCity() || {}).name || 'Location'}
         </div>
         <div class="nav-avatar">
           <img src="https://picsum.photos/seed/avatar1/72/72" alt="Profile" />
@@ -692,7 +685,11 @@ function buildGenrePillsRail(config, container) {
   function focusPill(idx) {
     pills.forEach(p => p.classList.remove('focused'));
     if (pills[idx]) pills[idx].classList.add('focused');
-    scrollRailToIndex(track, idx, 120, 12, 0);
+    const targetPill = pills[idx];
+    if (targetPill) {
+      const offset = -(targetPill.offsetLeft - 60);
+      track.style.transform = `translateX(${Math.min(0, offset)}px)`;
+    }
   }
 
   return {
@@ -845,7 +842,7 @@ function buildStandardRail(config, container) {
     <div class="rail-title">${config.title || ''}</div>
     <div class="rail-overflow">
       <div class="rail-inner">
-        <div class="rail-scroll" id="std-rail-${config.title}"></div>
+        <div class="rail-scroll" id="std-rail-${config.title.replace(/\s+/g, '-').toLowerCase()}"></div>
       </div>
     </div>
   `;

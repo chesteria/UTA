@@ -3,6 +3,24 @@
 
 ---
 
+## Bug Hunt — Medium & Low Fixes (2026-04-07)
+Source: `Feedback/bug-hunt-report.md` — MEDIUM and LOW issues
+
+### data/series/ (19 new files)
+- **M1 — Series data for all 20 shows**: Created `show-002.json` through `show-020.json`. Each show now has 2 seasons of fully written episodes (4–12 episodes per season depending on the show), 2–3 extras, and a similar-titles array pointing to thematically related shows. Every Series PDP in the catalog is now fully functional.
+
+### js/screens/lander.js
+- **M2 — Genre pill scroll hardcoded width**: Replaced `scrollRailToIndex(track, idx, 120, 12, 0)` with direct `offsetLeft` measurement. Focused pill is now scrolled into view accurately regardless of variable pill text width.
+- **M4 — Nav shows hardcoded "Location, ST"**: Replaced with `DataStore.getDetectedCity().name` (falls back to `'Location'` if geo data is unavailable). Nav now shows the detected city from `geo-state.json`.
+- **L1 — Rail IDs contain spaces**: `id="std-rail-${config.title}"` now sanitizes the title with `.replace(/\s+/g, '-').toLowerCase()`. IDs are now valid HTML.
+- **L2 — `_startCityTimers()` empty no-op**: Removed the empty `_startCityTimers()` method and replaced its `onFocus()` call with `_restartAllLivingTiles()`. Living tile timers now correctly restart when returning to the lander.
+- **L5 — `_fromLander` dead params**: Removed the `_fromLander` spread from `_handleKey()`'s navigate call. State restoration is handled via the container save mechanism (H2 fix); these params were never consumed.
+
+### css/series-pdp.css
+- **M3 — Series PDP rail scroll has no transition**: Already present — `.rail-scroll` has `transition: transform var(--t-scroll) cubic-bezier(0.25, 0.46, 0.45, 0.94)`. No change needed.
+
+---
+
 ## Bug Hunt — HIGH Fixes (2026-04-07)
 Source: `Feedback/bug-hunt-report.md` — auto-fix session for CRITICAL/HIGH issues
 
