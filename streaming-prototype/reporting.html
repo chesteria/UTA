@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Analytics Dashboard — Streaming Prototype</title>
+  <link rel="stylesheet" href="css/reporting.css" />
+</head>
+<body>
+
+<div class="rpt-shell">
+
+  <!-- Top Bar -->
+  <header class="rpt-topbar">
+    <div>
+      <div class="rpt-topbar-title">Insight Engine</div>
+      <div class="rpt-topbar-sub">Streaming Prototype — Analytics Dashboard</div>
+    </div>
+    <div class="rpt-topbar-actions">
+      <div class="rpt-datasource" id="datasource-indicator">
+        <div class="dot empty" id="datasource-dot"></div>
+        <span id="datasource-label">No data loaded</span>
+      </div>
+      <button class="rpt-btn rpt-btn-ghost" id="btn-import">Load from JSON</button>
+      <button class="rpt-btn rpt-btn-ghost" id="btn-export">Export</button>
+      <button class="rpt-btn rpt-btn-danger" id="btn-clear">Clear</button>
+    </div>
+  </header>
+
+  <!-- Sidebar Nav -->
+  <nav class="rpt-sidebar">
+    <div class="rpt-nav-label">Dashboard</div>
+    <a class="rpt-nav-item active" href="#section-overview">
+      <span class="nav-icon">📊</span> Session Overview
+    </a>
+    <a class="rpt-nav-item" href="#section-heatmap">
+      <span class="nav-icon">🔥</span> Navigation Heatmap
+    </a>
+    <a class="rpt-nav-item" href="#section-flow">
+      <span class="nav-icon">🔀</span> Flow Diagram
+    </a>
+    <a class="rpt-nav-item" href="#section-rail">
+      <span class="nav-icon">📈</span> Rail Performance
+    </a>
+    <a class="rpt-nav-item" href="#section-feedback">
+      <span class="nav-icon">💬</span> Feedback Feed
+    </a>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="rpt-main" id="rpt-main">
+
+    <!-- A: Session Overview -->
+    <section class="rpt-section" id="section-overview">
+      <div class="rpt-section-header">
+        <span class="rpt-section-label">A</span>
+        <h2 class="rpt-section-title">Session Overview</h2>
+      </div>
+
+      <div class="rpt-grid-4" id="overview-stats">
+        <div class="rpt-card">
+          <div class="rpt-card-title">Total Sessions</div>
+          <div class="rpt-stat" id="stat-sessions">—</div>
+          <div class="rpt-stat-label">unique session IDs</div>
+        </div>
+        <div class="rpt-card">
+          <div class="rpt-card-title">Participants</div>
+          <div class="rpt-stat" id="stat-participants">—</div>
+          <div class="rpt-stat-label">unique participant codes</div>
+        </div>
+        <div class="rpt-card">
+          <div class="rpt-card-title">Avg Duration</div>
+          <div class="rpt-stat" id="stat-avg-duration">—</div>
+          <div class="rpt-stat-label">per session</div>
+        </div>
+        <div class="rpt-card">
+          <div class="rpt-card-title">Total Events</div>
+          <div class="rpt-stat" id="stat-events">—</div>
+          <div class="rpt-stat-label">tracked interactions</div>
+        </div>
+      </div>
+
+      <div class="rpt-grid-2">
+        <div class="rpt-card">
+          <div class="rpt-card-title">Sessions by Device</div>
+          <div id="device-chart-container" style="padding-top:16px;">
+            <div id="device-list"></div>
+          </div>
+        </div>
+        <div class="rpt-card">
+          <div class="rpt-card-title">Event Type Breakdown</div>
+          <div id="event-type-list" style="padding-top:16px;"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- B: Navigation Heatmap -->
+    <section class="rpt-section" id="section-heatmap">
+      <div class="rpt-section-header">
+        <span class="rpt-section-label">B</span>
+        <h2 class="rpt-section-title">Navigation Heatmap</h2>
+      </div>
+      <div class="rpt-card">
+        <div class="rpt-card-title">Rail Dwell Times (color intensity = avg dwell)</div>
+        <div id="heatmap-container" style="padding-top:16px;"></div>
+      </div>
+    </section>
+
+    <!-- C: Flow Diagram -->
+    <section class="rpt-section" id="section-flow">
+      <div class="rpt-section-header">
+        <span class="rpt-section-label">C</span>
+        <h2 class="rpt-section-title">Screen Flow</h2>
+      </div>
+      <div class="rpt-card">
+        <div class="rpt-card-title">Most Common Navigation Paths</div>
+        <table class="rpt-table" id="flow-table">
+          <thead>
+            <tr>
+              <th class="rank">#</th>
+              <th>Path</th>
+              <th>Count</th>
+              <th>% of sessions</th>
+            </tr>
+          </thead>
+          <tbody id="flow-tbody">
+            <tr><td colspan="4" style="text-align:center;padding:32px;color:var(--text-dim);">No navigation data yet.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- D: Rail Performance -->
+    <section class="rpt-section" id="section-rail">
+      <div class="rpt-section-header">
+        <span class="rpt-section-label">D</span>
+        <h2 class="rpt-section-title">Rail Performance</h2>
+      </div>
+      <div class="rpt-card" style="margin-bottom:var(--gap);">
+        <div class="rpt-card-title">Avg Dwell Time per Rail (ms)</div>
+        <div class="rpt-chart-container">
+          <canvas id="rail-dwell-chart"></canvas>
+        </div>
+      </div>
+      <div class="rpt-grid-2">
+        <div class="rpt-card">
+          <div class="rpt-card-title">Selection Rate per Rail</div>
+          <div class="rpt-chart-container">
+            <canvas id="rail-select-chart"></canvas>
+          </div>
+        </div>
+        <div class="rpt-card">
+          <div class="rpt-card-title">Rail Engagement Table</div>
+          <table class="rpt-table" id="rail-table">
+            <thead>
+              <tr>
+                <th>Rail</th>
+                <th>Avg Dwell</th>
+                <th>Select Rate</th>
+                <th>Engagements</th>
+              </tr>
+            </thead>
+            <tbody id="rail-tbody">
+              <tr><td colspan="4" style="text-align:center;padding:24px;color:var(--text-dim);">No rail data yet.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- E: Feedback Feed -->
+    <section class="rpt-section" id="section-feedback">
+      <div class="rpt-section-header">
+        <span class="rpt-section-label">E</span>
+        <h2 class="rpt-section-title">Feedback Feed</h2>
+      </div>
+
+      <div class="rpt-feedback-filters" id="feedback-filters">
+        <div class="rpt-filter-pill active" data-filter="all">All</div>
+        <div class="rpt-filter-pill" data-filter="love">😍 Love it</div>
+        <div class="rpt-filter-pill" data-filter="good">👍 Good</div>
+        <div class="rpt-filter-pill" data-filter="neutral">😐 Neutral</div>
+        <div class="rpt-filter-pill" data-filter="confusing">😕 Confusing</div>
+        <div class="rpt-filter-pill" data-filter="dislike">👎 Dislike</div>
+      </div>
+
+      <div class="rpt-feedback-list" id="feedback-list">
+        <div class="rpt-card rpt-empty">
+          <span class="rpt-empty-icon">💬</span>
+          <div class="rpt-empty-title">No feedback yet</div>
+          <div class="rpt-empty-desc">Feedback events will appear here after testers use the hold-OK mechanism during prototype sessions.</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- Import Overlay -->
+<div id="import-overlay">
+  <div class="import-card">
+    <div class="import-title">Load Analytics Data</div>
+    <div class="import-desc">Import an exported analytics JSON file, or drag and drop it below.</div>
+    <div class="import-drop-zone" id="drop-zone">
+      <span class="import-drop-icon">📂</span>
+      <div class="import-drop-label">Drop JSON file here, or click to browse</div>
+    </div>
+    <input type="file" id="import-file-input" accept=".json,application/json" />
+    <div class="import-actions">
+      <button class="rpt-btn rpt-btn-primary" id="btn-browse">Browse Files</button>
+      <button class="rpt-btn rpt-btn-ghost" id="btn-import-cancel">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
+<script src="js/reporting.js"></script>
+
+</body>
+</html>

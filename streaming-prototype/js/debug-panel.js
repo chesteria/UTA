@@ -177,6 +177,8 @@ const PANEL_SPEC = [
   { type: 'section', label: 'E \u2014 App State Controls' },
   { type: 'button', label: 'Reload Lander Config', action: 'reloadLander' },
   { type: 'button', label: 'Screenshot Mode', action: 'screenshotMode' },
+  { type: 'button', label: 'Send Report (QR)', action: 'sendReport' },
+  { type: 'button', label: 'View Analytics Log', action: 'viewAnalytics' },
   { type: 'button', label: 'Reset All to Defaults', action: 'resetAll', danger: true },
 ];
 
@@ -443,6 +445,26 @@ const DebugPanel = (() => {
         }
       };
       document.addEventListener('keydown', exitHandler, { capture: true });
+    } else if (action === 'sendReport') {
+      close();
+      if (typeof FeedbackSystem !== 'undefined' && FeedbackSystem.showQRExport) {
+        FeedbackSystem.showQRExport();
+      } else {
+        if (typeof showToast === 'function') showToast('Analytics system not loaded');
+      }
+    } else if (action === 'viewAnalytics') {
+      if (typeof Analytics !== 'undefined') {
+        const events = Analytics.getEvents();
+        const count = events.length;
+        const sessions = new Set(events.map(e => e.sessionId)).size;
+        const participant = Analytics.getParticipantId() || 'not set';
+        if (typeof showToast === 'function') {
+          showToast(`${count} events · ${sessions} sessions · ID: ${participant}`);
+        }
+        console.log('[Analytics] Events stored:', events);
+      } else {
+        if (typeof showToast === 'function') showToast('Analytics not loaded');
+      }
     } else if (action === 'resetAll') {
       DebugConfig.reset();
       location.reload();

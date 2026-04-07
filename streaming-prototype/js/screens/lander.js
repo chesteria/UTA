@@ -39,14 +39,32 @@ const LanderScreen = {
     this._container.className = 'screen screen-lander';
     this._railModules = [];
     this._cityTimers = [];
+    this._screenEnterTime = Date.now();
 
     // Read saved state from container (set by onBlur on BACK navigation)
     const savedRailIdx = container._savedRailIdx;
     const savedScrollY = container._savedScroll;
+    const isReturning  = !!savedRailIdx;
     delete container._savedRailIdx;
     delete container._savedScroll;
 
     this._activeRailIdx = savedRailIdx !== undefined ? savedRailIdx : 0;
+
+    // Fire session_start on first lander init (not on BACK return)
+    if (!isReturning) {
+      try {
+        if (typeof Analytics !== 'undefined') {
+          const prevCount = parseInt(localStorage.getItem('analytics_sessionCount') || '1');
+          Analytics.track('session_start', {
+            deviceType: navigator.userAgent,
+            screenResolution: `${window.screen.width}x${window.screen.height}`,
+            configVersion: 'lander-default',
+            returningParticipant: prevCount > 1,
+            previousSessionCount: Math.max(0, prevCount - 1),
+          });
+        }
+      } catch (e) { /* fail silently */ }
+    }
 
     // Build DOM
     container.innerHTML = `
@@ -151,6 +169,23 @@ const LanderScreen = {
       const result = rail.handleKey(action);
 
       if (result === 'UP') {
+        // Fire rail_engagement before leaving
+        try {
+          if (typeof Analytics !== 'undefined' && rail._analyticsState) {
+            const s = rail._analyticsState;
+            Analytics.track('rail_engagement', {
+              screen: 'lander',
+              rail: s.railId,
+              railIndex: railIdx,
+              tilesViewed: s.maxTileReached + 1,
+              totalTiles: s.totalTiles,
+              dwellTimeMs: Date.now() - s.enterTime,
+              selectedTile: s.selectedTile,
+              scrolledPastWithoutEngaging: s.maxTileReached === 0 && s.selectedTile === null,
+            });
+          }
+        } catch (e) { /* fail silently */ }
+
         rail.onLeave && rail.onLeave();
         if (railIdx === 0) {
           // Go back to nav
@@ -162,13 +197,71 @@ const LanderScreen = {
           this._enterRail(railIdx - 1);
         }
       } else if (result === 'DOWN') {
+        // Fire rail_engagement before leaving
+        try {
+          if (typeof Analytics !== 'undefined' && rail._analyticsState) {
+            const s = rail._analyticsState;
+            Analytics.track('rail_engagement', {
+              screen: 'lander',
+              rail: s.railId,
+              railIndex: railIdx,
+              tilesViewed: s.maxTileReached + 1,
+              totalTiles: s.totalTiles,
+              dwellTimeMs: Date.now() - s.enterTime,
+              selectedTile: s.selectedTile,
+              scrolledPastWithoutEngaging: s.maxTileReached === 0 && s.selectedTile === null,
+            });
+          }
+        } catch (e) { /* fail silently */ }
+
         rail.onLeave && rail.onLeave();
         if (railIdx < this._railModules.length - 1) {
           this._activeRailIdx = railIdx + 2;
           this._enterRail(railIdx + 1);
+
+          // Track scroll depth
+          try {
+            if (typeof Analytics !== 'undefined') {
+              const newRail = this._railModules[railIdx + 1];
+              Analytics.track('scroll_depth', {
+                screen: 'lander',
+                maxDepthRail: newRail?._analyticsState?.railId || `rail-${railIdx + 1}`,
+                maxDepthIndex: railIdx + 1,
+                totalRails: this._railModules.length,
+              });
+            }
+          } catch (e) { /* fail silently */ }
         }
         // At the bottom — no wrap
       } else if (result && result.action === 'NAVIGATE') {
+        // Track tile_select and navigation before navigating
+        try {
+          if (typeof Analytics !== 'undefined') {
+            const s = rail._analyticsState;
+            if (s) {
+              Analytics.track('tile_select', {
+                screen: 'lander',
+                rail: s.railId,
+                railIndex: railIdx,
+                tileIndex: s.currentTileIdx || 0,
+                itemId: result.params?.showId || result.params?.channelId || '',
+                itemTitle: '',
+                timeOnScreenMs: Date.now() - (this._screenEnterTime || Date.now()),
+                tilesViewedInRail: s.maxTileReached + 1,
+              });
+              if (s) s.selectedTile = s.currentTileIdx || 0;
+            }
+            Analytics.track('navigation', {
+              from: 'lander',
+              to: result.screen,
+              trigger: 'tile-select',
+              itemId: result.params?.showId || result.params?.channelId || '',
+              sourceRail: rail._analyticsState?.railId || `rail-${railIdx}`,
+              sourceIndex: rail._analyticsState?.currentTileIdx || 0,
+            });
+          }
+        } catch (e) { /* fail silently */ }
+
         App.navigate(result.screen, result.params);
       }
     }
@@ -344,10 +437,24 @@ function buildHeroCarousel(config, container) {
     }, DebugConfig.get('heroCycleInterval', HERO_CYCLE_INTERVAL_MS));
   }
 
+  const heroAnalyticsState = {
+    railId: 'hero-carousel',
+    enterTime: 0,
+    currentTileIdx: focusedIdx,
+    maxTileReached: 0,
+    totalTiles: items.length,
+    selectedTile: null,
+  };
+
   return {
     element: section,
+    _analyticsState: heroAnalyticsState,
     onEnter() {
       isActive = true;
+      heroAnalyticsState.enterTime = Date.now();
+      heroAnalyticsState.currentTileIdx = focusedIdx;
+      heroAnalyticsState.maxTileReached = focusedIdx;
+      heroAnalyticsState.selectedTile = null;
       focusTile(focusedIdx);
       startAutoAdvance();
     },
@@ -362,24 +469,64 @@ function buildHeroCarousel(config, container) {
       if (action === 'DOWN') return 'DOWN';
       if (action === 'LEFT') {
         if (focusedIdx > 0) {
-          const prev = focusedIdx;
+          const prevIdx2 = focusedIdx;
+          const prevDwell = Date.now() - (heroAnalyticsState.enterTime || Date.now());
+          try {
+            if (typeof Analytics !== 'undefined') {
+              Analytics.track('focus_change', {
+                from: { screen: 'lander', zone: 'hero-carousel', index: prevIdx2, itemId: items[prevIdx2]?.id || '' },
+                to: { screen: 'lander', zone: 'hero-carousel', index: focusedIdx - 1, itemId: items[focusedIdx - 1]?.id || '' },
+                method: 'dpad-left',
+                dwellTimeMs: prevDwell,
+              });
+            }
+          } catch (e) { /* fail silently */ }
           focusedIdx--;
-          focusTile(focusedIdx, prev);
+          heroAnalyticsState.currentTileIdx = focusedIdx;
+          heroAnalyticsState.enterTime = Date.now();
+          focusTile(focusedIdx, prevIdx2);
           startAutoAdvance();
+        } else {
+          try {
+            if (typeof Analytics !== 'undefined') {
+              Analytics.track('dead_end', { screen: 'lander', zone: 'hero-carousel', index: focusedIdx, direction: 'left', note: 'at first item' });
+            }
+          } catch (e) { /* fail silently */ }
         }
         return 'HANDLED';
       }
       if (action === 'RIGHT') {
         if (focusedIdx < items.length - 1) {
-          const prev = focusedIdx;
+          const prevIdx2 = focusedIdx;
+          const prevDwell = Date.now() - (heroAnalyticsState.enterTime || Date.now());
+          try {
+            if (typeof Analytics !== 'undefined') {
+              Analytics.track('focus_change', {
+                from: { screen: 'lander', zone: 'hero-carousel', index: prevIdx2, itemId: items[prevIdx2]?.id || '' },
+                to: { screen: 'lander', zone: 'hero-carousel', index: focusedIdx + 1, itemId: items[focusedIdx + 1]?.id || '' },
+                method: 'dpad-right',
+                dwellTimeMs: prevDwell,
+              });
+            }
+          } catch (e) { /* fail silently */ }
           focusedIdx++;
-          focusTile(focusedIdx, prev);
+          heroAnalyticsState.currentTileIdx = focusedIdx;
+          heroAnalyticsState.enterTime = Date.now();
+          if (focusedIdx > heroAnalyticsState.maxTileReached) heroAnalyticsState.maxTileReached = focusedIdx;
+          focusTile(focusedIdx, prevIdx2);
           startAutoAdvance();
+        } else {
+          try {
+            if (typeof Analytics !== 'undefined') {
+              Analytics.track('dead_end', { screen: 'lander', zone: 'hero-carousel', index: focusedIdx, direction: 'right', note: 'at last item' });
+            }
+          } catch (e) { /* fail silently */ }
         }
         return 'HANDLED';
       }
       if (action === 'OK') {
         const item = items[focusedIdx];
+        heroAnalyticsState.selectedTile = focusedIdx;
         if (item._type === 'show') {
           return { action: 'NAVIGATE', screen: 'series-pdp', params: { showId: item.id } };
         } else if (item._type === 'city') {
@@ -539,6 +686,15 @@ function buildLocalCitiesRail(config, container) {
   let focusedIdx = 0;
   const tiles = Array.from(track.children);
 
+  const citiesAnalyticsState = {
+    railId: 'local-cities',
+    enterTime: 0,
+    currentTileIdx: 0,
+    maxTileReached: 0,
+    totalTiles: tiles.length,
+    selectedTile: null,
+  };
+
   function focusTile(idx) {
     tiles.forEach(t => t.classList.remove('focused'));
     if (tiles[idx]) tiles[idx].classList.add('focused');
@@ -547,21 +703,38 @@ function buildLocalCitiesRail(config, container) {
 
   return {
     element: section,
-    onEnter() { focusTile(focusedIdx); },
+    _analyticsState: citiesAnalyticsState,
+    onEnter() {
+      citiesAnalyticsState.enterTime = Date.now();
+      citiesAnalyticsState.currentTileIdx = focusedIdx;
+      citiesAnalyticsState.maxTileReached = focusedIdx;
+      citiesAnalyticsState.selectedTile = null;
+      focusTile(focusedIdx);
+    },
     onLeave() { tiles.forEach(t => t.classList.remove('focused')); },
     handleKey(action) {
       if (action === 'UP') return 'UP';
       if (action === 'DOWN') return 'DOWN';
       if (action === 'LEFT') {
-        if (focusedIdx > 0) { focusedIdx--; focusTile(focusedIdx); }
+        if (focusedIdx > 0) {
+          focusedIdx--;
+          citiesAnalyticsState.currentTileIdx = focusedIdx;
+          focusTile(focusedIdx);
+        }
         return 'HANDLED';
       }
       if (action === 'RIGHT') {
-        if (focusedIdx < tiles.length - 1) { focusedIdx++; focusTile(focusedIdx); }
+        if (focusedIdx < tiles.length - 1) {
+          focusedIdx++;
+          citiesAnalyticsState.currentTileIdx = focusedIdx;
+          if (focusedIdx > citiesAnalyticsState.maxTileReached) citiesAnalyticsState.maxTileReached = focusedIdx;
+          focusTile(focusedIdx);
+        }
         return 'HANDLED';
       }
       if (action === 'OK') {
         const city = cities[focusedIdx];
+        citiesAnalyticsState.selectedTile = focusedIdx;
         showToast(`Local content for ${city.name}`);
         return 'HANDLED';
       }
@@ -621,6 +794,15 @@ function buildLiveChannelsRail(config, container) {
   let focusedIdx = 0;
   const tiles = Array.from(track.children);
 
+  const liveAnalyticsState = {
+    railId: 'live-channels',
+    enterTime: 0,
+    currentTileIdx: 0,
+    maxTileReached: 0,
+    totalTiles: tiles.length,
+    selectedTile: null,
+  };
+
   function focusTile(idx) {
     tiles.forEach(t => t.classList.remove('focused'));
     if (tiles[idx]) tiles[idx].classList.add('focused');
@@ -630,21 +812,38 @@ function buildLiveChannelsRail(config, container) {
 
   return {
     element: section,
-    onEnter() { focusTile(focusedIdx); },
+    _analyticsState: liveAnalyticsState,
+    onEnter() {
+      liveAnalyticsState.enterTime = Date.now();
+      liveAnalyticsState.currentTileIdx = focusedIdx;
+      liveAnalyticsState.maxTileReached = focusedIdx;
+      liveAnalyticsState.selectedTile = null;
+      focusTile(focusedIdx);
+    },
     onLeave() { tiles.forEach(t => t.classList.remove('focused')); },
     handleKey(action) {
       if (action === 'UP') return 'UP';
       if (action === 'DOWN') return 'DOWN';
       if (action === 'LEFT') {
-        if (focusedIdx > 0) { focusedIdx--; focusTile(focusedIdx); }
+        if (focusedIdx > 0) {
+          focusedIdx--;
+          liveAnalyticsState.currentTileIdx = focusedIdx;
+          focusTile(focusedIdx);
+        }
         return 'HANDLED';
       }
       if (action === 'RIGHT') {
-        if (focusedIdx < tiles.length - 1) { focusedIdx++; focusTile(focusedIdx); }
+        if (focusedIdx < tiles.length - 1) {
+          focusedIdx++;
+          liveAnalyticsState.currentTileIdx = focusedIdx;
+          if (focusedIdx > liveAnalyticsState.maxTileReached) liveAnalyticsState.maxTileReached = focusedIdx;
+          focusTile(focusedIdx);
+        }
         return 'HANDLED';
       }
       if (action === 'OK') {
         const ch = channels[focusedIdx];
+        liveAnalyticsState.selectedTile = focusedIdx;
         return { action: 'NAVIGATE', screen: 'player', params: {
           showId: ch.id,
           channelName: ch.name,
@@ -692,22 +891,48 @@ function buildGenrePillsRail(config, container) {
     }
   }
 
+  const genreAnalyticsState = {
+    railId: 'genre-pills',
+    enterTime: 0,
+    currentTileIdx: 0,
+    maxTileReached: 0,
+    totalTiles: pills.length,
+    selectedTile: null,
+  };
+
   return {
     element: section,
-    onEnter() { focusPill(focusedIdx); },
+    _analyticsState: genreAnalyticsState,
+    onEnter() {
+      genreAnalyticsState.enterTime = Date.now();
+      genreAnalyticsState.currentTileIdx = focusedIdx;
+      genreAnalyticsState.maxTileReached = focusedIdx;
+      genreAnalyticsState.selectedTile = null;
+      focusPill(focusedIdx);
+    },
     onLeave() { pills.forEach(p => p.classList.remove('focused')); },
     handleKey(action) {
       if (action === 'UP') return 'UP';
       if (action === 'DOWN') return 'DOWN';
       if (action === 'LEFT') {
-        if (focusedIdx > 0) { focusedIdx--; focusPill(focusedIdx); }
+        if (focusedIdx > 0) {
+          focusedIdx--;
+          genreAnalyticsState.currentTileIdx = focusedIdx;
+          focusPill(focusedIdx);
+        }
         return 'HANDLED';
       }
       if (action === 'RIGHT') {
-        if (focusedIdx < pills.length - 1) { focusedIdx++; focusPill(focusedIdx); }
+        if (focusedIdx < pills.length - 1) {
+          focusedIdx++;
+          genreAnalyticsState.currentTileIdx = focusedIdx;
+          if (focusedIdx > genreAnalyticsState.maxTileReached) genreAnalyticsState.maxTileReached = focusedIdx;
+          focusPill(focusedIdx);
+        }
         return 'HANDLED';
       }
       if (action === 'OK') {
+        genreAnalyticsState.selectedTile = focusedIdx;
         showToast(`Filtering by ${genres[focusedIdx]}…`);
         return 'HANDLED';
       }
@@ -777,9 +1002,25 @@ function buildScreamer(config, container) {
     scrollRailToIndex(tileTrack, idx, PORTRAIT_TILE_W, TILE_GAP);
   }
 
+  const screamerAnalyticsState = {
+    railId: collection?.id ? `screamer-${collection.id}` : 'screamer',
+    enterTime: 0,
+    currentTileIdx: 0,
+    maxTileReached: 0,
+    totalTiles: tiles.length,
+    selectedTile: null,
+  };
+
   return {
     element: section,
-    onEnter() { focusCTA(); },
+    _analyticsState: screamerAnalyticsState,
+    onEnter() {
+      screamerAnalyticsState.enterTime = Date.now();
+      screamerAnalyticsState.currentTileIdx = 0;
+      screamerAnalyticsState.maxTileReached = 0;
+      screamerAnalyticsState.selectedTile = null;
+      focusCTA();
+    },
     onLeave() {
       ctaEl.classList.remove('focused');
       bannerEl.classList.remove('has-focus');
@@ -801,17 +1042,25 @@ function buildScreamer(config, container) {
         if (action === 'UP') { focusCTA(); return 'HANDLED'; }
         if (action === 'DOWN') return 'DOWN';
         if (action === 'LEFT') {
-          if (tileIdx > 0) { tileIdx--; focusTile(tileIdx); }
+          if (tileIdx > 0) { tileIdx--; screamerAnalyticsState.currentTileIdx = tileIdx; focusTile(tileIdx); }
           else { focusCTA(); }
           return 'HANDLED';
         }
         if (action === 'RIGHT') {
-          if (tileIdx < tiles.length - 1) { tileIdx++; focusTile(tileIdx); }
+          if (tileIdx < tiles.length - 1) {
+            tileIdx++;
+            screamerAnalyticsState.currentTileIdx = tileIdx;
+            if (tileIdx > screamerAnalyticsState.maxTileReached) screamerAnalyticsState.maxTileReached = tileIdx;
+            focusTile(tileIdx);
+          }
           return 'HANDLED';
         }
         if (action === 'OK') {
           const show = collectionItems[tileIdx];
-          if (show) return { action: 'NAVIGATE', screen: 'series-pdp', params: { showId: show.id } };
+          if (show) {
+            screamerAnalyticsState.selectedTile = tileIdx;
+            return { action: 'NAVIGATE', screen: 'series-pdp', params: { showId: show.id } };
+          }
           return 'HANDLED';
         }
       }
@@ -861,6 +1110,16 @@ function buildStandardRail(config, container) {
 
   let focusedIdx = 0;
   const tiles = Array.from(track.children);
+  const railId = config.title ? config.title.replace(/\s+/g, '-').toLowerCase() : 'standard-rail';
+
+  const stdAnalyticsState = {
+    railId,
+    enterTime: 0,
+    currentTileIdx: 0,
+    maxTileReached: 0,
+    totalTiles: tiles.length,
+    selectedTile: null,
+  };
 
   function focusTile(idx) {
     tiles.forEach(t => t.classList.remove('focused'));
@@ -870,20 +1129,71 @@ function buildStandardRail(config, container) {
 
   return {
     element: section,
-    onEnter() { focusTile(focusedIdx); },
+    _analyticsState: stdAnalyticsState,
+    onEnter() {
+      stdAnalyticsState.enterTime = Date.now();
+      stdAnalyticsState.currentTileIdx = focusedIdx;
+      stdAnalyticsState.maxTileReached = focusedIdx;
+      stdAnalyticsState.selectedTile = null;
+      focusTile(focusedIdx);
+    },
     onLeave() { tiles.forEach(t => t.classList.remove('focused')); },
     handleKey(action) {
       if (action === 'UP') return 'UP';
       if (action === 'DOWN') return 'DOWN';
       if (action === 'LEFT') {
-        if (focusedIdx > 0) { focusedIdx--; focusTile(focusedIdx); }
+        if (focusedIdx > 0) {
+          const prevDwell = Date.now() - (stdAnalyticsState.enterTime || Date.now());
+          try {
+            if (typeof Analytics !== 'undefined') {
+              Analytics.track('focus_change', {
+                from: { screen: 'lander', zone: railId, index: focusedIdx, itemId: shows[focusedIdx]?.id || '' },
+                to: { screen: 'lander', zone: railId, index: focusedIdx - 1, itemId: shows[focusedIdx - 1]?.id || '' },
+                method: 'dpad-left', dwellTimeMs: prevDwell,
+              });
+            }
+          } catch (e) { /* fail silently */ }
+          focusedIdx--;
+          stdAnalyticsState.currentTileIdx = focusedIdx;
+          stdAnalyticsState.enterTime = Date.now();
+          focusTile(focusedIdx);
+        } else {
+          try {
+            if (typeof Analytics !== 'undefined') {
+              Analytics.track('dead_end', { screen: 'lander', zone: railId, index: focusedIdx, direction: 'left', note: 'at first item' });
+            }
+          } catch (e) { /* fail silently */ }
+        }
         return 'HANDLED';
       }
       if (action === 'RIGHT') {
-        if (focusedIdx < tiles.length - 1) { focusedIdx++; focusTile(focusedIdx); }
+        if (focusedIdx < tiles.length - 1) {
+          const prevDwell = Date.now() - (stdAnalyticsState.enterTime || Date.now());
+          try {
+            if (typeof Analytics !== 'undefined') {
+              Analytics.track('focus_change', {
+                from: { screen: 'lander', zone: railId, index: focusedIdx, itemId: shows[focusedIdx]?.id || '' },
+                to: { screen: 'lander', zone: railId, index: focusedIdx + 1, itemId: shows[focusedIdx + 1]?.id || '' },
+                method: 'dpad-right', dwellTimeMs: prevDwell,
+              });
+            }
+          } catch (e) { /* fail silently */ }
+          focusedIdx++;
+          stdAnalyticsState.currentTileIdx = focusedIdx;
+          stdAnalyticsState.enterTime = Date.now();
+          if (focusedIdx > stdAnalyticsState.maxTileReached) stdAnalyticsState.maxTileReached = focusedIdx;
+          focusTile(focusedIdx);
+        } else {
+          try {
+            if (typeof Analytics !== 'undefined') {
+              Analytics.track('dead_end', { screen: 'lander', zone: railId, index: focusedIdx, direction: 'right', note: 'at last item' });
+            }
+          } catch (e) { /* fail silently */ }
+        }
         return 'HANDLED';
       }
       if (action === 'OK') {
+        stdAnalyticsState.selectedTile = focusedIdx;
         return { action: 'NAVIGATE', screen: 'series-pdp', params: { showId: shows[focusedIdx].id } };
       }
       return 'HANDLED';
@@ -925,14 +1235,30 @@ function buildMarketingBanner(config, container) {
   const ctaEl = section.querySelector('#marketing-cta');
   const bannerEl = section.querySelector('.marketing-banner');
 
+  const mktAnalyticsState = {
+    railId: 'marketing-banner',
+    enterTime: 0,
+    currentTileIdx: 0,
+    maxTileReached: 0,
+    totalTiles: 1,
+    selectedTile: null,
+  };
+
   return {
     element: section,
-    onEnter() { ctaEl.classList.add('focused'); bannerEl.classList.add('has-focus'); },
+    _analyticsState: mktAnalyticsState,
+    onEnter() {
+      mktAnalyticsState.enterTime = Date.now();
+      mktAnalyticsState.selectedTile = null;
+      ctaEl.classList.add('focused');
+      bannerEl.classList.add('has-focus');
+    },
     onLeave() { ctaEl.classList.remove('focused'); bannerEl.classList.remove('has-focus'); },
     handleKey(action) {
       if (action === 'UP') return 'UP';
       if (action === 'DOWN') return 'DOWN';
       if (action === 'OK') {
+        mktAnalyticsState.selectedTile = 0;
         showToast('Opening signup flow…');
         return 'HANDLED';
       }

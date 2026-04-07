@@ -1,5 +1,93 @@
 # Change Log — PRD v1.4 Alignment
-**Branch:** `initial-debug-panel`
+**Branch:** `align-v1.4prd`
+
+---
+
+## Phase 2 — Insight Engine: Analytics, Feedback & Reporting (2026-04-07)
+Source: `docs/streaming-prototype-phase2-prd.md`
+Branch: `prd-v1.5-update`
+
+### NEW: js/analytics.js
+- **`Analytics`** global: single-entry-point event bus. `Analytics.track(eventName, payload)` is the only function components call.
+- Generates fresh `sessionId` (UUID) on each page load; persists `participantId` in localStorage as `P-XXXX`.
+- Transport config at top of file: `ANALYTICS_ENABLED`, `ANALYTICS_TRANSPORT` (`localStorage` | `firebase` | `both`), `FIREBASE_URL`, `ANALYTICS_BATCH_INTERVAL_MS`, `ANALYTICS_MAX_LOCAL_SESSIONS`.
+- localStorage: stores all events in `analytics_events` JSON array; rolling buffer capped at 5MB; prunes oldest sessions to stay within `ANALYTICS_MAX_LOCAL_SESSIONS=50`.
+- Firebase transport: batch-POSTs every 30s when `FIREBASE_URL` is set. Fails silently when URL is empty.
+- Exposes: `track()`, `getParticipantId()`, `setParticipantId()`, `generateNewParticipantId()`, `isFirstVisit()`, `getEvents()`, `clearEvents()`, `getSessionSummary()`, `sessionId`.
+
+### NEW: css/feedback.css
+- Hold-progress SVG ring styles (`.feedback-hold-ring`, `.feedback-hold-ring-fill`).
+- Participant ID overlay (`#participant-overlay`, `.participant-card`, `.participant-btn`).
+- Feedback overlay (`#feedback-overlay`, `.feedback-reaction-btn`, `.feedback-tag-btn`, `.feedback-send-btn`, `.feedback-skip-btn`).
+- QR export overlay (`#qr-overlay`, `#qr-code-container`, `.qr-close-btn`).
+- Thanks toast (`.feedback-thanks`).
+
+### NEW: js/feedback.js
+- **`FeedbackSystem`** global: hold-OK detection, radial ring animation, feedback overlay, participant ID prompt, QR export overlay.
+- **Participant ID prompt**: shown on first visit (no `analytics_participantId` in localStorage). `FocusEngine.disable()` while shown. Accept / Generate New Code (d-pad navigable). BACK = Accept. Calls `Analytics.setParticipantId()` on confirm.
+- **Hold-OK ring**: `keydown` listener on document (non-capturing, coexists with FocusEngine). Starts 3s countdown on OK press; animates SVG stroke-dashoffset via rAF. Cancels on key-up < 3s.
+- **Feedback overlay**: full-screen on 3s hold. 5 emoji reactions (d-pad), tag multi-select row, Send / Skip actions. BACK dismisses. Send fires `Analytics.track('user_feedback', ...)`. Shows "Thanks!" toast after send.
+- **QR export**: `FeedbackSystem.showQRExport()` — encodes last ≤10 events as `data:text/plain` URI, renders via QRCode.js library. BACK / Enter to close.
+- Auto-inits on `DOMContentLoaded`.
+
+### NEW: reporting.html
+- Standalone analytics dashboard; does not use `index.html`'s app shell.
+- Sections: A Session Overview, B Navigation Heatmap, C Screen Flow, D Rail Performance, E Feedback Feed.
+- "Load from JSON" import overlay with drag-and-drop. "Export" button. "Clear" button.
+- Uses Chart.js 4 via CDN for bar charts.
+
+### NEW: css/reporting.css
+- Full dashboard layout: sticky top bar + sidebar nav + main content area.
+- Card grid, heatmap bars, sortable table, feedback feed list, import overlay, filter pills.
+- Responsive breakpoints for 1100px and 800px.
+
+### NEW: js/reporting.js
+- Reads `analytics_events` from localStorage on page load; auto-refreshes every 30s.
+- **Section A**: unique sessions, participants, avg duration (from session_start/end pairs), total events, device breakdown bar chart, event type breakdown.
+- **Section B**: aggregates dwell times from `focus_change` and `rail_engagement` events; color-coded heatmap bars (blue→red by intensity).
+- **Section C**: builds screen paths per session from `navigation` events; counts path frequencies; sorted table.
+- **Section D**: aggregates `rail_engagement` events; Chart.js bar charts for avg dwell and selection rate per rail; detail table.
+- **Section E**: lists `user_feedback` events; filterable by reaction type; newest first.
+
+### MODIFIED: js/debug-panel.js
+- Added "Send Report (QR)" button to section E — calls `FeedbackSystem.showQRExport()`.
+- Added "View Analytics Log" button — shows event count / session count / participant ID in toast; dumps full event array to console.
+
+### MODIFIED: js/app.js
+- `back()`: fires `Analytics.track('session_end', getSessionSummary())` when history is empty (user pressed BACK from lander — top of navigation stack).
+
+### MODIFIED: js/screens/lander.js
+- `init()`: fires `Analytics.track('session_start', ...)` on first load (not on BACK-return). Stores `_screenEnterTime`.
+- Rail modules: all rail builders now return `_analyticsState` object tracking `railId`, `enterTime`, `currentTileIdx`, `maxTileReached`, `totalTiles`, `selectedTile`. Instrumented: hero-carousel, local-cities, live-channels, genre-pills, screamer, standard-rail, marketing-banner.
+- `_handleKey()`: fires `rail_engagement` when focus leaves a rail (UP or DOWN). Fires `scroll_depth` on DOWN to next rail. Fires `tile_select` + `navigation` when OK navigates to a screen. Fires `focus_change` on LEFT/RIGHT tile movement in hero and standard rails. Fires `dead_end` when at edge with no further movement.
+
+### MODIFIED: js/screens/series-pdp.js
+- `init()`: fires `Analytics.track('navigation', ...)` on arrival. Stores `_screenEnterTime`.
+- `_activateZone()`: fires `focus_change` on zone transitions; tracks `_zoneEnterTime`.
+- `_getZoneIndex()`: helper returns current index within a zone.
+- Season OK: fires `feature_interaction` (season-selector).
+- Episode OK: fires `tile_select` + `navigation` before navigating to player.
+- Extra OK: fires `tile_select` + `navigation`.
+- Similar title OK: fires `tile_select` + `navigation`.
+
+### MODIFIED: js/screens/player.js
+- `init()`: fires `Analytics.track('navigation', ...)`.
+- `loadedmetadata`: fires `playback_start`.
+- `ended`: fires `playback_complete`.
+- `PLAYPAUSE` action: fires `playback_start` (resume) or `playback_pause`.
+- `BACK` action: fires `playback_complete` with `exitedEarly` flag.
+- Progress scrub LEFT/RIGHT: fires `playback_scrub` with from/to positions.
+- `_handleBtnAction()`: fires `controls_interaction` for all button presses.
+
+### MODIFIED: index.html
+- Added `<link rel="stylesheet" href="css/feedback.css" />`.
+- Added `<script src="js/analytics.js">` (before screens — ensures `Analytics` global is available).
+- Added QRCode.js CDN script.
+- Added `<script src="js/feedback.js">` (after screens — FocusEngine must exist first).
+
+---
+
+## Bug Hunt — Medium & Low Fixes (2026-04-07)
 
 ---
 

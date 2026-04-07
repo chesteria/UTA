@@ -78,7 +78,16 @@ const App = (function() {
    * Go back to previous screen in history.
    */
   function back() {
-    if (history.length === 0) return false;
+    if (history.length === 0) {
+      // No history — user pressed BACK from lander (top of stack)
+      try {
+        if (typeof Analytics !== 'undefined') {
+          const summary = Analytics.getSessionSummary();
+          Analytics.track('session_end', summary);
+        }
+      } catch (e) { /* fail silently */ }
+      return false;
+    }
     const prev = history.pop();
     navigate(prev.screenId, prev.params, true);
     return true;

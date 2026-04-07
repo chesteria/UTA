@@ -24,6 +24,7 @@ const SeriesPDPScreen = {
   async init(container, params) {
     this._container = container;
     this._container.className = 'screen screen-series-pdp';
+    this._screenEnterTime = Date.now();
 
     // Read saved state from container (set by onBlur on BACK navigation)
     const savedZone      = container._savedZone;
@@ -55,6 +56,18 @@ const SeriesPDPScreen = {
 
     this._seriesData = await DataStore.getSeriesData(showId);
     this._render();
+
+    // Track navigation to PDP
+    try {
+      if (typeof Analytics !== 'undefined') {
+        Analytics.track('navigation', {
+          from: params._fromScreen || 'lander',
+          to: 'series-pdp',
+          trigger: 'tile-select',
+          itemId: showId,
+        });
+      }
+    } catch (e) { /* fail silently */ }
 
     // Restore scroll position (no transition to avoid flash)
     if (savedScrollY) {
@@ -266,6 +279,21 @@ const SeriesPDPScreen = {
   destroy() {},
 
   _activateZone(zone) {
+    // Track focus_change between zones
+    const prevZone = this._activeZone;
+    if (prevZone !== zone && prevZone) {
+      try {
+        if (typeof Analytics !== 'undefined') {
+          Analytics.track('focus_change', {
+            from: { screen: 'series-pdp', zone: prevZone, index: this._getZoneIndex(prevZone) },
+            to: { screen: 'series-pdp', zone: zone, index: 0 },
+            method: 'dpad',
+            dwellTimeMs: Date.now() - (this._zoneEnterTime || Date.now()),
+          });
+        }
+      } catch (e) { /* fail silently */ }
+    }
+    this._zoneEnterTime = Date.now();
     this._activeZone = zone;
     this._deactivateAllZones();
 
@@ -284,6 +312,14 @@ const SeriesPDPScreen = {
       const card = this._container.querySelector('#more-info-card');
       if (card) card.classList.add('focused');
     }
+  },
+
+  _getZoneIndex(zone) {
+    if (zone === 'seasons') return this._seasonIdx;
+    if (zone === 'episodes') return this._episodeIdx;
+    if (zone === 'extras') return this._extrasIdx;
+    if (zone === 'similar') return this._similarIdx;
+    return 0;
   },
 
   _deactivateAllZones() {
@@ -425,6 +461,16 @@ const SeriesPDPScreen = {
       }
       if (action === 'OK') {
         this._selectSeason(this._seasonIdx);
+        try {
+          if (typeof Analytics !== 'undefined') {
+            Analytics.track('feature_interaction', {
+              feature: 'season-selector',
+              screen: 'series-pdp',
+              seasonIndex: this._seasonIdx,
+              showId: this._show?.id,
+            });
+          }
+        } catch (e) { /* fail silently */ }
         return;
       }
     }
@@ -459,7 +505,22 @@ const SeriesPDPScreen = {
       }
       if (action === 'OK') {
         const ep = this._seriesData?.seasons[this._seasonIdx]?.episodes[this._episodeIdx];
-        if (ep) App.navigate('player', { showId: this._show.id, episodeId: ep.id, episodeData: ep });
+        if (ep) {
+          try {
+            if (typeof Analytics !== 'undefined') {
+              Analytics.track('tile_select', {
+                screen: 'series-pdp',
+                rail: 'episodes',
+                tileIndex: this._episodeIdx,
+                itemId: ep.id,
+                itemTitle: ep.title,
+                timeOnScreenMs: Date.now() - (this._screenEnterTime || Date.now()),
+              });
+              Analytics.track('navigation', { from: 'series-pdp', to: 'player', trigger: 'tile-select', itemId: ep.id });
+            }
+          } catch (e) { /* fail silently */ }
+          App.navigate('player', { showId: this._show.id, episodeId: ep.id, episodeData: ep });
+        }
         return;
       }
     }
@@ -491,7 +552,22 @@ const SeriesPDPScreen = {
       }
       if (action === 'OK') {
         const extra = this._seriesData?.extras[this._extrasIdx];
-        if (extra) App.navigate('player', { showId: this._show.id, episodeId: extra.id, isExtra: true });
+        if (extra) {
+          try {
+            if (typeof Analytics !== 'undefined') {
+              Analytics.track('tile_select', {
+                screen: 'series-pdp',
+                rail: 'extras',
+                tileIndex: this._extrasIdx,
+                itemId: extra.id,
+                itemTitle: extra.title,
+                timeOnScreenMs: Date.now() - (this._screenEnterTime || Date.now()),
+              });
+              Analytics.track('navigation', { from: 'series-pdp', to: 'player', trigger: 'tile-select', itemId: extra.id });
+            }
+          } catch (e) { /* fail silently */ }
+          App.navigate('player', { showId: this._show.id, episodeId: extra.id, isExtra: true });
+        }
         return;
       }
     }
@@ -523,7 +599,21 @@ const SeriesPDPScreen = {
       }
       if (action === 'OK') {
         const showId = tiles[this._similarIdx]?.dataset?.showId;
-        if (showId) App.navigate('series-pdp', { showId });
+        if (showId) {
+          try {
+            if (typeof Analytics !== 'undefined') {
+              Analytics.track('tile_select', {
+                screen: 'series-pdp',
+                rail: 'similar',
+                tileIndex: this._similarIdx,
+                itemId: showId,
+                timeOnScreenMs: Date.now() - (this._screenEnterTime || Date.now()),
+              });
+              Analytics.track('navigation', { from: 'series-pdp', to: 'series-pdp', trigger: 'similar-title', itemId: showId });
+            }
+          } catch (e) { /* fail silently */ }
+          App.navigate('series-pdp', { showId });
+        }
         return;
       }
     }

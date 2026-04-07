@@ -99,6 +99,18 @@ const PlayerScreen = {
     document.addEventListener('debugconfig:change', this._debugConfigHandler);
 
     this._render();
+
+    // Track navigation to player
+    try {
+      if (typeof Analytics !== 'undefined') {
+        Analytics.track('navigation', {
+          from: 'series-pdp',
+          to: 'player',
+          trigger: 'episode-select',
+          itemId: params.episodeId || params.showId || '',
+        });
+      }
+    } catch (e) { /* fail silently */ }
   },
 
   _parseDuration(str) {
@@ -253,6 +265,17 @@ const PlayerScreen = {
         this._duration = video.duration;
         video.playbackRate = DebugConfig.get('playbackSpeed', PLAYBACK_SPEED);
         this._updateProgressUI();
+        // Track playback_start when media loads and plays
+        try {
+          if (typeof Analytics !== 'undefined') {
+            Analytics.track('playback_start', {
+              showId: this._show?.id,
+              episodeId: this._episodeData?.id,
+              isLive: this._isLive,
+              startPosition: this._elapsed,
+            });
+          }
+        } catch (e) { /* fail silently */ }
       });
 
       video.addEventListener('timeupdate', () => {
@@ -264,6 +287,17 @@ const PlayerScreen = {
 
       video.addEventListener('ended', () => {
         this._showControls();
+        try {
+          if (typeof Analytics !== 'undefined') {
+            Analytics.track('playback_complete', {
+              showId: this._show?.id,
+              episodeId: this._episodeData?.id,
+              durationMs: this._duration * 1000,
+              watchedMs: this._elapsed * 1000,
+              completionPct: 100,
+            });
+          }
+        } catch (e) { /* fail silently */ }
       });
 
       // Attach stream via HLS.js on Chromium (Vizio, Chrome, Firefox);
@@ -441,13 +475,41 @@ const PlayerScreen = {
 
     if (action === 'PLAYPAUSE') {
       if (this._video) {
-        if (this._video.paused) { this._video.play().catch(() => {}); showToast('▶ Playing'); }
-        else { this._video.pause(); showToast('⏸ Paused'); }
+        if (this._video.paused) {
+          this._video.play().catch(() => {});
+          showToast('▶ Playing');
+          try {
+            if (typeof Analytics !== 'undefined') {
+              Analytics.track('playback_start', { showId: this._show?.id, episodeId: this._episodeData?.id, resumePosition: this._elapsed });
+            }
+          } catch (e) { /* fail silently */ }
+        } else {
+          this._video.pause();
+          showToast('⏸ Paused');
+          try {
+            if (typeof Analytics !== 'undefined') {
+              Analytics.track('playback_pause', { showId: this._show?.id, episodeId: this._episodeData?.id, pausePosition: this._elapsed });
+            }
+          } catch (e) { /* fail silently */ }
+        }
       }
       return;
     }
 
     if (action === 'BACK') {
+      // Track playback_complete (exit) and session_end
+      try {
+        if (typeof Analytics !== 'undefined') {
+          Analytics.track('playback_complete', {
+            showId: this._show?.id,
+            episodeId: this._episodeData?.id,
+            durationMs: this._duration * 1000,
+            watchedMs: this._elapsed * 1000,
+            completionPct: this._duration > 0 ? Math.round(this._elapsed / this._duration * 100) : 0,
+            exitedEarly: this._elapsed < this._duration * 0.95,
+          });
+        }
+      } catch (e) { /* fail silently */ }
       this._hideControls();
       return;
     }
@@ -461,19 +523,31 @@ const PlayerScreen = {
       }
       if (action === 'UP') return; // Nothing above progress bar
       if (action === 'LEFT') {
+        const fromPos = this._elapsed;
         this._scrubPos = Math.max(0, this._scrubPos - 0.02);
         this._elapsed = this._scrubPos * this._duration;
         if (this._video) this._video.currentTime = this._elapsed;
         this._updateProgressUI();
         this._updateScrubThumbs();
+        try {
+          if (typeof Analytics !== 'undefined') {
+            Analytics.track('playback_scrub', { showId: this._show?.id, from: fromPos, to: this._elapsed, direction: 'back' });
+          }
+        } catch (e) { /* fail silently */ }
         return;
       }
       if (action === 'RIGHT') {
+        const fromPos = this._elapsed;
         this._scrubPos = Math.min(1, this._scrubPos + 0.02);
         this._elapsed = this._scrubPos * this._duration;
         if (this._video) this._video.currentTime = this._elapsed;
         this._updateProgressUI();
         this._updateScrubThumbs();
+        try {
+          if (typeof Analytics !== 'undefined') {
+            Analytics.track('playback_scrub', { showId: this._show?.id, from: fromPos, to: this._elapsed, direction: 'forward' });
+          }
+        } catch (e) { /* fail silently */ }
         return;
       }
       if (action === 'OK') {
@@ -594,6 +668,19 @@ const PlayerScreen = {
     const btnKey = this._btnGroup === 'left'
       ? this._btnGroupLeft[this._btnIdx]
       : this._btnGroupRight[this._btnIdx];
+
+    // Track controls interaction
+    try {
+      if (typeof Analytics !== 'undefined') {
+        Analytics.track('controls_interaction', {
+          button: btnKey,
+          showId: this._show?.id,
+          episodeId: this._episodeData?.id,
+          elapsed: this._elapsed,
+          scrubPos: this._scrubPos,
+        });
+      }
+    } catch (e) { /* fail silently */ }
 
     if (btnKey === 'start-over') {
       this._elapsed = 0;
