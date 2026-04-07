@@ -37,6 +37,7 @@ const App = (function() {
     // Blur current screen
     if (activeScreen) {
       activeScreen.onBlur && activeScreen.onBlur();
+      if (replace) activeScreen.destroy?.();
       const currentEl = appEl.querySelector(`.screen[data-screen="${activeScreen.id}"]`);
       if (currentEl) {
         currentEl.classList.remove('active');
