@@ -245,7 +245,8 @@ const FeedbackSystem = (() => {
       focusedElement: focused?.className || 'none',
       scrollPosition: screen?.scrollTop || 0,
       timestamp: new Date().toISOString(),
-      participantId: Analytics.getParticipantId(),
+      // participantId intentionally omitted: it is already in the top-level
+      // event envelope added by Analytics.track() — no duplication in payload.
     };
   }
 
