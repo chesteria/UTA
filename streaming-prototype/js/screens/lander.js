@@ -39,7 +39,14 @@ const LanderScreen = {
     this._container.className = 'screen screen-lander';
     this._railModules = [];
     this._cityTimers = [];
-    this._activeRailIdx = params.restoreRailIdx !== undefined ? params.restoreRailIdx : 0;
+
+    // Read saved state from container (set by onBlur on BACK navigation)
+    const savedRailIdx = container._savedRailIdx;
+    const savedScrollY = container._savedScroll;
+    delete container._savedRailIdx;
+    delete container._savedScroll;
+
+    this._activeRailIdx = savedRailIdx !== undefined ? savedRailIdx : 0;
 
     // Build DOM
     container.innerHTML = `
@@ -62,11 +69,15 @@ const LanderScreen = {
       if (module) this._railModules.push(module);
     }
 
-    // Set initial scroll position
-    if (params.scrollY) {
-      this._scrollY = params.scrollY;
-      this._scrollEl.style.transform = `translateY(${this._scrollY}px)`;
+    // Restore scroll position (no transition to avoid flash)
+    if (savedScrollY) {
+      this._scrollY = savedScrollY;
       this._scrollEl.style.transition = 'none';
+      this._scrollEl.style.transform = `translateY(${this._scrollY}px)`;
+      // Re-enable transition on next frame
+      requestAnimationFrame(() => {
+        this._scrollEl.style.transition = '';
+      });
     }
 
     // Listen for debug config changes
