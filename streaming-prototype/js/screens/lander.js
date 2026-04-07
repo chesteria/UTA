@@ -76,6 +76,10 @@ const LanderScreen = {
         const heroRail = this._railModules[0];
         if (heroRail && heroRail.updateTimers) heroRail.updateTimers();
       }
+      if (key === 'livingTiles' || key === 'cityCycleInterval') {
+        _stopAllLivingTiles();
+        if (DebugConfig.get('livingTiles', true)) _restartAllLivingTiles();
+      }
     };
     document.addEventListener('debugconfig:change', this._debugConfigHandler);
   },
@@ -110,6 +114,7 @@ const LanderScreen = {
   destroy() {
     this._stopCityTimers();
     clearInterval(this._heroTimer);
+    _stopAllLivingTiles();
     if (this._debugConfigHandler) {
       document.removeEventListener('debugconfig:change', this._debugConfigHandler);
     }
@@ -445,11 +450,18 @@ function buildHeroTile(item, isFocused) {
 function startLivingTile(tileEl, images) {
   if (!DebugConfig.get('livingTiles', true)) return;
   if (images.length < 2) return;
-  let imgIdx = 0;
   const primaryImg = tileEl.querySelector('.hero-img');
   const secondaryImg = tileEl.querySelector('.hero-img-secondary');
   if (!primaryImg || !secondaryImg) return;
 
+  // Clear any existing timer before starting a new one
+  if (tileEl._livingTimer) { clearInterval(tileEl._livingTimer); tileEl._livingTimer = null; }
+
+  // Store for runtime restart (cityCycleInterval / livingTiles changes)
+  tileEl._livingImages = images;
+  tileEl.dataset.livingTile = 'true';
+
+  let imgIdx = 0;
   const timer = setInterval(() => {
     imgIdx = (imgIdx + 1) % images.length;
     secondaryImg.src = images[imgIdx];
@@ -460,8 +472,19 @@ function startLivingTile(tileEl, images) {
     }, DebugConfig.get('crossfadeDuration', FADE_DURATION_MS));
   }, DebugConfig.get('cityCycleInterval', CITY_CYCLE_INTERVAL_MS));
 
-  // Store timer on element so it can be cleared
   tileEl._livingTimer = timer;
+}
+
+function _stopAllLivingTiles() {
+  document.querySelectorAll('[data-living-tile]').forEach(el => {
+    if (el._livingTimer) { clearInterval(el._livingTimer); el._livingTimer = null; }
+  });
+}
+
+function _restartAllLivingTiles() {
+  document.querySelectorAll('[data-living-tile]').forEach(el => {
+    if (el._livingImages) startLivingTile(el, el._livingImages);
+  });
 }
 
 /* ---- CONTINUE WATCHING RAIL ---- */

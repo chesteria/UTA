@@ -83,8 +83,17 @@ const PlayerScreen = {
     }
 
     this._debugConfigHandler = (e) => {
-      if (e.detail.key === 'playbackSpeed' && this._video) {
-        this._video.playbackRate = e.detail.value;
+      const { key, value } = e.detail;
+      if (key === 'playbackSpeed' && this._video) {
+        this._video.playbackRate = value;
+      }
+      if (key === 'simulatedPlayback' && !this._video) {
+        if (value) {
+          this._attachProgressUpdates();
+        } else {
+          clearInterval(this._playTimer);
+          this._playTimer = null;
+        }
       }
     };
     document.addEventListener('debugconfig:change', this._debugConfigHandler);

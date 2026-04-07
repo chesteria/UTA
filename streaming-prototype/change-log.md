@@ -3,6 +3,34 @@
 
 ---
 
+## Debug Panel — Control Wiring Fixes (2026-04-06)
+Source: audit of all panel controls against runtime behavior
+
+### js/screens/lander.js
+- **`startLivingTile()`**: clears any pre-existing timer before starting a new one; stores `_livingImages` and sets `data-living-tile` attribute on the element so timers can be found and restarted without re-deriving data
+- **`_stopAllLivingTiles()` (new helper)**: queries all `[data-living-tile]` elements, clears their `_livingTimer`, nulls the ref
+- **`_restartAllLivingTiles()` (new helper)**: re-calls `startLivingTile()` on all marked elements using their stored `_livingImages`
+- **`debugconfig:change` listener**: added handling for `livingTiles` and `cityCycleInterval` — stops all living tile timers, then restarts them if `livingTiles` is on. Previously these two controls had no runtime effect; required a page reload to take effect
+- **`destroy()`**: added `_stopAllLivingTiles()` call — previously, living tile `setInterval`s kept running after the lander was unmounted (navigating to series-pdp or player), leaking timers against detached DOM elements
+
+### js/screens/player.js
+- **`debugconfig:change` listener**: added handling for `simulatedPlayback` — toggling it off clears `_playTimer`; toggling it on calls `_attachProgressUpdates()` (only relevant in the no-video fallback path; real HLS playback is unaffected)
+
+### Controls status after fixes
+| Control | Was | Now |
+|---|---|---|
+| Living Tiles toggle | No runtime effect | Stops/restarts all tiles live |
+| City Cycle Interval slider | No runtime effect | Restarts tiles at new interval |
+| Simulated Playback toggle | No runtime effect | Starts/stops fallback timer |
+| All CSS var controls | ✓ Working | ✓ Working |
+| Hero Auto-Advance / Interval | ✓ Working | ✓ Working |
+| Controls Auto-Hide | ✓ Working | ✓ Working |
+| Playback Speed | ✓ Working (prev session) | ✓ Working |
+| Show Focus Outlines | ✓ Working | ✓ Working |
+| Show Grid Overlay | ✓ Working | ✓ Working |
+
+---
+
 ## Playback Fix — HLS.js + Vizio Compatibility (2026-04-06)
 Source: `playback.md` issue analysis
 
