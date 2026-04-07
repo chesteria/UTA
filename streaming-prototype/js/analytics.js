@@ -279,9 +279,12 @@ const Analytics = (() => {
     }
   }
 
-  // Auto-init on script load
-  init();
-  _pruneOldSessions();
+  // Auto-init on script load — guarded so ANALYTICS_ENABLED=false truly disables
+  // all collection including localStorage writes (session counter, session ID).
+  if (ANALYTICS_ENABLED) {
+    init();
+    _pruneOldSessions();
+  }
 
   return {
     track,
