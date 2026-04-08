@@ -374,7 +374,7 @@ const FeedbackSystem = (() => {
       }
 
     } else if (_focusZone === 'tags') {
-      const tagBtns = _overlayEl.querySelectorAll('.feedback-tag-btn');
+      const tagBtns = Array.from(_overlayEl.querySelectorAll('.feedback-tag-btn'));
       if (key === 'ArrowLeft') {
         _tagIdx = Math.max(0, _tagIdx - 1);
         _updateTagFocus();
@@ -382,14 +382,40 @@ const FeedbackSystem = (() => {
         _tagIdx = Math.min(tagBtns.length - 1, _tagIdx + 1);
         _updateTagFocus();
       } else if (key === 'ArrowUp') {
-        _focusZone = 'reactions';
-        _clearTagFocus();
-        _updateReactionFocus();
+        const rows = _getTagRows(tagBtns);
+        const curRowIdx = rows.findIndex(row => row.some(item => item.idx === _tagIdx));
+        if (curRowIdx > 0) {
+          // Move to the closest tag in the row above
+          const curLeft = tagBtns[_tagIdx].offsetLeft;
+          const prevRow = rows[curRowIdx - 1];
+          const closest = prevRow.reduce((best, item) =>
+            Math.abs(item.btn.offsetLeft - curLeft) < Math.abs(best.btn.offsetLeft - curLeft) ? item : best
+          );
+          _tagIdx = closest.idx;
+          _updateTagFocus();
+        } else {
+          _focusZone = 'reactions';
+          _clearTagFocus();
+          _updateReactionFocus();
+        }
       } else if (key === 'ArrowDown') {
-        _focusZone = 'actions';
-        _actionIdx = 0;
-        _clearTagFocus();
-        _updateActionFocus();
+        const rows = _getTagRows(tagBtns);
+        const curRowIdx = rows.findIndex(row => row.some(item => item.idx === _tagIdx));
+        if (curRowIdx < rows.length - 1) {
+          // Move to the closest tag in the row below
+          const curLeft = tagBtns[_tagIdx].offsetLeft;
+          const nextRow = rows[curRowIdx + 1];
+          const closest = nextRow.reduce((best, item) =>
+            Math.abs(item.btn.offsetLeft - curLeft) < Math.abs(best.btn.offsetLeft - curLeft) ? item : best
+          );
+          _tagIdx = closest.idx;
+          _updateTagFocus();
+        } else {
+          _focusZone = 'actions';
+          _actionIdx = 0;
+          _clearTagFocus();
+          _updateActionFocus();
+        }
       } else if (key === 'Enter' || key === 'Accept') {
         _toggleTag(_tagIdx);
       }
@@ -402,8 +428,11 @@ const FeedbackSystem = (() => {
         _actionIdx = Math.min(1, _actionIdx + 1);
         _updateActionFocus();
       } else if (key === 'ArrowUp') {
+        const tagBtns = Array.from(_overlayEl.querySelectorAll('.feedback-tag-btn'));
+        const rows = _getTagRows(tagBtns);
+        // Return to the first tag of the last row
+        _tagIdx = rows.length ? rows[rows.length - 1][0].idx : 0;
         _focusZone = 'tags';
-        _tagIdx = 0;
         _clearActionFocus();
         _updateTagFocus();
       } else if (key === 'Enter' || key === 'Accept') {
@@ -429,6 +458,26 @@ const FeedbackSystem = (() => {
     btns.forEach((b, i) => {
       b.classList.toggle('selected', i === idx);
     });
+  }
+
+  // Groups tag buttons into visual rows by comparing offsetTop values.
+  // Returns an array of rows, each row being an array of { btn, idx } objects.
+  function _getTagRows(tagBtns) {
+    const rows = [];
+    let currentTop = -1;
+    let currentRow = [];
+    tagBtns.forEach((btn, idx) => {
+      const top = btn.offsetTop;
+      if (top !== currentTop) {
+        if (currentRow.length) rows.push(currentRow);
+        currentRow = [{ btn, idx }];
+        currentTop = top;
+      } else {
+        currentRow.push({ btn, idx });
+      }
+    });
+    if (currentRow.length) rows.push(currentRow);
+    return rows;
   }
 
   function _updateTagFocus() {

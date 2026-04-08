@@ -3,6 +3,17 @@
 
 ---
 
+## v1.5 r1 — Feedback Round 1 (2026-04-08)
+Source: `docs/Feedback/v1.5-insights/v1.5-r1.md`
+
+### js/screens/lander.js
+- **Hero rail focus events**: Removed `focus_change` from LEFT/RIGHT tile movement and auto-advance — these were firing one event per tile change and polluting the event stream. Now fires a single `focus_change` on `onEnter()` (when user arrives at the hero rail from nav). Tile index tracking (`currentTileIdx`, `focusedItemTitle`, `maxTileReached`) is preserved without analytics side effects.
+
+### js/feedback.js
+- **Tag navigation row-awareness**: Added `_getTagRows()` helper that groups `.feedback-tag-btn` elements into visual rows by comparing `offsetTop` values. UP/DOWN in the tags zone now navigates between rows (finding the closest tag by `offsetLeft`) rather than jumping directly to reactions or actions. DOWN from the last tag row still goes to actions; UP from the first row still goes to reactions. UP from actions now returns to the first tag of the last row instead of always resetting to index 0.
+
+---
+
 ## Phase 2 — Insight Engine: Bug Hunt Fixes (2026-04-07)
 Source: `docs/phase2-bug-hunt-report.md` — HIGH, MEDIUM, LOW issues
 Branch: `insights-engine-v1`

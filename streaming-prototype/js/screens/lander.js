@@ -442,23 +442,10 @@ function buildHeroCarousel(config, container) {
     autoTimer = setInterval(() => {
       if (!isActive) return;
       const prev = focusedIdx;
-      const prevDwell = Math.max(0, Date.now() - (heroAnalyticsState.enterTime || Date.now()));
       focusedIdx = (focusedIdx + 1) % items.length;
       heroAnalyticsState.currentTileIdx = focusedIdx;
-      heroAnalyticsState.enterTime = Date.now();
       heroAnalyticsState.focusedItemTitle = items[focusedIdx]?.title || items[focusedIdx]?.name || '';
       if (focusedIdx > heroAnalyticsState.maxTileReached) heroAnalyticsState.maxTileReached = focusedIdx;
-      // M2: fire focus_change on auto-advance
-      try {
-        if (typeof Analytics !== 'undefined') {
-          Analytics.track('focus_change', {
-            from: { screen: 'lander', zone: 'hero-carousel', index: prev, itemId: items[prev]?.id || '' },
-            to: { screen: 'lander', zone: 'hero-carousel', index: focusedIdx, itemId: items[focusedIdx]?.id || '' },
-            method: 'auto-advance',
-            dwellTimeMs: prevDwell,
-          });
-        }
-      } catch (e) { /* fail silently */ }
       focusTile(focusedIdx, prev);
     }, DebugConfig.get('heroCycleInterval', HERO_CYCLE_INTERVAL_MS));
   }
@@ -483,6 +470,16 @@ function buildHeroCarousel(config, container) {
       heroAnalyticsState.maxTileReached = focusedIdx;
       heroAnalyticsState.selectedTile = null;
       heroAnalyticsState.focusedItemTitle = items[focusedIdx]?.title || items[focusedIdx]?.name || '';
+      // Single focus_change on rail entry — not on every tile movement within the rail
+      try {
+        if (typeof Analytics !== 'undefined') {
+          Analytics.track('focus_change', {
+            from: { screen: 'lander', zone: 'nav' },
+            to: { screen: 'lander', zone: 'hero-carousel', index: focusedIdx, itemId: items[focusedIdx]?.id || '' },
+            method: 'dpad-down',
+          });
+        }
+      } catch (e) { /* fail silently */ }
       focusTile(focusedIdx);
       startAutoAdvance();
     },
@@ -498,20 +495,8 @@ function buildHeroCarousel(config, container) {
       if (action === 'LEFT') {
         if (focusedIdx > 0) {
           const prevIdx2 = focusedIdx;
-          const prevDwell = Math.max(0, Date.now() - (heroAnalyticsState.enterTime || Date.now()));
-          try {
-            if (typeof Analytics !== 'undefined') {
-              Analytics.track('focus_change', {
-                from: { screen: 'lander', zone: 'hero-carousel', index: prevIdx2, itemId: items[prevIdx2]?.id || '' },
-                to: { screen: 'lander', zone: 'hero-carousel', index: focusedIdx - 1, itemId: items[focusedIdx - 1]?.id || '' },
-                method: 'dpad-left',
-                dwellTimeMs: prevDwell,
-              });
-            }
-          } catch (e) { /* fail silently */ }
           focusedIdx--;
           heroAnalyticsState.currentTileIdx = focusedIdx;
-          heroAnalyticsState.enterTime = Date.now();
           heroAnalyticsState.focusedItemTitle = items[focusedIdx]?.title || items[focusedIdx]?.name || '';
           focusTile(focusedIdx, prevIdx2);
           startAutoAdvance();
@@ -527,20 +512,8 @@ function buildHeroCarousel(config, container) {
       if (action === 'RIGHT') {
         if (focusedIdx < items.length - 1) {
           const prevIdx2 = focusedIdx;
-          const prevDwell = Math.max(0, Date.now() - (heroAnalyticsState.enterTime || Date.now()));
-          try {
-            if (typeof Analytics !== 'undefined') {
-              Analytics.track('focus_change', {
-                from: { screen: 'lander', zone: 'hero-carousel', index: prevIdx2, itemId: items[prevIdx2]?.id || '' },
-                to: { screen: 'lander', zone: 'hero-carousel', index: focusedIdx + 1, itemId: items[focusedIdx + 1]?.id || '' },
-                method: 'dpad-right',
-                dwellTimeMs: prevDwell,
-              });
-            }
-          } catch (e) { /* fail silently */ }
           focusedIdx++;
           heroAnalyticsState.currentTileIdx = focusedIdx;
-          heroAnalyticsState.enterTime = Date.now();
           heroAnalyticsState.focusedItemTitle = items[focusedIdx]?.title || items[focusedIdx]?.name || '';
           if (focusedIdx > heroAnalyticsState.maxTileReached) heroAnalyticsState.maxTileReached = focusedIdx;
           focusTile(focusedIdx, prevIdx2);
