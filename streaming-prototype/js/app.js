@@ -145,6 +145,9 @@ const App = (function() {
     // Display version info
     _initVersionDisplay();
 
+    // Show welcome screen if first launch (awaited — lander loads after dismiss)
+    await WelcomeScreen.init();
+
     // Navigate to lander
     navigate('lander', {}, true);
   }

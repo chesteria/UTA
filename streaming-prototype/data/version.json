@@ -1,9 +1,9 @@
 {
   "version": "1.5.0",
-  "buildNumber": 5,
-  "buildDate": "2026-04-08T20:06:52Z",
-  "gitCommit": "ede89fa",
-  "gitBranch": "main",
+  "buildNumber": 6,
+  "buildDate": "2026-04-08T20:10:41Z",
+  "gitCommit": "047cd43",
+  "gitBranch": "welcome-screen",
   "phase": "Phase 2",
   "label": "Insight Engine"
 }
