@@ -69,11 +69,20 @@ const Analytics = (() => {
       Object.keys(localStorage).forEach(k => {
         if (k.startsWith('debug_')) overrides[k.slice(6)] = localStorage.getItem(k);
       });
+
+      const versionInfo = (typeof DataStore !== 'undefined')
+        ? (() => {
+            const v = DataStore.getVersion();
+            return { appVersion: v.version, buildNumber: v.buildNumber, gitCommit: v.gitCommit };
+          })()
+        : {};
+
       return {
         landerVersion: localStorage.getItem('debug_landerConfig')
           ? _simpleHash(localStorage.getItem('debug_landerConfig'))
           : 'default',
         debugOverrides: overrides,
+        ...versionInfo,
       };
     } catch (e) {
       return { landerVersion: 'default', debugOverrides: {} };

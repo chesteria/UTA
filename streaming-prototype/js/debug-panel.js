@@ -180,6 +180,14 @@ const PANEL_SPEC = [
   { type: 'button', label: 'Send Report (QR)', action: 'sendReport' },
   { type: 'button', label: 'View Analytics Log', action: 'viewAnalytics' },
   { type: 'button', label: 'Reset All to Defaults', action: 'resetAll', danger: true },
+
+  { type: 'section', label: 'F \u2014 Version Info' },
+  { type: 'info', label: 'Version',  valueKey: 'version' },
+  { type: 'info', label: 'Build',    valueKey: 'buildNumber' },
+  { type: 'info', label: 'Phase',    valueKey: '_phaseLabel' },
+  { type: 'info', label: 'Built',    valueKey: '_builtFormatted' },
+  { type: 'info', label: 'Commit',   valueKey: 'gitCommit' },
+  { type: 'info', label: 'Branch',   valueKey: 'gitBranch' },
 ];
 
 const DebugPanel = (() => {
@@ -344,6 +352,32 @@ const DebugPanel = (() => {
             <div class="dp-btn${spec.danger ? ' dp-btn-danger' : ''}">${spec.label}</div>
           </div>
         `;
+
+      } else if (spec.type === 'info') {
+        const v = (typeof DataStore !== 'undefined') ? DataStore.getVersion() : {};
+        let displayVal = '—';
+        if (spec.valueKey === '_phaseLabel') {
+          displayVal = `${v.phase || ''} — ${v.label || ''}`.replace(/^ — | — $/, '') || '—';
+        } else if (spec.valueKey === '_builtFormatted') {
+          displayVal = v.buildDate
+            ? new Date(v.buildDate).toLocaleDateString('en-US',
+                { month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit' })
+            : '—';
+        } else {
+          const raw = v[spec.valueKey];
+          displayVal = (raw !== undefined && raw !== null) ? String(raw) : '—';
+        }
+        row.innerHTML = `
+          <div class="dp-row-left">
+            <div class="dp-label">${spec.label}</div>
+          </div>
+          <div class="dp-row-right">
+            <div class="dp-info-value">${displayVal}</div>
+          </div>
+        `;
+        // info rows are non-interactive — don't push to _controls
+        _body.appendChild(row);
+        return;
       }
 
       _body.appendChild(row);

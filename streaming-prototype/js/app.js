@@ -96,6 +96,38 @@ const App = (function() {
   /**
    * Initialize app: set up container, register screens, load data, go to lander.
    */
+  // === VERSIONING CONFIG ===
+  const LOG_VERSION_ON_LAUNCH = true;
+
+  function _initVersionDisplay() {
+    const v = DataStore.getVersion();
+
+    // Console log
+    if (LOG_VERSION_ON_LAUNCH) {
+      const built = v.buildDate
+        ? new Date(v.buildDate).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
+        : 'unknown date';
+      console.log(
+        `[app] Streaming Prototype v${v.version} (Build ${v.buildNumber}) — ${v.phase} — ${v.label}`
+      );
+      console.log(
+        `[app] Built ${built} from commit ${v.gitCommit} on ${v.gitBranch}`
+      );
+    }
+
+    // Update the #build-stamp element
+    const stamp = document.getElementById('build-stamp');
+    if (stamp) {
+      stamp.textContent = `v${v.version} \u00b7 Build ${v.buildNumber}`;
+    }
+
+    // Update HTML meta tags
+    const metaVersion = document.querySelector('meta[name="app-version"]');
+    const metaBuild   = document.querySelector('meta[name="app-build"]');
+    if (metaVersion) metaVersion.setAttribute('content', v.version);
+    if (metaBuild)   metaBuild.setAttribute('content', String(v.buildNumber));
+  }
+
   async function init() {
     appEl = document.getElementById('app');
 
@@ -107,8 +139,11 @@ const App = (function() {
     registerScreen(SeriesPDPScreen);
     registerScreen(PlayerScreen);
 
-    // Load all data
+    // Load all data (includes version.json)
     await DataStore.init();
+
+    // Display version info
+    _initVersionDisplay();
 
     // Navigate to lander
     navigate('lander', {}, true);

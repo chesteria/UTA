@@ -411,3 +411,12 @@ body:has(#debug-panel.open) #build-stamp {
   opacity: 0;
   pointer-events: none;
 }
+
+/* ---- Version info rows (read-only, Section F) ---- */
+.dp-info-value {
+  font-size: 13px;
+  color: var(--dp-text-dim, #8899AA);
+  font-family: 'SF Mono', 'Menlo', 'Consolas', monospace;
+  text-align: right;
+  white-space: nowrap;
+}

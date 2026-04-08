@@ -6,7 +6,18 @@ const DataStore = (function() {
   let catalog = null;
   let geoState = null;
   let landerConfig = null;
+  let versionData = null;
   const seriesCache = {};
+
+  const VERSION_FALLBACK = {
+    version: 'unknown',
+    buildNumber: 0,
+    buildDate: null,
+    gitCommit: 'unknown',
+    gitBranch: 'unknown',
+    phase: 'unknown',
+    label: 'unknown',
+  };
 
   async function loadJSON(path) {
     const response = await fetch(path);
@@ -25,11 +36,19 @@ const DataStore = (function() {
       ? Promise.resolve(JSON.parse(storedCatalog))
       : loadJSON('data/catalog.json');
 
-    [catalog, geoState, landerConfig] = await Promise.all([
+    // version.json is non-blocking — app still works if it's missing/malformed
+    const versionPromise = loadJSON('data/version.json').catch(() => null);
+
+    [catalog, geoState, landerConfig, versionData] = await Promise.all([
       catalogPromise,
       loadJSON('data/geo-state.json'),
       landerPromise,
+      versionPromise,
     ]);
+  }
+
+  function getVersion() {
+    return versionData || VERSION_FALLBACK;
   }
 
   function getShow(id) {
@@ -118,6 +137,7 @@ const DataStore = (function() {
 
   return {
     init,
+    getVersion,
     getShow,
     getChannel,
     getCollection,
