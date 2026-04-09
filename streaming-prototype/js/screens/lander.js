@@ -131,7 +131,7 @@ const LanderScreen = {
   onBlur() {
     this._navZone.deactivate();
     this._railModules.forEach(r => r.onLeave && r.onLeave());
-    this._stopCityTimers();
+    _stopAllLivingTiles();
     clearInterval(this._heroTimer);
     // Save scroll position on the params object for restoration
     if (this._container) {
