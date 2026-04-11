@@ -10,6 +10,38 @@ Version numbers follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html
 
 ---
 
+## [1.5.2] — 2026-04-11
+
+Performance fixes and welcome screen completion.
+
+### Added
+- Welcome screen — shown on first launch before the participant ID prompt;
+  displays device controls reference and version/build stamp in the footer
+- Reload-as-New-User debug action — resets participant state and reloads
+  the app from the debug panel without manual localStorage clearing
+
+### Fixed
+- Living tile timers now stopped in `onBlur()` on forward navigation —
+  previously up to 10 `setInterval` callbacks (hero + city tiles) continued
+  running in the background during series-pdp and player screens, causing
+  image fetches and layout work on constrained TV hardware
+- Welcome screen close mechanisms and sequencing — welcome screen now
+  correctly closes before the participant ID prompt is shown; close
+  handling is robust across all navigation paths
+
+### Performance
+- Analytics writes buffered in memory; flushed to localStorage on a timer
+  rather than synchronously on every keypress — eliminates the per-keypress
+  `localStorage.getItem` + `JSON.parse` + `JSON.stringify` + `localStorage.setItem`
+  cycle that caused input lag on TV hardware (audit Finding 1 + 6)
+- `_getConfig()` result cached at module level and invalidated on
+  `debugconfig:change` — eliminates per-event `Object.keys(localStorage)`
+  scan (audit Finding 7)
+- DataStore catalog lookups indexed on first access — `getShow()` and
+  related calls now O(1) instead of O(n) linear array scans (audit Finding 3)
+
+---
+
 ## [1.5.1] — 2026-04-08
 
 Bug hunt fixes for the versioning system.
