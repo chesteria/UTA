@@ -32,7 +32,7 @@
   height: 60px;
   display: flex;
   align-items: center;
-  padding: 0 var(--content-pad-x);
+  padding: 0 var(--content-pad-x) 0 272px;  /* 272px = grid padding-left(70) + logo cell(190) + gap(12) — aligns first chip with program column */
   background: var(--color-bg);
   position: relative;
   z-index: 9;
@@ -91,6 +91,19 @@
                             so rows scrolling off the top are clipped at y=0 with no peeking */
 }
 
+/* Bottom fade — gives impression last row dissolves off screen */
+.epg-grid-wrapper::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 85px;
+  background: linear-gradient(to bottom, transparent, var(--color-bg));
+  pointer-events: none;
+  z-index: 2;
+}
+
 .epg-grid-scroll {
   will-change: transform;
   transition: transform 300ms ease;  /* focused row slides to pinned position */
@@ -110,14 +123,14 @@
   display: flex;
   align-items: stretch;
   gap: 12px;             /* logo cell and program tiles are separate — never touching */
-  height: 168px;
+  height: 163px;
   margin-bottom: 8px;
   overflow: hidden;
   transition: height 180ms ease;
 }
 
 .epg-channel-row.is-row-focused {
-  height: 360px;
+  height: 350px;
 }
 
 /* ---- Logo cell (fixed left column) ---- */
@@ -175,6 +188,7 @@
 .epg-logo-heart {
   font-size: 30px;
   color: rgba(255,255,255,0.35);
+  -webkit-text-stroke: 1px rgba(255,255,255,0.35);
   pointer-events: none;
   user-select: none;
   line-height: 1;
@@ -308,12 +322,38 @@
   display: flex;
 }
 
+/* Three-bar equalizer — element = left bar, ::before = middle bar, ::after = right bar */
 .epg-tile-watching-dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
+  position: relative;
+  width: 4px;
+  height: 10px;
+  border-radius: 1px;
   background: var(--color-progress-watch);
   flex-shrink: 0;
+  align-self: flex-end;
+  margin-right: 18px; /* reserve space for the two absolute-positioned bars */
+}
+
+.epg-tile-watching-dot::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 8px;
+  width: 4px;
+  height: 16px;
+  border-radius: 1px;
+  background: var(--color-progress-watch);
+}
+
+.epg-tile-watching-dot::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 16px;
+  width: 4px;
+  height: 13px;
+  border-radius: 1px;
+  background: var(--color-progress-watch);
 }
 
 /* ---- More-info overlay — right-side panel ---- */

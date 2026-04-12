@@ -110,8 +110,8 @@ JS object conforming to the screen contract:
 |-------------|-------|------|
 | Guide left offset | 130px from screen left | `content-pad-x` (60px) + 70px additional indent |
 | Rail → first row gap | 60px fixed | `margin-top` on grid wrapper — outside overflow clip, rows clip at y=0 with no peeking |
-| Row height (collapsed) | 168px | |
-| Row height (focused) | 360px | CSS height transition 180ms |
+| Row height (collapsed) | 163px | |
+| Row height (focused) | 350px | CSS height transition 180ms |
 | Row gap | 8px | `margin-bottom` |
 | Logo cell width | 190px | Standalone rounded card; padding 0 13px |
 | Logo-to-tile gap | 12px | `gap` on row flex container |

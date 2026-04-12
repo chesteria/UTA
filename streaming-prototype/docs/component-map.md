@@ -196,8 +196,10 @@ Multi-genre channels appear in multiple genre groups with independent tile scrol
 |---------|-------|-------|
 | Guide left offset | `content-pad-x (60px) + 70px = 130px` from screen left | Grid indented 70px beyond the genre rail |
 | Top gap (rail → first row) | `60px` fixed | Applied as `margin-top` on the grid wrapper — outside the overflow clip boundary, so rows scrolling off the top clip at y=0 immediately with no peeking |
-| Channel row height (collapsed) | `168px` | |
-| Channel row height (focused) | `360px` | Smooth CSS height transition |
+| Bottom fade | `85px` gradient | `::after` pseudo-element on grid wrapper; `linear-gradient(transparent → --color-bg)`; `z-index: 2`; `pointer-events: none` |
+| Genre rail alignment | First chip at x=272px | `padding-left: 272px` = grid padding-left(70) + logo cell(190) + gap(12) |
+| Channel row height (collapsed) | `163px` | |
+| Channel row height (focused) | `350px` | Smooth CSS height transition |
 | Row gap | `8px` | `margin-bottom` on each row |
 | Logo cell width | `190px` | Standalone card — **not joined to program tiles** |
 | Logo cell gap from tiles | `12px` | `gap` on the row flex container |
