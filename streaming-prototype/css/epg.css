@@ -99,41 +99,41 @@
 }
 
 .epg-genre-group-header {
-  padding: 8px var(--content-pad-x) 4px;
-  font-size: 11px;
+  padding: 20px var(--content-pad-x) 10px;
+  font-size: 12px;
   font-family: var(--font-family);
   font-weight: 600;
   color: var(--color-text-tertiary);
   letter-spacing: 0.06em;
   text-transform: uppercase;
   user-select: none;
-  opacity: 0.6;
+  opacity: 0.7;
 }
 
 /* ---- Channel row ---- */
 .epg-channel-row {
   display: flex;
   align-items: stretch;
-  height: 76px;
-  margin-bottom: 3px;
+  height: 168px;
+  margin-bottom: 8px;
   overflow: hidden;
-  transition: height 160ms ease;
+  transition: height 180ms ease;
 }
 
 .epg-channel-row.is-row-focused {
-  height: 120px;
+  height: 360px;
 }
 
 /* ---- Logo cell (fixed left column) ---- */
 .epg-logo-cell {
   flex-shrink: 0;
-  width: 80px;
+  width: 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 6px;
-  padding: 0 6px;
+  gap: 10px;
+  padding: 0 8px;
   border-radius: var(--tile-radius) 0 0 var(--tile-radius);
   background: var(--color-card-bg);
   cursor: default;
@@ -149,18 +149,25 @@
 }
 
 .epg-logo-placeholder {
-  width: 44px;
-  height: 44px;
-  border-radius: 8px;
+  width: 64px;
+  height: 64px;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 700;
   color: rgba(255,255,255,0.9);
   letter-spacing: 0.04em;
   font-family: var(--font-family);
   flex-shrink: 0;
+  transition: width 180ms ease, height 180ms ease, font-size 180ms ease;
+}
+
+.epg-channel-row.is-row-focused .epg-logo-placeholder {
+  width: 80px;
+  height: 80px;
+  font-size: 20px;
 }
 
 /* Channel name hidden — logo + heart only */
@@ -169,7 +176,7 @@
 }
 
 .epg-logo-heart {
-  font-size: 12px;
+  font-size: 14px;
   color: rgba(255,255,255,0.35);
   pointer-events: none;
   user-select: none;
@@ -205,7 +212,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 12px 16px;
+  padding: 22px 18px 20px;
   cursor: default;
   border: 2px solid transparent;
   transition: border-color var(--t-focus), box-shadow var(--t-focus);
@@ -241,7 +248,7 @@
 }
 
 .epg-tile-title {
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 600;
   color: var(--color-text-primary);
   font-family: var(--font-family);
@@ -254,18 +261,18 @@
 /* Description — hidden by default, revealed when row is focused */
 .epg-tile-desc {
   display: none;
-  font-size: 11px;
+  font-size: 13px;
   color: var(--color-text-secondary);
   font-family: var(--font-family);
-  line-height: 1.45;
-  margin-top: 4px;
+  line-height: 1.5;
+  margin-top: 8px;
   overflow: hidden;
   white-space: normal;
 }
 
 .epg-channel-row.is-row-focused .epg-tile-desc {
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 }
 
@@ -274,24 +281,24 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 6px;
+  gap: 8px;
   flex-shrink: 0;
 }
 
 .epg-tile-time {
-  font-size: 11px;
+  font-size: 13px;
   color: var(--color-text-secondary);
   font-family: var(--font-family);
   white-space: nowrap;
 }
 
 .epg-tile-rating {
-  font-size: 10px;
+  font-size: 11px;
   color: var(--color-text-tertiary);
   font-family: var(--font-family);
   border: 1px solid var(--color-surface);
   border-radius: 3px;
-  padding: 1px 5px;
+  padding: 2px 6px;
   white-space: nowrap;
   flex-shrink: 0;
 }
