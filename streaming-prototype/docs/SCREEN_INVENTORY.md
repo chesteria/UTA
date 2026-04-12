@@ -108,19 +108,22 @@ JS object conforming to the screen contract:
 
 | Measurement | Value | Rule |
 |-------------|-------|------|
-| Guide left offset | 130px from screen left | `content-pad-x` (60px) + 70px additional indent |
-| Nav → genre rail gap | 110px fixed | `margin-top` on `.epg-genre-rail` |
-| Rail → first row gap | 40px fixed | `margin-top` on grid wrapper — outside overflow clip, rows clip at y=0 with no peeking |
+| Guide left offset | 70px from screen left | `padding-left` on `.epg-grid-wrapper` |
+| Genre rail chip offset | 260px from screen left | grid-wrapper padding(70) + logo cell(190) — aligns first chip with program column left edge |
+| Nav → genre rail gap | 70px fixed | `margin-top` on `.epg-genre-rail` |
+| Rail → first row gap | 20px fixed | `margin-top` on grid wrapper — outside overflow clip, rows clip at y=0 with no peeking |
 | Row height (collapsed) | 163px | |
 | Row height (focused) | 350px | CSS height transition 180ms |
 | Row gap | 8px | `margin-bottom` |
-| Logo cell width | 190px | Standalone rounded card; padding 5px 13px |
+| Logo cell width | 190px | Standalone rounded card; padding 10px 13px |
+| Logo placeholder (collapsed) | 100×100px | font-size 40px |
+| Logo placeholder (focused) | 130×130px | font-size 52px |
 | Logo-to-tile gap | 18px | `gap` on row flex container |
 | Program tile width | 725px | `EPG_TILE_WIDTH` in `channel-row.js` |
 | Logo cell radius | `--tile-radius` all corners | **Never flush to adjacent elements** |
 | Program tile radius | `--tile-radius` all corners | **Never flush to logo cell** |
 
-> **Design rule:** Logo cell and program tiles are completely independent cards separated by 12px.
+> **Design rule:** Logo cell and program tiles are completely independent cards separated by 18px.
 > They must never be joined, flush, or share an edge.
 
 **EPG Focus navigation (BACK stack):**
@@ -143,8 +146,8 @@ Grid → Rail → Nav (BACK progresses through each context in order)
 | Program tile description | 10px | Visible only when row is focused |
 | Program tile time | 29px | |
 | Program tile rating | 25px | |
-| Logo cell initials (collapsed) | 48px | |
-| Logo cell initials (focused) | 60px | |
+| Logo cell initials (collapsed) | 40px | |
+| Logo cell initials (focused) | 52px | |
 
 ---
 
