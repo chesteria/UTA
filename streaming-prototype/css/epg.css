@@ -32,7 +32,7 @@
   height: 120px;
   display: flex;
   align-items: center;
-  padding: 0 var(--content-pad-x) 0 272px;  /* 272px = grid padding-left(70) + logo cell(190) + gap(12) — aligns first chip with program column */
+  padding: 0 var(--content-pad-x) 0 278px;  /* 278px = grid padding-left(70) + logo cell(190) + gap(18) — aligns first chip with program column */
   background: var(--color-bg);
   position: relative;
   z-index: 9;
@@ -123,7 +123,7 @@
 .epg-channel-row {
   display: flex;
   align-items: stretch;
-  gap: 12px;             /* logo cell and program tiles are separate — never touching */
+  gap: 18px;             /* logo cell and program tiles are separate — never touching */
   height: 163px;
   margin-bottom: 8px;
   overflow: hidden;
@@ -144,7 +144,7 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
-  padding: 0 13px;
+  padding: 5px 13px;
   border-radius: var(--tile-radius);   /* all corners — not joined to anything */
   background: var(--color-card-bg);
   cursor: default;

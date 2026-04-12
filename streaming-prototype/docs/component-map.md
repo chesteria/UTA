@@ -207,12 +207,12 @@ Multi-genre channels appear in multiple genre groups with independent tile scrol
 | Nav → genre rail gap | `110px` fixed | `margin-top` on `.epg-genre-rail` |
 | Top gap (rail → first row) | `40px` fixed | Applied as `margin-top` on the grid wrapper — outside the overflow clip boundary, so rows scrolling off the top clip at y=0 immediately with no peeking |
 | Bottom fade | `85px` gradient | `::after` pseudo-element on grid wrapper; `linear-gradient(transparent → --color-bg)`; `z-index: 2`; `pointer-events: none` |
-| Genre rail alignment | First chip at x=272px | `padding-left: 272px` = grid padding-left(70) + logo cell(190) + gap(12) |
+| Genre rail alignment | First chip at x=278px | `padding-left: 278px` = grid padding-left(70) + logo cell(190) + gap(18) |
 | Channel row height (collapsed) | `163px` | |
 | Channel row height (focused) | `350px` | Smooth CSS height transition |
 | Row gap | `8px` | `margin-bottom` on each row |
 | Logo cell width | `190px` | Standalone card — **not joined to program tiles** |
-| Logo cell gap from tiles | `12px` | `gap` on the row flex container |
+| Logo cell gap from tiles | `18px` | `gap` on the row flex container |
 | Program tile width | `725px` | `EPG_TILE_WIDTH` constant in `channel-row.js` |
 | Tile gap (between tiles) | `3px` | `EPG_TILE_GAP` constant in `channel-row.js` — **must match `gap` on `.epg-tile-track` in CSS** or tiles will drift on each RIGHT press |
 | Logo cell border-radius | `var(--tile-radius)` all corners | Full radius — not flush to any adjacent element |

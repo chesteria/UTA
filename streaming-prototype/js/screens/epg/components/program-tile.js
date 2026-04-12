@@ -50,7 +50,7 @@ function createProgramTile(program, isCurrentlyPlaying, channel) {
       <span class="epg-tile-time">${_escEPG(timeStr)}</span>
       <div style="display:flex;align-items:center;gap:6px;">
         <span class="epg-tile-watching${watchingVisible ? ' is-visible' : ''}">
-          <span class="epg-tile-watching-dot"></span>Watching
+          <span class="epg-tile-watching-dot"></span>
         </span>
         <span class="epg-tile-rating">${_escEPG(program.rating)}</span>
       </div>

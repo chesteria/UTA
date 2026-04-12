@@ -114,8 +114,8 @@ JS object conforming to the screen contract:
 | Row height (collapsed) | 163px | |
 | Row height (focused) | 350px | CSS height transition 180ms |
 | Row gap | 8px | `margin-bottom` |
-| Logo cell width | 190px | Standalone rounded card; padding 0 13px |
-| Logo-to-tile gap | 12px | `gap` on row flex container |
+| Logo cell width | 190px | Standalone rounded card; padding 5px 13px |
+| Logo-to-tile gap | 18px | `gap` on row flex container |
 | Program tile width | 725px | `EPG_TILE_WIDTH` in `channel-row.js` |
 | Logo cell radius | `--tile-radius` all corners | **Never flush to adjacent elements** |
 | Program tile radius | `--tile-radius` all corners | **Never flush to logo cell** |
