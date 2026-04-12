@@ -177,13 +177,12 @@ const EPGScreen = (() => {
         _focusContext = 'nav';
         _navZone.resetToLive();
         _navZone.activate();
-        _track('epg_back_to_nav', { from_surface: 'rail' });
       } else if (action === 'DOWN') {
         // Rail → Grid
         _focusContext = 'grid';
         _enterRow(_lastRowIndex, false);
       } else if (action === 'BACK') {
-        _rail.setFocusedChip(-1);
+        _rail.blurChips(); // remove visual focus without changing the remembered index
         _focusContext = 'nav';
         _navZone.resetToLive();
         _navZone.activate();
@@ -396,6 +395,10 @@ const EPGScreen = (() => {
     gridWrapper.appendChild(_grid.element);
 
     // More-info overlay (appended to body to sit above everything)
+    // Remove any stale overlay left from a prior mount (guards against non-destroy re-init)
+    const staleOverlay = document.body.querySelector('.epg-more-info-overlay');
+    if (staleOverlay) staleOverlay.parentNode.removeChild(staleOverlay);
+
     _overlay = createMoreInfoOverlay(
       _onOverlayClose,
       (eventName, payload) => _track(eventName, payload)
@@ -412,7 +415,6 @@ const EPGScreen = (() => {
 
     const entrySource = params?.entrySource || 'nav';
     _track('epg_screen_entered', { entry_source: entrySource });
-    _track('epg_nav_to_live', {});
   }
 
   function onFocus() {
