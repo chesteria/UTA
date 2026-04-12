@@ -271,6 +271,10 @@ Full-screen overlay. Two variants.
 
 **Closing:** Back or Escape closes the overlay. Focus returns to the channel logo cell that opened it. Analytics event `epg_more_info_closed` fires.
 
+**Focus trap:** While the overlay is open, all d-pad directions (UP, DOWN, LEFT, RIGHT) are no-ops. The overlay has exactly one focusable element per variant (the CTA button). Only Back/Escape dismisses the overlay. The dimmed grid and genre rail behind the overlay do not receive focus or input.
+
+**Row state on overlay close:** The channel row that triggered the overlay retains its scroll position (scrubbed or at-now). The return-to-now animation does not fire on overlay close — it fires only when the user navigates away from the row entirely.
+
 **Dimming:** The EPG screen behind the overlay receives class `epg-overlay-open`, which applies `opacity: 0.4` to the grid and genre rail (not the top nav).
 
 ---
@@ -312,7 +316,7 @@ Zone 3: More-Info Overlay (modal — captures all input when open)
 | Top Nav | LEFT/RIGHT | Adjacent nav tab | Existing lander behavior |
 | Top Nav | OK on "For You" | For You lander | `App.navigate('lander')` |
 | Genre Rail | UP | Top Nav (Live pill focused) | Nav `currentIdx` set to Live tab index |
-| Genre Rail | DOWN | Channel Grid (first row, currently-playing tile) | Or last-focused row if returning |
+| Genre Rail | DOWN | Channel Grid (last-focused row, currently-playing tile) | Row index is remembered; tile index is always 0 (row has already returned to now). On first entry, defaults to the first channel row. |
 | Genre Rail | LEFT | Previous chip; wraps from first → last | `wrapAround: true` |
 | Genre Rail | RIGHT | Next chip; wraps from last → first | `wrapAround: true` |
 | Genre Rail | OK | Scroll grid to first channel of selected genre | Chip gains `selected` then `active` class |
@@ -326,8 +330,10 @@ Zone 3: More-Info Overlay (modal — captures all input when open)
 | Channel Logo Cell | RIGHT | Currently-playing tile (tile index 0) | |
 | Channel Logo Cell | OK | Open More-Info overlay | Variant determined by row's focusedTileIndex |
 | More-Info Overlay | BACK / Escape | Close overlay; focus → Channel Logo Cell | `epg_more_info_closed` fires |
+| More-Info Overlay | UP / DOWN / LEFT / RIGHT | No-op | Focus trap — overlay has one focusable element |
 | More-Info Overlay | OK on CTA | No-op; fire `epg_more_info_cta_activated` | |
 | Anywhere in Grid or Rail | BACK | Focus → Top Nav (Live pill) | Does NOT navigate away from EPG screen |
+| Top Nav (non-Live/ForYou tab) | OK | Show toast; no navigation | Search, Movies, Shows, Settings, Location are static on EPG — consistent with lander behavior |
 
 ### Return-to-Now Behaviour on Row Blur
 
@@ -553,8 +559,8 @@ All events use `Analytics.track(eventName, payload)`. The analytics module autom
 | `epg_more_info_closed` | Back/Escape on more-info overlay | `channel_id`, `dwell_ms` |
 | `epg_more_info_cta_activated` | Watch Live / Watch Channel CTA pressed | `channel_id`, `cta_type` (`'watch_live'` \| `'watch_channel'`) |
 | `epg_back_to_nav` | Back pressed from grid or rail | `from_surface` (`'grid'` \| `'rail'`) |
-| `epg_nav_to_live` | For You → Live transition fires | _(no additional fields)_ |
-| `epg_nav_from_live` | Live → For You transition fires | _(no additional fields)_ |
+| `epg_nav_to_live` | For You → Live transition fires — fired from the nav module (lander `buildNavZone` or extracted `js/utils/nav.js`) at the moment "Live" is selected, before the EPG screen mounts | _(no additional fields)_ |
+| `epg_nav_from_live` | Live → For You transition fires — fired from the EPG screen's nav handler when "For You" is selected | _(no additional fields)_ |
 
 **Implementation rule:** Each event is wired into the component *as it is built*, not in a final analytics pass. The final analytics audit in build step 13 is a verification pass, not the primary wiring.
 
@@ -587,7 +593,7 @@ Each AC is binary pass/fail. IDs are prefixed `EPG-AC`.
 | EPG-AC-12 | Genre rail wraps: right-arrow from the last chip focuses the first chip |
 | EPG-AC-13 | Genre rail wraps: left-arrow from the first chip focuses the last chip |
 | EPG-AC-14 | Selecting a genre chip scrolls the channel grid to the first channel row of that genre |
-| EPG-AC-15 | The genre rail anchor highlights the correct chip within 100ms of grid focus entering a new genre group |
+| EPG-AC-15 | The genre rail anchor highlights the chip that corresponds to the genre group currently in focus — the correct chip is always active when navigating the grid. The highlight does not visibly lag behind d-pad navigation. |
 
 ### Channel Grid & Rows
 
@@ -598,7 +604,7 @@ Each AC is binary pass/fail. IDs are prefixed `EPG-AC`.
 | EPG-AC-18 | At least 8 genres are present |
 | EPG-AC-19 | Each channel row scrolls independently; scrubbing row A does not affect row B |
 | EPG-AC-20 | Two instances of the same channel in different genres scroll independently of each other |
-| EPG-AC-21 | When focus leaves a channel row, the tile track animates back to the currently-playing tile via a CSS transition (~250ms ease-out) |
+| EPG-AC-21 | When focus leaves a channel row, the tile track animates smoothly back to the currently-playing tile position with no stuck, skipped, or incomplete animation state |
 | EPG-AC-22 | Initial focus on screen entry is the currently-playing tile of the first channel row |
 
 ### More-Info Overlay
@@ -641,19 +647,19 @@ Each AC is binary pass/fail. IDs are prefixed `EPG-AC`.
 
 | ID | Criterion |
 |---|---|
-| EPG-AC-39 | 30 rows × 8 genres render without observable frame drops on the lowest-tier device profile (desktop browser baseline for prototype) |
+| EPG-AC-39 | The EPG screen mounts and the full channel grid renders completely within 2 seconds. No jank or dropped frames are visible during initial render or while navigating vertically through the full grid, assessed via manual observation on a standard development machine. |
 
 ---
 
 ## 15. Open Questions
 
-| # | Question | Impact |
-|---|---|---|
-| OQ-01 | When the more-info overlay closes after the user opened it from a mid-scrubbed row, does focus return to the logo cell with the row still in its scrubbed position, or does the row also reset to "now" on overlay close? The return-to-now animation is defined to fire on *row blur* — the overlay doesn't blur the row. **Recommendation:** Row stays at its scrubbed position when overlay closes; row resets only when the user actually leaves the row. Needs user confirmation. | Affects EPG-AC-21 and test plan edge case |
-| OQ-02 | What is the vertical scroll behavior when the genre rail anchor auto-highlights a chip mid-scrub — does the grid also scroll, or does only the chip highlight update? **Recommendation:** Chip updates; grid does not scroll automatically during anchor reaction (only on explicit genre chip selection). | Affects genre rail anchor implementation |
-| OQ-03 | The `buildNav()` function in `lander.js` is currently shared. For EPG, the same nav HTML is needed with "Live" as the active pill. Should EPG import/reuse `buildNav()` as-is (requires the function to be accessible outside lander.js scope), or should EPG define its own `buildNav()` copy? **Recommendation:** Extract `buildNav()` to a shared utility (e.g., `js/utils/nav.js`) so both screens reuse it. Needs user sign-off before touching lander.js. | Affects file touch list |
-| OQ-04 | The lander's `buildNavZone().select()` currently shows a toast for all nav tabs. For EPG nav wiring, the Live tab needs to call `App.navigate('epg')`. Is it acceptable to modify `lander.js` `buildNavZone` to add this navigation, or should the nav select handler be abstracted? **Recommendation:** Modify `lander.js` `buildNavZone` select() to handle the Live case. Minimal, targeted change. | Affects lander.js touch |
+| #     | Question                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | Impact                                    | Answer                                                                                        |
+| ----- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------- | --------------------------------------------------------------------------------------------- |
+| OQ-01 | When the more-info overlay closes after the user opened it from a mid-scrubbed row, does focus return to the logo cell with the row still in its scrubbed position, or does the row also reset to "now" on overlay close? The return-to-now animation is defined to fire on *row blur* — the overlay doesn't blur the row. **Recommendation:** Row stays at its scrubbed position when overlay closes; row resets only when the user actually leaves the row. Needs user confirmation. | Affects EPG-AC-21 and test plan edge case | Go with recommendation.                                                                       |
+| OQ-02 | What is the vertical scroll behavior when the genre rail anchor auto-highlights a chip mid-scrub — does the grid also scroll, or does only the chip highlight update? **Recommendation:** Chip updates; grid does not scroll automatically during anchor reaction (only on explicit genre chip selection).                                                                                                                                                                             | Affects genre rail anchor implementation  | User must select genre "chip" before the grid reacts. Nothing is on focus, only on select.    |
+| OQ-03 | The `buildNav()` function in `lander.js` is currently shared. For EPG, the same nav HTML is needed with "Live" as the active pill. Should EPG import/reuse `buildNav()` as-is (requires the function to be accessible outside lander.js scope), or should EPG define its own `buildNav()` copy? **Recommendation:** Extract `buildNav()` to a shared utility (e.g., `js/utils/nav.js`) so both screens reuse it. Needs user sign-off before touching lander.js.                        | Affects file touch list                   | Extract and use as a shared component. No need to rewrite code that exists and can be shared. |
+| OQ-04 | The lander's `buildNavZone().select()` currently shows a toast for all nav tabs. For EPG nav wiring, the Live tab needs to call `App.navigate('epg')`. Is it acceptable to modify `lander.js` `buildNavZone` to add this navigation, or should the nav select handler be abstracted? **Recommendation:** Modify `lander.js` `buildNavZone` select() to handle the Live case. Minimal, targeted change.                                                                                 | Affects lander.js touch                   | Yes, please modify as needed to "complete the experience" within the app as a whole.          |
 
 ---
 
-*PRD version: 1 — authored in Stage 1 of the ORCHESTRATE.md workflow*
+*PRD version: 2 — revised in Stage 3. Changes: focus trap + row-state-on-close added to More-Info Overlay spec; grid re-entry from genre rail clarified; non-implemented nav tab behavior specified; `epg_nav_to_live` firing location clarified; EPG-AC-15, EPG-AC-21, EPG-AC-39 rewritten for testability.*
