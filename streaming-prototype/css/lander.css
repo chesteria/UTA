@@ -31,7 +31,7 @@
      padding-top auto-adjusts via --nav-height to preserve the 135px below-nav margin. */
   height: calc(610px + var(--nav-height));
   overflow: hidden;
-  padding-top: calc(var(--nav-height) + 135px);
+  padding-top: calc(var(--nav-height) + 185px);  /* +50px moves first rail down without shifting subsequent rails */
 }
 
 .hero-track {
