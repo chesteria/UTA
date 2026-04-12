@@ -109,7 +109,8 @@ JS object conforming to the screen contract:
 | Measurement | Value | Rule |
 |-------------|-------|------|
 | Guide left offset | 130px from screen left | `content-pad-x` (60px) + 70px additional indent |
-| Rail → first row gap | 60px fixed | `margin-top` on grid wrapper — outside overflow clip, rows clip at y=0 with no peeking |
+| Nav → genre rail gap | 110px fixed | `margin-top` on `.epg-genre-rail` |
+| Rail → first row gap | 40px fixed | `margin-top` on grid wrapper — outside overflow clip, rows clip at y=0 with no peeking |
 | Row height (collapsed) | 163px | |
 | Row height (focused) | 350px | CSS height transition 180ms |
 | Row gap | 8px | `margin-bottom` |

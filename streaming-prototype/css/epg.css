@@ -37,6 +37,7 @@
   position: relative;
   z-index: 9;
   overflow: hidden;
+  margin-top: 110px;  /* gap between main nav bottom and genre rail */
 }
 
 .epg-genre-rail-inner {
@@ -87,7 +88,7 @@
   overflow: hidden;
   position: relative;
   padding-left: 70px;    /* guide indented 70px from left edge of screen content */
-  margin-top: 60px;      /* fixed gap between genre rail and guide — outside overflow clip,
+  margin-top: 40px;      /* fixed gap between genre rail and guide — outside overflow clip,
                             so rows scrolling off the top are clipped at y=0 with no peeking */
 }
 
