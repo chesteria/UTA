@@ -26,20 +26,21 @@
 .hero-carousel {
   position: relative;
   width: 100%;
-  /* calc(660px + nav-height) maintains 525px content area for hero tiles;
-     the 50px reduction from 660→610 closes the distance to the next rail by 50px.
-     padding-top auto-adjusts via --nav-height to preserve the 135px below-nav margin. */
   height: calc(610px + var(--nav-height));
   overflow: hidden;
-  padding-top: calc(var(--nav-height) + 185px);  /* +50px moves first rail down without shifting subsequent rails */
+  /* No padding-top here — gap between nav and tiles is controlled on .hero-track.
+     padding-top on the carousel was ineffective: .hero-track { height: 100% } fills
+     the full carousel height and align-items: center always positioned tiles at
+     ~(carousel-height - tile-height) / 2 ≈ nav-height, regardless of padding. */
 }
 
 .hero-track {
   display: flex;
-  align-items: center;
+  align-items: flex-start;  /* was center — explicit padding-top controls the offset now */
   height: 100%;
   gap: 16px;
-  padding: 12px 0;
+  padding-top: calc(var(--nav-height) + 50px);  /* 50px gap below fixed nav */
+  padding-bottom: 12px;
   padding-left: var(--content-pad-x);
   transition: transform var(--t-scroll) cubic-bezier(0.25, 0.46, 0.45, 0.94);
   will-change: transform;
