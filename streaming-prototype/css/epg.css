@@ -123,9 +123,9 @@
 .epg-channel-row {
   display: flex;
   align-items: stretch;
-  gap: 18px;             /* logo cell and program tiles are separate — never touching */
+  gap: 16px;             /* logo cell and program tiles are separate — never touching */
   height: 163px;
-  margin-bottom: 8px;
+  margin-bottom: 16px;
   overflow: hidden;
   transition: height 180ms ease;
 }
@@ -204,7 +204,7 @@
 
 .epg-tile-track {
   display: flex;
-  gap: 3px;
+  gap: 16px;
   height: 100%;
   padding-right: 60px;
   will-change: transform;
