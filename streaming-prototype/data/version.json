@@ -1,9 +1,9 @@
 {
   "version": "1.7.0",
-  "buildNumber": 42,
-  "buildDate": "2026-04-12T00:00:00Z",
-  "gitCommit": "pending",
-  "gitBranch": "feature/viewport-scaling",
+  "buildNumber": 43,
+  "buildDate": "2026-04-13T13:26:48Z",
+  "gitCommit": "5c8770f",
+  "gitBranch": "main",
   "phase": "Phase 2",
   "label": "Viewport Scaling"
 }
