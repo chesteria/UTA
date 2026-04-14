@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -48,73 +48,16 @@
     <link rel="stylesheet" crossorigin href="/UTA/v2/assets/index-DyhUegHQ.css">
   </head>
   <body class="bg-[#121212] text-white font-roboto">
-    <div id="app"></div>
-    <script>
-      (function () {
-        var app = document.getElementById("app");
-        if (!app) return;
-
-        var bootState = {
-          stage: "classic-script-start",
-          checks: {
-            module: "noModule" in document.createElement("script"),
-            promise: typeof Promise !== "undefined",
-            fetch: typeof window.fetch === "function",
-            localStorage:
-              typeof window.localStorage !== "undefined" &&
-              typeof window.localStorage.getItem === "function",
-          },
-          userAgent: navigator.userAgent,
-        };
-
-        window.__V2_BOOT__ = bootState;
-
-        var renderPanel = function (title, message) {
-          app.innerHTML =
-            '<div class="boot-panel">' +
-            "<h1>" +
-            title +
-            "</h1>" +
-            "<p>" +
-            message +
-            "</p>" +
-            "<pre>" +
-            "stage: " +
-            bootState.stage +
-            "\nmodule: " +
-            bootState.checks.module +
-            "\npromise: " +
-            bootState.checks.promise +
-            "\nfetch: " +
-            bootState.checks.fetch +
-            "\nlocalStorage: " +
-            bootState.checks.localStorage +
-            "\nuserAgent: " +
-            bootState.userAgent +
-            "</pre>" +
-            "</div>";
-        };
-
-        renderPanel("Phase 3 Preview Booting", "Waiting for module startup...");
-
-        window.addEventListener("error", function (event) {
-          bootState.stage = "window-error";
-          renderPanel(
-            "Phase 3 Preview Failed",
-            event.message || "Unknown startup error",
-          );
-        });
-
-        window.addEventListener("unhandledrejection", function (event) {
-          bootState.stage = "unhandled-rejection";
-          var reason =
-            event && event.reason && event.reason.message
-              ? event.reason.message
-              : String(event.reason || "Unknown promise rejection");
-          renderPanel("Phase 3 Preview Failed", reason);
-        });
-      })();
-    </script>
+    <div id="app">
+      <div class="boot-panel">
+        <h1>Phase 3 Preview Loading</h1>
+        <p>
+          If this message never changes, the device runtime is not executing the
+          preview scripts.
+        </p>
+      </div>
+    </div>
+    <script src="./boot.js"></script>
     <script nomodule>
       (function () {
         var app = document.getElementById("app");
