@@ -8,6 +8,14 @@ Version numbers follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html
 
 ## [Unreleased]
 
+### Added
+- **JSDoc/zod type-check hedge** — two-layer type safety without changing runtime behavior or the no-build architecture of `streaming-prototype/`.
+  - **Layer 1 (TypeScript):** `tsconfig.json` at repo root with `checkJs: false`; `// @ts-check` opt-in enabled on all 31 JS files under `streaming-prototype/js/`. Ambient declarations for all IIFE singletons, data shapes, and CDN globals (Hls, Chart, QRCode) in `js/types/globals.d.ts`. Data shape types derived via `z.infer<typeof Schema>` — zod schemas are the single source of truth for JSON-facing types. `npm run typecheck` is clean.
+  - **Layer 2 (Data validation):** 7 zod v3 schema files in `js/schemas/` covering all 34 JSON data files. `tools/validate-data.js` validates every file in Node and exits non-zero on any shape drift. 5 negative fixture tests + 5 positive smoke tests (57/57 pass). `npm run validate:data` is the CI safety net for schema/data changes.
+  - **CI gates:** `.github/workflows/typecheck.yml` and `.github/workflows/validate-data.yml` — path-filtered, trigger on relevant file changes, both pass green.
+  - **Docs:** `docs/JSDOC_GUIDE.md` — developer guide covering the two-layer model, `// @ts-check` opt-in pattern, IIFE `var` rule, `z.infer` pattern, CDN global stubs, and CI setup.
+  - **Pre-commit hook fixes:** rule 2 now scopes the no-build check to `streaming-prototype/` only (repo-root `package.json`/`tsconfig.json` host the Node CI toolchain); rule 3 uses `awk` per-file correlation to eliminate false positives when `analytics.js` and other files are committed together.
+
 ### Changed
 - **Device support matrix formalized** in new `docs/SUPPORTED_DEVICES.md`. Documents the real targets: Samsung Tizen 5.5+, VIZIO SmartCast 2019+, AndroidTV/Google TV, NVIDIA Shield, Google TV Streamer, FireTV (via Capacitor wrapper). Roku and tvOS are explicitly out of scope for this codebase and will be parallel implementations in separate projects. Mobile remains a deferred future phase.
 
