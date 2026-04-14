@@ -17,6 +17,27 @@
 
   window.__V2_BOOT__ = bootState;
 
+  var keyOverlayCurrent = document.getElementById("key-debug-current");
+  var keyOverlayLog = document.getElementById("key-debug-log");
+  var debugLines = [];
+
+  var appendDebugLine = function (message) {
+    if (!keyOverlayLog) return;
+    debugLines.unshift(message);
+    debugLines = debugLines.slice(0, 12);
+    keyOverlayLog.innerHTML = debugLines
+      .map(function (line) {
+        return "<div>" + line + "</div>";
+      })
+      .join("");
+  };
+
+  window.__V2_DEBUG__ = {
+    log: function (message) {
+      appendDebugLine(message);
+    },
+  };
+
   var renderPanel = function (title, message) {
     app.innerHTML =
       '<div class="boot-panel">' +
@@ -45,11 +66,10 @@
 
   renderPanel("Phase 3 Preview Booting", "Classic script loaded.");
 
-  var keyOverlay = document.getElementById("key-debug-overlay");
   var updateKeyOverlay = function (event, phase) {
-    if (!keyOverlay) return;
+    if (!keyOverlayCurrent) return;
     var keyCode = event.keyCode || event.which || 0;
-    keyOverlay.textContent =
+    keyOverlayCurrent.textContent =
       "phase=" +
       phase +
       " type=" +
@@ -60,6 +80,17 @@
       String(event.code) +
       " keyCode=" +
       keyCode;
+    appendDebugLine(
+      phase +
+        " " +
+        event.type +
+        " key=" +
+        String(event.key) +
+        " code=" +
+        String(event.code) +
+        " keyCode=" +
+        keyCode,
+    );
   };
 
   document.addEventListener(
@@ -80,6 +111,10 @@
 
   window.addEventListener("error", function (event) {
     bootState.stage = "window-error";
+    appendDebugLine(
+      "window-error " +
+        (event && event.message ? event.message : "Unknown startup error"),
+    );
     renderPanel(
       "Phase 3 Preview Failed",
       event && event.message ? event.message : "Unknown startup error",
@@ -92,6 +127,7 @@
       event && event.reason && event.reason.message
         ? event.reason.message
         : String((event && event.reason) || "Unknown promise rejection");
+    appendDebugLine("unhandledrejection " + reason);
     renderPanel("Phase 3 Preview Failed", reason);
   });
 })();

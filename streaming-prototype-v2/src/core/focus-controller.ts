@@ -21,6 +21,13 @@ let globalActionHandler:
   | ((action: KeyAction, event: KeyboardEvent) => void)
   | null = null;
 
+const pushDebugLog = (message: string) => {
+  const debugWindow = window as Window & {
+    __V2_DEBUG__?: { log: (message: string) => void };
+  };
+  debugWindow.__V2_DEBUG__?.log(message);
+};
+
 const forceRepaint = (element: HTMLElement) => {
   void element.offsetHeight;
 };
@@ -88,12 +95,18 @@ export const registerZone = (
       el.setAttribute("data-focused", "true");
       applyFocusedStyles(el);
       focusDomElement(el);
+      pushDebugLog(
+        `focus on zone=${name} index=${idx} id=${el.getAttribute("data-focus-id") ?? "none"}`,
+      );
       options.onFocus?.(idx, el);
     },
     onBlur: (idx, el) => {
       el.removeAttribute("data-focused");
       clearFocusedStyles(el);
       blurDomElement(el);
+      pushDebugLog(
+        `blur on zone=${name} index=${idx} id=${el.getAttribute("data-focus-id") ?? "none"}`,
+      );
       options.onBlur?.(idx, el);
     },
     onSelect: options.onSelect,
@@ -111,6 +124,7 @@ export const focusZone = (name: string, startIndex: number = 0) => {
 
   activeZone?.engineZone.blur();
   activeZone = zone;
+  pushDebugLog(`focusZone zone=${name} startIndex=${startIndex}`);
   zone.engineZone.focus(startIndex);
   return true;
 };
@@ -124,6 +138,9 @@ export const focusElementById = (id: string) => {
     if (index !== -1) {
       activeZone?.engineZone.blur();
       activeZone = zone;
+      pushDebugLog(
+        `focusElementById id=${id} zone=${zone.name} index=${index}`,
+      );
       zone.engineZone.focus(index);
       return true;
     }

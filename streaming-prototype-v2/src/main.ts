@@ -14,11 +14,16 @@ import { logEvent } from "./core/analytics";
 
 const bootWindow = window as Window & {
   __V2_BOOT__?: { stage: string };
+  __V2_DEBUG__?: { log: (message: string) => void };
 };
 
 const appContainer = document.getElementById("app");
 
 let state: LocationFlowState = { kind: "detecting" };
+
+const pushDebugLog = (message: string) => {
+  bootWindow.__V2_DEBUG__?.log(message);
+};
 
 const dispatch = (event: LocationFlowEvent) => {
   const nextState = locationFlowReducer(state, event);
@@ -31,6 +36,7 @@ const dispatch = (event: LocationFlowEvent) => {
 const render = () => {
   if (!appContainer) return;
 
+  pushDebugLog(`render state=${state.kind}`);
   FocusController.clearZones();
 
   switch (state.kind) {

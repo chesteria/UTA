@@ -38,6 +38,13 @@ const KEY_CODES: Record<KeyAction, number[]> = {
   PLAYPAUSE: [179, 415, 413, 19],
 };
 
+const pushDebugLog = (message: string) => {
+  const debugWindow = window as Window & {
+    __V2_DEBUG__?: { log: (message: string) => void };
+  };
+  debugWindow.__V2_DEBUG__?.log(message);
+};
+
 const updateKeyDebugOverlay = (
   event: KeyboardEvent,
   action: KeyAction | null,
@@ -117,6 +124,9 @@ const handleKey = (event: KeyboardEvent) => {
   if (!isEnabled) return;
   const action = getKeyAction(event);
   updateKeyDebugOverlay(event, action, "handler");
+  pushDebugLog(
+    `engine key=${String(event.key)} code=${String(event.code)} keyCode=${event.keyCode || event.which || 0} action=${action ?? "none"} repeat=${event.repeat ? "y" : "n"}`,
+  );
   if (!action) return;
 
   // Prevent default browser scrolling behavior
