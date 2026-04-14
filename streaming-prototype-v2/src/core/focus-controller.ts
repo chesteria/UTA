@@ -21,6 +21,28 @@ let globalActionHandler:
   | ((action: KeyAction, event: KeyboardEvent) => void)
   | null = null;
 
+const forceRepaint = (element: HTMLElement) => {
+  void element.offsetHeight;
+};
+
+const applyFocusedStyles = (element: HTMLElement) => {
+  element.style.outline = "6px solid #ffffff";
+  element.style.outlineOffset = "0";
+  element.style.borderColor = "#ffffff";
+  element.style.backgroundColor = "#ffffff";
+  element.style.color = "#0f1923";
+  forceRepaint(element);
+};
+
+const clearFocusedStyles = (element: HTMLElement) => {
+  element.style.outline = "";
+  element.style.outlineOffset = "";
+  element.style.borderColor = "";
+  element.style.backgroundColor = "";
+  element.style.color = "";
+  forceRepaint(element);
+};
+
 const focusDomElement = (element: HTMLElement) => {
   if (
     element instanceof HTMLInputElement ||
@@ -64,11 +86,13 @@ export const registerZone = (
   const engineZone = FocusEngine.createZone(elements, {
     onFocus: (idx, el) => {
       el.setAttribute("data-focused", "true");
+      applyFocusedStyles(el);
       focusDomElement(el);
       options.onFocus?.(idx, el);
     },
     onBlur: (idx, el) => {
       el.removeAttribute("data-focused");
+      clearFocusedStyles(el);
       blurDomElement(el);
       options.onBlur?.(idx, el);
     },

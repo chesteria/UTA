@@ -45,6 +45,39 @@
 
   renderPanel("Phase 3 Preview Booting", "Classic script loaded.");
 
+  var keyOverlay = document.getElementById("key-debug-overlay");
+  var updateKeyOverlay = function (event, phase) {
+    if (!keyOverlay) return;
+    var keyCode = event.keyCode || event.which || 0;
+    keyOverlay.textContent =
+      "phase=" +
+      phase +
+      " type=" +
+      event.type +
+      " key=" +
+      String(event.key) +
+      " code=" +
+      String(event.code) +
+      " keyCode=" +
+      keyCode;
+  };
+
+  document.addEventListener(
+    "keydown",
+    function (event) {
+      updateKeyOverlay(event, "boot-capture");
+    },
+    true,
+  );
+
+  document.addEventListener(
+    "keyup",
+    function (event) {
+      updateKeyOverlay(event, "boot-keyup");
+    },
+    true,
+  );
+
   window.addEventListener("error", function (event) {
     bootState.stage = "window-error";
     renderPanel(
