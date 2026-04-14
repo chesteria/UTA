@@ -22,11 +22,39 @@ const KEYS: Record<KeyAction, string[]> = {
   PLAYPAUSE: ["MediaPlayPause", "XF86PlayPause", "MediaPlay", "MediaPause"],
 };
 
+const KEY_CODES: Record<KeyAction, number[]> = {
+  UP: [38, 29460],
+  DOWN: [40, 29461],
+  LEFT: [37, 4],
+  RIGHT: [39, 5],
+  OK: [13, 29443],
+  BACK: [8, 27, 461],
+  PLAYPAUSE: [179, 415, 19],
+};
+
+const updateKeyDebugOverlay = (
+  event: KeyboardEvent,
+  action: KeyAction | null,
+) => {
+  const overlay = document.getElementById("key-debug-overlay");
+  if (!overlay) return;
+
+  const keyCode = event.keyCode || event.which || 0;
+  overlay.textContent = `key=${String(event.key)} code=${String(event.code)} keyCode=${keyCode} action=${action ?? "none"}`;
+};
+
 export const getKeyAction = (event: KeyboardEvent): KeyAction | null => {
   const key = event.key;
+  const keyCode = event.keyCode || event.which || 0;
+
   for (const [action, keys] of Object.entries(KEYS)) {
     if (keys.includes(key)) return action as KeyAction;
   }
+
+  for (const [action, codes] of Object.entries(KEY_CODES)) {
+    if (codes.includes(keyCode)) return action as KeyAction;
+  }
+
   return null;
 };
 
@@ -74,6 +102,7 @@ export const clearHandler = () => {
 const handleKey = (event: KeyboardEvent) => {
   if (!isEnabled) return;
   const action = getKeyAction(event);
+  updateKeyDebugOverlay(event, action);
   if (!action) return;
 
   // Prevent default browser scrolling behavior
