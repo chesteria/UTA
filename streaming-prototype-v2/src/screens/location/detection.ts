@@ -10,8 +10,8 @@ export const renderDetection = (
   logEvent({ type: "v2_location_detection_started" });
 
   container.innerHTML = `
-    <div class="flex flex-col items-center justify-center h-full space-y-8 animate-in fade-in duration-700">
-      <div class="w-16 h-16 border-4 border-v2-accent border-t-transparent rounded-full animate-spin"></div>
+    <div class="flex flex-col items-center justify-center h-full space-y-8">
+      <div class="w-16 h-16 border-4 border-v2-accent border-t-transparent rounded-full"></div>
       <div class="text-center space-y-2">
         <h1 class="text-3xl font-bold">Detecting your location...</h1>
         <p class="text-v2-text-secondary">This helps us show you the right local content.</p>

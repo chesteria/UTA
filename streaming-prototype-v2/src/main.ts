@@ -1,5 +1,3 @@
-import "@fontsource/roboto/400.css";
-import "@fontsource/roboto/700.css";
 import "./styles/global.css";
 
 import * as LocationService from "./core/location-service";
@@ -65,7 +63,7 @@ const render = () => {
       const selectedCity = state.selectedCity;
       LocationService.setSelectedLocation(selectedCity);
       appContainer.innerHTML = `
-        <div class="flex flex-col items-center justify-center h-full space-y-4 animate-in fade-in">
+        <div class="flex flex-col items-center justify-center h-full space-y-4">
           <h1 class="text-5xl font-bold">Welcome!</h1>
           <p class="text-2xl text-v2-text-secondary">Your location: <span class="text-v2-accent">${selectedCity.displayName}</span></p>
           <div class="flex space-x-4" data-focus-zone="complete-actions">

@@ -17,7 +17,7 @@ export const renderPicker = (
   );
 
   container.innerHTML = `
-    <div class="flex flex-col h-full bg-v2-bg p-content-x space-y-8 animate-in slide-in-from-bottom duration-300">
+    <div class="flex flex-col h-full bg-v2-bg p-content-x space-y-8">
       <header class="space-y-4">
         <h1 class="text-4xl font-bold">Select your location</h1>
         <div class="relative" data-focus-zone="picker-input">
@@ -43,7 +43,7 @@ export const renderPicker = (
             .map(
               (city) => `
             <button 
-              class="v2-card bg-v2-card-bg p-6 rounded-tile border-2 border-transparent text-left space-y-1 transition-all"
+              class="v2-card bg-v2-card-bg p-6 rounded-tile border-2 border-transparent text-left space-y-1"
               data-focusable="true"
               data-focus-id="city-${city.id}"
             >
