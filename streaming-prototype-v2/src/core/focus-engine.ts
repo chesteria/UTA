@@ -120,12 +120,24 @@ export const clearHandler = () => {
   currentHandler = null;
 };
 
-const handleKey = (event: KeyboardEvent) => {
+const isDirectionalAction = (action: KeyAction) =>
+  action === "UP" ||
+  action === "DOWN" ||
+  action === "LEFT" ||
+  action === "RIGHT";
+
+const dispatchAction = (action: KeyAction, event: KeyboardEvent) => {
+  if (currentHandler) {
+    currentHandler(action, event);
+  }
+};
+
+const handleKeyDown = (event: KeyboardEvent) => {
   if (!isEnabled) return;
   const action = getKeyAction(event);
-  updateKeyDebugOverlay(event, action, "handler");
+  updateKeyDebugOverlay(event, action, "keydown-handler");
   pushDebugLog(
-    `engine key=${String(event.key)} code=${String(event.code)} keyCode=${event.keyCode || event.which || 0} action=${action ?? "none"} repeat=${event.repeat ? "y" : "n"}`,
+    `engine keydown key=${String(event.key)} code=${String(event.code)} keyCode=${event.keyCode || event.which || 0} action=${action ?? "none"} repeat=${event.repeat ? "y" : "n"}`,
   );
   if (!action) return;
 
@@ -142,22 +154,41 @@ const handleKey = (event: KeyboardEvent) => {
     }
   }
 
-  if (currentHandler) {
-    currentHandler(action, event);
+  if (isDirectionalAction(action)) {
+    return;
   }
+
+  dispatchAction(action, event);
+};
+
+const handleKeyUp = (event: KeyboardEvent) => {
+  if (!isEnabled) return;
+  const action = getKeyAction(event);
+  updateKeyDebugOverlay(event, action, "keyup-handler");
+  pushDebugLog(
+    `engine keyup key=${String(event.key)} code=${String(event.code)} keyCode=${event.keyCode || event.which || 0} action=${action ?? "none"} repeat=${event.repeat ? "y" : "n"}`,
+  );
+  if (!action) return;
+  if (!isDirectionalAction(action)) return;
+
+  dispatchAction(action, event);
 };
 
 export const init = () => {
   if (isInitialized) return;
   document.addEventListener("keydown", handleDebugKey, true);
-  document.addEventListener("keydown", handleKey, true);
+  document.addEventListener("keydown", handleKeyDown, true);
+  document.addEventListener("keyup", handleDebugKey, true);
+  document.addEventListener("keyup", handleKeyUp, true);
   isInitialized = true;
 };
 
 export const teardown = () => {
   if (!isInitialized) return;
   document.removeEventListener("keydown", handleDebugKey, true);
-  document.removeEventListener("keydown", handleKey, true);
+  document.removeEventListener("keydown", handleKeyDown, true);
+  document.removeEventListener("keyup", handleDebugKey, true);
+  document.removeEventListener("keyup", handleKeyUp, true);
   isInitialized = false;
 };
 
