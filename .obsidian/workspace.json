@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "streaming-prototype/docs/CHANGELOG.md",
+                "file": "CLAUDE.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "CHANGELOG"
+              "title": "CLAUDE"
             }
           }
         ]
@@ -185,13 +185,45 @@
   },
   "active": "d183cd207ba7268b",
   "lastOpenFiles": [
-    "streaming-prototype/docs/PRD/archive/phase3-scenarios-and-simulation-v1.0.md",
+    "streaming-prototype/docs/JSDOC_GUIDE.md",
+    "streaming-prototype/docs/PRD/jsdoc-typecheck-hedge/progress.md",
+    "tests/unit/schemas-accept-real-data.test.js",
+    "tests/unit/schemas-reject-bad-data.test.js",
+    "streaming-prototype/docs/PRD/jsdoc-typecheck-hedge/PRD-v2.md",
+    "streaming-prototype/tests/fixtures/broken/series-missing-episodes.json",
+    "streaming-prototype/tests/fixtures/broken/version-missing-build.json",
+    "streaming-prototype/tests/fixtures/broken/lander-config-unknown-rail.json",
+    "streaming-prototype/tests/fixtures/broken/show-wrong-rating.json",
+    "streaming-prototype/tests/fixtures/broken/catalog-missing-shows.json",
+    "streaming-prototype/tests/fixtures/broken",
+    "streaming-prototype/tests/fixtures",
+    "streaming-prototype/tests",
+    "node_modules/zod/README.md",
     "streaming-prototype/docs/PRD/phase3-experience-completion/PRD-v1.md",
-    "streaming-prototype/docs/PRD/phase3-experience-completion",
-    "streaming-prototype/docs/PRD/untitled folder",
-    "streaming-prototype/docs/PRD/PRD-v1.md",
-    "streaming-prototype/docs/SUPPORTED_DEVICES.md",
-    "CLAUDE.md",
-    "CLAUDE_shared_block.md"
+    "node_modules/make-dir/node_modules/semver/README.md",
+    "node_modules/jest-snapshot/node_modules/semver/README.md",
+    "node_modules/@jest/reporters/node_modules/semver/README.md",
+    "node_modules/@babel/helper-member-expression-to-functions/README.md",
+    "node_modules/@jest/reporters/node_modules/istanbul-lib-instrument/README.md",
+    "node_modules/@jest/reporters/node_modules/istanbul-lib-instrument/CHANGELOG.md",
+    "node_modules/jest-validate/node_modules/camelcase/readme.md",
+    "node_modules/jest-worker/node_modules/supports-color/readme.md",
+    "node_modules/pretty-format/node_modules/ansi-styles/readme.md",
+    "node_modules/@babel/helper-optimise-call-expression/README.md",
+    "node_modules/@babel/core/README.md",
+    "node_modules/@babel/helper-create-class-features-plugin/README.md",
+    "node_modules/@babel/generator/README.md",
+    "node_modules/@babel/compat-data/README.md",
+    "node_modules/@babel/helper-define-polyfill-provider/README.md",
+    "node_modules/@babel/code-frame/README.md",
+    "node_modules/@babel/helper-compilation-targets/README.md",
+    "node_modules/@babel/helper-create-regexp-features-plugin/README.md",
+    "node_modules/@babel/helper-remap-async-to-generator/README.md",
+    "node_modules/p-locate/node_modules/p-limit/readme.md",
+    "node_modules/@babel/helper-annotate-as-pure/README.md",
+    "node_modules/istanbul-reports/lib/html-spa/assets/sort-arrow-sprite.png",
+    "node_modules/istanbul-reports/lib/html/assets/sort-arrow-sprite.png",
+    "node_modules/istanbul-reports/lib/html/assets/favicon.png",
+    "node_modules/psl/browserstack-logo.svg"
   ]
 }
